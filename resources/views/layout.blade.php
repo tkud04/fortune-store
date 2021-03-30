@@ -478,9 +478,7 @@
 		</footer>
 		<!--  FOOTER END  -->
 		
-        <script src="js/jquery-3.6.0.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.meanmenu.min.js"></script>
+        <script src="js/jquery.meanmenu.min.js"></script>
 		<script src="js/jquery.mixitup.js"></script>
 		<script src="js/jquery.counterup.min.js"></script>
 		<script src="js/waypoints.min.js"></script>

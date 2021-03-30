@@ -4,7 +4,7 @@ $title = "Welcome";
 
 
 <?php $__env->startSection('content'); ?>
-
+<h2>Welcome</h2>
 
 <?php $__env->stopSection(); ?>
 
