@@ -2,12 +2,10 @@
 'use strict';
 jQuery(document).on('ready', function(){
 	
-	/*PRELOADER JS*/
-	$(window).on('load', function() { 
-		$('.preloader').fadeOut();
-		$('.status-mes').delay(350).fadeOut('slow'); 
-	}); 
-	/*END PRELOADER JS*/
+	
+	 console.log('in main.js');
+	 
+	
 
 	 
 	/*Language JS*/

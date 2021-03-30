@@ -39,6 +39,17 @@
     <!-- Custom CSS File -->
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/custom.css').'?ver='.rand(32,99999)); ?>">
 	
+			
+        <script src="js/jquery.meanmenu.min.js"></script>
+		<script src="js/jquery.mixitup.js"></script>
+		<script src="js/jquery.counterup.min.js"></script>
+		<script src="js/waypoints.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<script src="js/venobox.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/simplePlayer.js"></script>
+		<script src="js/main.js"></script>
+		
 	<?php echo $__env->yieldContent('styles'); ?>
 	<?php echo $__env->yieldContent('scripts'); ?>
 
@@ -478,16 +489,7 @@
 			</div>
 		</footer>
 		<!--  FOOTER END  -->
-		
-        <script src="js/jquery.meanmenu.min.js"></script>
-		<script src="js/jquery.mixitup.js"></script>
-		<script src="js/jquery.counterup.min.js"></script>
-		<script src="js/waypoints.min.js"></script>
-		<script src="js/wow.min.js"></script>
-		<script src="js/venobox.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/simplePlayer.js"></script>
-		<script src="js/main.js"></script>
+
 </body>
 </html>
 <?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/layout.blade.php ENDPATH**/ ?>

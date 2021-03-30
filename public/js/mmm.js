@@ -4,6 +4,15 @@
 $(document).ready(function() {
     "use strict";
        
+	   /*PRELOADER JS*/
+	$(window).on('load', function() { 
+	   console.log('start preloader');
+		$('.preloader').fadeOut();
+		$('.status-mes').delay(350).fadeOut('slow'); 
+		console.log('end preloader');
+	}); 
+	/*END PRELOADER JS*/
+	   
 	   //auth
        $("#login-submit").click(function(e){            
 		       e.preventDefault();
