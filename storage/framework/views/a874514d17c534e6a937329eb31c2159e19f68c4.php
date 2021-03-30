@@ -1213,4 +1213,4 @@
 		<script src="js/simplePlayer.js"></script>
 		<script src="js/main.js"></script>
 	</body>
-</html>
+</html><?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/temp.blade.php ENDPATH**/ ?>

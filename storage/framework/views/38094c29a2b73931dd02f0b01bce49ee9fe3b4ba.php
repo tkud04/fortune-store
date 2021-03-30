@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{$title}} | My Store - Fashion for Men and Women</title>
+    <title><?php echo e($title); ?> | My Store - Fashion for Men and Women</title>
 
     <meta name="keywords" content="men, women, fashion">
     <meta name="description" content="My Store - Fashion for Men and Women">
@@ -28,8 +28,8 @@
 	  <script src="js/bootstrap.min.js"></script>
 	 
 	 	<!-- custom js -->
-	<script src="{{asset('js/helpers.js').'?ver='.rand(32,99999)}}"></script>
-	<script src="{{asset('js/mmm.js').'?ver='.rand(32,99999)}}"></script>
+	<script src="<?php echo e(asset('js/helpers.js').'?ver='.rand(32,99999)); ?>"></script>
+	<script src="<?php echo e(asset('js/mmm.js').'?ver='.rand(32,99999)); ?>"></script>
 	
 	 
 	 	<!--SweetAlert--> 
@@ -37,16 +37,17 @@
     <script src="lib/sweet-alert/sweetalert2.js"></script>
 	 
     <!-- Custom CSS File -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css').'?ver='.rand(32,99999)}}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/custom.css').'?ver='.rand(32,99999)); ?>">
 	
-	@yield('styles')
-	@yield('scripts')
+	<?php echo $__env->yieldContent('styles'); ?>
+	<?php echo $__env->yieldContent('scripts'); ?>
 
 	
 <!-- DO NOT EDIT!! start of plugins -->
-@foreach($plugins as $p)
-  {!! $p['value'] !!}
-@endforeach
+<?php $__currentLoopData = $plugins; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+  <?php echo $p['value']; ?>
+
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 <!-- DO NOT EDIT!! end of plugins -->
 </head>
  <?php
@@ -78,7 +79,7 @@
 			</div>
 		</div>
 		
-		@if(!isset($no_header))
+		<?php if(!isset($no_header)): ?>
 		<!--  Start Header  -->
 		<header id="header_area">
 			<div class="header_top_area">
@@ -352,11 +353,11 @@
 			</div>
 		</header>
 		<!--  End Header  -->
-        @endif
+        <?php endif; ?>
 		
-		@if(isset($ph) && $ph)
-             @include('page-header',['title' => $title,'img' => asset('img/page-header.jpg')])
-		 @endif
+		<?php if(isset($ph) && $ph): ?>
+             <?php echo $__env->make('page-header',['title' => $title,'img' => asset('img/page-header.jpg')], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+		 <?php endif; ?>
 		 
 		   <!--------- Session notifications-------------->
         	<?php
@@ -375,15 +376,15 @@
               
              ?> 
 
-                 @if($pop != "" && $val != "")
-                   @include('session-status',['pop' => $pop, 'val' => $val])
-                 @endif
+                 <?php if($pop != "" && $val != ""): ?>
+                   <?php echo $__env->make('session-status',['pop' => $pop, 'val' => $val], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                 <?php endif; ?>
         	<!--------- Input errors -------------->
-                    @if (count($errors) > 0)
-                          @include('input-errors', ['errors'=>$errors])
-                     @endif 
+                    <?php if(count($errors) > 0): ?>
+                          <?php echo $__env->make('input-errors', ['errors'=>$errors], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                     <?php endif; ?> 
 		
-		@yield('content')
+		<?php echo $__env->yieldContent('content'); ?>
 		
 		<!--  FOOTER START  -->
 		<footer class="footer_area">
@@ -491,3 +492,4 @@
 		<script src="js/main.js"></script>
 </body>
 </html>
+<?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/layout.blade.php ENDPATH**/ ?>
