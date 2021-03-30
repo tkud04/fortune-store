@@ -110,14 +110,11 @@
 								<li class="lan_area"><a href="#"><i class="fa fa-language "></i> Language <i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
 										<li><a href="#">English</a></li>
-										<li><a href="#">French</a></li>
-										<li><a href="#">Portuguese</a></li>
 									</ul>
 								</li>
-								<li class="currency_area"><a href="#"><i class="fa fa-gg "></i> $USD <i class="fa fa-caret-down"></i></a>
+								<li class="currency_area"><a href="#"><i class="fa fa-gg "></i> &#8358; <i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
-										<li><a href="#">€Euro</a></li>
-										<li><a href="#">৳BDT</a></li>		
+										<li><a href="#">&#8358; </a></li>	
 									</ul>								
 								</li>
 							</ul>
