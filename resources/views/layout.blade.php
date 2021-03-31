@@ -98,16 +98,25 @@
 						<div class="col-xs-12 col-sm-6">
 							<div class="hdr_tp_left">
 								<div class="call_area">
-									<span class="single_con_add"><i class="fa fa-phone"></i> {{$pe['phone']]}}</span>
-									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="javascript:void(0)" class="__cf_email__">{{$pe['email']]}}</a></span>
+									<span class="single_con_add"><i class="fa fa-phone"></i> {{$pe['phone']}}</span>
+									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="javascript:void(0)" class="__cf_email__">{{$pe['email']}}</a></span>
 								</div>
 							</div>
 						</div>
 						
 						<div class="col-xs-12 col-sm-6">
 							<ul class="hdr_tp_right text-right">
+							   @if($user == null)
 								<li class="account_area"><a href="{{$xu}}"><i class="fa fa-lock"></i> {{$xt}}</a></li>
-								<li class="lan_area"><a href="#"><i class="fa fa-language "></i> Language <i class="fa fa-caret-down"></i></a>
+								@else
+								<li class="lan_area"><a href="{{$xu}}"><i class="fa fa-lock"></i> {{$xt}}<i class="fa fa-caret-down"></i></a>
+									<ul class="csub-menu">
+										<li><a href="{{url('')}}">English</a></li>
+									</ul>
+								</li>
+								@endif
+								
+								<li class="lan_area"><a href="#"><i class="fa fa-language "></i> English <i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
 										<li><a href="#">English</a></li>
 									</ul>
@@ -137,17 +146,7 @@
 										<ul>
 											<li><a href="{{url('/')}}">home</a>					
 											</li>									
-											
-											<li><a href="shop.html">Shop <i class="fa fa-angle-down"></i></a>
-												<!-- Sub Menu -->
-												<ul class="sub-menu">
-													<li><a href="product-details.html">Product Details</a></li>
-													<li><a href="cart.html">Cart</a></li>
-													<li><a href="checkout.html">Checkout</a></li>
-													<li><a href="wishlist.html">Wishlist</a></li>
-												</ul>
-											</li>
-											<li><a href="shop.html">Men <i class="fa fa-angle-down"></i></a>
+											<li><a href="{{url('categories')}}">Categories <i class="fa fa-angle-down"></i></a>
 												<!-- Mega Menu -->
 												<div class="mega-menu mm-4-column mm-left">
 													<div class="mm-column mm-column-link float-left">
@@ -192,55 +191,10 @@
 
 												</div>
 											</li>
-											<li><a href="#">Women <i class="fa fa-angle-down"></i></a>
-												<!-- Mega Menu -->
-												<div class="mega-menu mm-3-column mm-left">
-													<div class="mm-column mm-column-link float-left">
-														<h3>Woment</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>
-													
-													<div class="mm-column mm-column-link float-left">
-														<h3>T-Shirts</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>					
-
-													<div class="mm-column mm-column-link float-left">
-														<h3>Jackets</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>												
-				
-												</div>
-											</li>
 											
-											<li><a href="#">pages <i class="fa fa-angle-down"></i></a>
-												<!-- Sub Menu -->
-												<ul class="sub-menu">
-													<li><a href="left-sidebar-blog.html">Left Sidebar Blog</a></li>
-													<li><a href="right-sidebar-blog.html">Right Sidebar Blog</a></li>
-													<li><a href="full-width-blog.html">Full Width Blog</a></li>
-													<li><a href="blog-details.html">Blog Details</a></li>
-													<li><a href="about-us.html">About Us</a></li>
-													<li><a href="contact.html">Contact Us</a></li>
-													<li><a href="404.html">404 Page</a></li>
-												</ul>
-											</li>
-											<li><a href="contact.html">contact</a></li>
+											<li><a href="{{url('about')}}">about us</a></li>
+											<li><a href="{{url('faq')}}">faq</a></li>
+											<li><a href="{{url('contact')}}">contact</a></li>
 										</ul>
 									</nav>
 								</div> <!--  End Main Menu -->					
@@ -249,15 +203,6 @@
 									<nav>
 										<ul>
 											<li><a href="{{url('/')}}">home</a></li>																		
-											<li><a href="#">Shop</a>
-												<!-- Sub Menu -->
-												<ul>
-													<li><a href="product-details.html">Product Details</a></li>
-													<li><a href="cart.html">Cart</a></li>
-													<li><a href="checkout.html">Checkout</a></li>
-													<li><a href="wishlist.html">Wishlist</a></li>
-												</ul>
-											</li>
 											<li><a href="#">Men</a>																		
 												<ul>
 													<li><a href="#">Blazers</a></li>
@@ -268,28 +213,19 @@
 													<li><a href="#">sports shoes</a></li>
 												</ul>																				
 											</li>
-											
-											<li><a href="#">Women</a>
+											<li><a href="#">Women</a>																		
 												<ul>
-													<li><a href="#">gagets</a></li>
-													<li><a href="#">laptop</a></li>
-													<li><a href="#">mobile</a></li>
-													<li><a href="#">lifestyle</a></li>
+													<li><a href="#">Blazers</a></li>
+													<li><a href="#">Jackets</a></li>
+													<li><a href="#">Collections</a></li>
+													<li><a href="#">T-Shirts</a></li>
 													<li><a href="#">jens pant’s</a></li>
-													<li><a href="#">sports items</a></li>
-												</ul>
+													<li><a href="#">sports shoes</a></li>
+												</ul>																				
 											</li>
-										
-											<li><a href="#">pages</a>											
-												<ul>
-													<li><a href="blog.html">Blog</a></li>
-													<li><a href="blog-details.html">Blog Details</a></li>
-													<li><a href="about-us.html">About Us</a></li>
-													<li><a href="contact.html">Contact Us</a></li>
-													<li><a href="404.html">404 Page</a></li>
-												</ul>
-											</li>
-											<li><a href="#">contact</a></li>
+											<li><a href="{{url('about')}}">about us</a></li>
+											<li><a href="{{url('faq')}}">faq</a></li>
+											<li><a href="{{url('contact')}}">contact</a></li>
 										</ul>
 									</nav>
 								</div> <!--  End mobile-menu -->
@@ -309,12 +245,27 @@
 												</div>
 											</div>
 										</li>
-										
+										<?php
+			             $cc = (isset($cart)) ? count($cart) : 0;
+						 $subtotal = 0;
+		                ?>
 										<li>
+										<?php
+				                   for($a = 0; $a < $cc; $a++)
+				                   {
+					                 $item = $cart[$a]['product'];
+					                 $qty = $cart[$a]['qty'];
+					                 $itemAmount = $item['data']['amount'];
+									  $subtotal += ($itemAmount * $qty);
+				                 ?>
+								 
+						<?php
+								   }
+						?>
 											<div class="cart_menu_area">
 												<div class="cart_icon">
 													<a href="#"><i class="fa fa-shopping-bag " aria-hidden="true"></i></a>
-													<span class="cart_number">2</span>
+													<span class="cart_number">{{$cc}}</span>
 												</div>
 												
 												
@@ -322,30 +273,36 @@
 												<div class="mini-cart-wrapper">
 													<!-- Product List -->
 													<div class="mc-pro-list fix">
+													 <?php
+								   $subtotal = 0;
+				                   for($a = 0; $a < $cc; $a++)
+				                   {
+					                 $item = $cart[$a]['product'];
+					                 $qty = $cart[$a]['qty'];
+					                 $itemAmount = $item['data']['amount'];
+									 $subtotal += ($itemAmount * $qty);
+									 $imgs = $item['imggs'];
+									 $uu = url('product')."?xf=".$item['id'];
+				                 ?>
 														<div class="mc-sin-pro fix">
-															<a href="#" class="mc-pro-image float-left"><img src="img/mini-cart/1.jpg" alt="" /></a>
+															<a href="{{$uu}}" class="mc-pro-image float-left"><img src="{{$imgs[0]}}" alt="{{$item['name']}}" /></a>
 															<div class="mc-pro-details fix">
-																<a href="#">This is Product Name</a>
-																<span>1x$25.00</span>
+																<a href="{{$uu}}">{{$item['name']}}</a>
+																<span>{{$qty}}x&#8358;{{number_format($itemAmount,2)}}</span>
 																<a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
 															</div>
 														</div>
-														<div class="mc-sin-pro fix">
-															<a href="#" class="mc-pro-image float-left"><img src="img/mini-cart/2.jpg" alt="" /></a>
-															<div class="mc-pro-details fix">
-																<a href="#">This is Product Name</a>
-																<span>1x$25.00</span>
-																<a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
-															</div>
-														</div>
+														 <?php
+			                          }
+			                         ?>
 													</div>
 													<!-- Sub Total -->
 													<div class="mc-subtotal fix">
-														<h4>Subtotal <span>$50.00</span></h4>												
+														<h4>Subtotal <span>&#8358;{{number_format($subtotal,2)}}</span></h4>												
 													</div>
 													<!-- Cart Button -->
 													<div class="mc-button">
-														<a href="#" class="checkout_btn">checkout</a>
+														<a href="{{url('checkout')}}" class="checkout_btn">checkout</a>
 													</div>
 												</div>											
 											</div>	

@@ -1093,12 +1093,17 @@ $subject = $data['subject'];
 			  #dd($pds);
               if($pds != null)
                {
-				  foreach($pds[0] as $p)
+				  if(count($pds) > 0)
 				  {
+				    foreach($pds[0] as $p)
+				    {
 					  #dd($p);
 					  $pp = $this->getProduct($p->id);
-					 if(count($pp) > 0)  array_push($ret,$pp);
+					  if(count($pp) > 0)  array_push($ret,$pp);
+				    }
 				  }
+				  
+				 
                }                         
                      #dd($ret);             
                 return $ret;
@@ -1110,16 +1115,21 @@ $subject = $data['subject'];
               $pdss = Products::where('id','>',"0")->get();
               $pdss = $pdss->sortByDesc('created_at');	
 			  $pds = $pdss->chunk(24);
-			  dd($pds);
+			  #dd($pds);
               if($pds != null)
                {
-				  foreach($pds[0] as $p)
+				  if(count($pds) > 0)
 				  {
+				    foreach($pds[0] as $p)
+				    {
 					  #dd($p);
 					  $pp = $this->getProduct($p->id);
-					 if(count($pp) > 0)  array_push($ret,$pp);
+					  if(count($pp) > 0)  array_push($ret,$pp);
+				    }
 				  }
-               }                         
+				  
+				 
+               }                          
                      #dd($ret);             
                 return $ret;
            }

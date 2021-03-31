@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?php echo e($title); ?> | My Store - Fashion for Men and Women</title>
+    <title><?php echo e($title); ?> | Luxfabriqs Fashion - Online Store for Stylish and Elegant Laces and Georges </title>
 
     <meta name="keywords" content="men, women, fashion">
-    <meta name="description" content="My Store - Fashion for Men and Women">
+    <meta name="description" content="Luxfabriqs Fashion - Online Store for Stylish and Elegant Laces and Georges">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/icons/favicon.png">
@@ -99,16 +99,16 @@
 						<div class="col-xs-12 col-sm-6">
 							<div class="hdr_tp_left">
 								<div class="call_area">
-									<span class="single_con_add"><i class="fa fa-phone"></i> +0123456789</span>
-									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9affe2fbf7eaf6ffdafdf7fbf3f6b4f9f5f7">[email&#160;protected]</a></span>
+									<span class="single_con_add"><i class="fa fa-phone"></i> <?php echo e($pe['phone']); ?></span>
+									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="javascript:void(0)" class="__cf_email__"><?php echo e($pe['email']); ?></a></span>
 								</div>
 							</div>
 						</div>
 						
 						<div class="col-xs-12 col-sm-6">
 							<ul class="hdr_tp_right text-right">
-								<li class="account_area"><a href="login.html"><i class="fa fa-lock"></i> My Account</a></li>
-								<li class="lan_area"><a href="#"><i class="fa fa-language "></i> Language <i class="fa fa-caret-down"></i></a>
+								<li class="account_area"><a href="<?php echo e($xu); ?>"><i class="fa fa-lock"></i> <?php echo e($xt); ?></a></li>
+								<li class="lan_area"><a href="#"><i class="fa fa-language "></i> English <i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
 										<li><a href="#">English</a></li>
 									</ul>
@@ -128,7 +128,7 @@
 				<div class="container">
 					<div class="row">		
 						<div class="col-xs-12 col-sm-12 col-md-3"> 
-							<a class="logo" href="index.html"> <img alt="" src="img/logo.png"></a> 
+							<a class="logo" href="<?php echo e(url('/')); ?>"> <img alt="" src="img/logo.png"></a> 
 						</div><!--  End Col -->
 						
 						<div class="col-xs-12 col-sm-12 col-md-9 text-right">
@@ -136,19 +136,9 @@
 								<div class="main-menu">
 									<nav>
 										<ul>
-											<li><a href="index.html">home</a>					
+											<li><a href="<?php echo e(url('/')); ?>">home</a>					
 											</li>									
-											
-											<li><a href="shop.html">Shop <i class="fa fa-angle-down"></i></a>
-												<!-- Sub Menu -->
-												<ul class="sub-menu">
-													<li><a href="product-details.html">Product Details</a></li>
-													<li><a href="cart.html">Cart</a></li>
-													<li><a href="checkout.html">Checkout</a></li>
-													<li><a href="wishlist.html">Wishlist</a></li>
-												</ul>
-											</li>
-											<li><a href="shop.html">Men <i class="fa fa-angle-down"></i></a>
+											<li><a href="<?php echo e(url('categories')); ?>">Categories <i class="fa fa-angle-down"></i></a>
 												<!-- Mega Menu -->
 												<div class="mega-menu mm-4-column mm-left">
 													<div class="mm-column mm-column-link float-left">
@@ -193,55 +183,10 @@
 
 												</div>
 											</li>
-											<li><a href="#">Women <i class="fa fa-angle-down"></i></a>
-												<!-- Mega Menu -->
-												<div class="mega-menu mm-3-column mm-left">
-													<div class="mm-column mm-column-link float-left">
-														<h3>Woment</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>
-													
-													<div class="mm-column mm-column-link float-left">
-														<h3>T-Shirts</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>					
-
-													<div class="mm-column mm-column-link float-left">
-														<h3>Jackets</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>												
-				
-												</div>
-											</li>
 											
-											<li><a href="#">pages <i class="fa fa-angle-down"></i></a>
-												<!-- Sub Menu -->
-												<ul class="sub-menu">
-													<li><a href="left-sidebar-blog.html">Left Sidebar Blog</a></li>
-													<li><a href="right-sidebar-blog.html">Right Sidebar Blog</a></li>
-													<li><a href="full-width-blog.html">Full Width Blog</a></li>
-													<li><a href="blog-details.html">Blog Details</a></li>
-													<li><a href="about-us.html">About Us</a></li>
-													<li><a href="contact.html">Contact Us</a></li>
-													<li><a href="404.html">404 Page</a></li>
-												</ul>
-											</li>
-											<li><a href="contact.html">contact</a></li>
+											<li><a href="<?php echo e(url('about')); ?>">about us</a></li>
+											<li><a href="<?php echo e(url('faq')); ?>">faq</a></li>
+											<li><a href="<?php echo e(url('contact')); ?>">contact</a></li>
 										</ul>
 									</nav>
 								</div> <!--  End Main Menu -->					
@@ -249,16 +194,7 @@
 								<div class="mobile-menu text-right ">
 									<nav>
 										<ul>
-											<li><a href="index.html">home</a></li>																		
-											<li><a href="#">Shop</a>
-												<!-- Sub Menu -->
-												<ul>
-													<li><a href="product-details.html">Product Details</a></li>
-													<li><a href="cart.html">Cart</a></li>
-													<li><a href="checkout.html">Checkout</a></li>
-													<li><a href="wishlist.html">Wishlist</a></li>
-												</ul>
-											</li>
+											<li><a href="<?php echo e(url('/')); ?>">home</a></li>																		
 											<li><a href="#">Men</a>																		
 												<ul>
 													<li><a href="#">Blazers</a></li>
@@ -269,28 +205,19 @@
 													<li><a href="#">sports shoes</a></li>
 												</ul>																				
 											</li>
-											
-											<li><a href="#">Women</a>
+											<li><a href="#">Women</a>																		
 												<ul>
-													<li><a href="#">gagets</a></li>
-													<li><a href="#">laptop</a></li>
-													<li><a href="#">mobile</a></li>
-													<li><a href="#">lifestyle</a></li>
+													<li><a href="#">Blazers</a></li>
+													<li><a href="#">Jackets</a></li>
+													<li><a href="#">Collections</a></li>
+													<li><a href="#">T-Shirts</a></li>
 													<li><a href="#">jens pant’s</a></li>
-													<li><a href="#">sports items</a></li>
-												</ul>
+													<li><a href="#">sports shoes</a></li>
+												</ul>																				
 											</li>
-										
-											<li><a href="#">pages</a>											
-												<ul>
-													<li><a href="blog.html">Blog</a></li>
-													<li><a href="blog-details.html">Blog Details</a></li>
-													<li><a href="about-us.html">About Us</a></li>
-													<li><a href="contact.html">Contact Us</a></li>
-													<li><a href="404.html">404 Page</a></li>
-												</ul>
-											</li>
-											<li><a href="#">contact</a></li>
+											<li><a href="<?php echo e(url('about')); ?>">about us</a></li>
+											<li><a href="<?php echo e(url('faq')); ?>">faq</a></li>
+											<li><a href="<?php echo e(url('contact')); ?>">contact</a></li>
 										</ul>
 									</nav>
 								</div> <!--  End mobile-menu -->
@@ -310,12 +237,27 @@
 												</div>
 											</div>
 										</li>
-										
+										<?php
+			             $cc = (isset($cart)) ? count($cart) : 0;
+						 $subtotal = 0;
+		                ?>
 										<li>
+										<?php
+				                   for($a = 0; $a < $cc; $a++)
+				                   {
+					                 $item = $cart[$a]['product'];
+					                 $qty = $cart[$a]['qty'];
+					                 $itemAmount = $item['data']['amount'];
+									  $subtotal += ($itemAmount * $qty);
+				                 ?>
+								 
+						<?php
+								   }
+						?>
 											<div class="cart_menu_area">
 												<div class="cart_icon">
 													<a href="#"><i class="fa fa-shopping-bag " aria-hidden="true"></i></a>
-													<span class="cart_number">2</span>
+													<span class="cart_number"><?php echo e($cc); ?></span>
 												</div>
 												
 												
@@ -323,30 +265,36 @@
 												<div class="mini-cart-wrapper">
 													<!-- Product List -->
 													<div class="mc-pro-list fix">
+													 <?php
+								   $subtotal = 0;
+				                   for($a = 0; $a < $cc; $a++)
+				                   {
+					                 $item = $cart[$a]['product'];
+					                 $qty = $cart[$a]['qty'];
+					                 $itemAmount = $item['data']['amount'];
+									 $subtotal += ($itemAmount * $qty);
+									 $imgs = $item['imggs'];
+									 $uu = url('product')."?xf=".$item['id'];
+				                 ?>
 														<div class="mc-sin-pro fix">
-															<a href="#" class="mc-pro-image float-left"><img src="img/mini-cart/1.jpg" alt="" /></a>
+															<a href="<?php echo e($uu); ?>" class="mc-pro-image float-left"><img src="<?php echo e($imgs[0]); ?>" alt="<?php echo e($item['name']); ?>" /></a>
 															<div class="mc-pro-details fix">
-																<a href="#">This is Product Name</a>
-																<span>1x$25.00</span>
+																<a href="<?php echo e($uu); ?>"><?php echo e($item['name']); ?></a>
+																<span><?php echo e($qty); ?>x&#8358;<?php echo e(number_format($itemAmount,2)); ?></span>
 																<a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
 															</div>
 														</div>
-														<div class="mc-sin-pro fix">
-															<a href="#" class="mc-pro-image float-left"><img src="img/mini-cart/2.jpg" alt="" /></a>
-															<div class="mc-pro-details fix">
-																<a href="#">This is Product Name</a>
-																<span>1x$25.00</span>
-																<a class="pro-del" href="#"><i class="fa fa-times-circle"></i></a>
-															</div>
-														</div>
+														 <?php
+			                          }
+			                         ?>
 													</div>
 													<!-- Sub Total -->
 													<div class="mc-subtotal fix">
-														<h4>Subtotal <span>$50.00</span></h4>												
+														<h4>Subtotal <span>&#8358;<?php echo e(number_format($subtotal,2)); ?></span></h4>												
 													</div>
 													<!-- Cart Button -->
 													<div class="mc-button">
-														<a href="#" class="checkout_btn">checkout</a>
+														<a href="<?php echo e(url('checkout')); ?>" class="checkout_btn">checkout</a>
 													</div>
 												</div>											
 											</div>	
