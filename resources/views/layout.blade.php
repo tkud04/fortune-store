@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{$title}} | My Store - Fashion for Men and Women</title>
+    <title>{{$title}} | Luxfabriqs Fashion - Online Store for Stylish and Elegant Laces and Georges </title>
 
     <meta name="keywords" content="men, women, fashion">
-    <meta name="description" content="My Store - Fashion for Men and Women">
+    <meta name="description" content="Luxfabriqs Fashion - Online Store for Stylish and Elegant Laces and Georges">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/icons/favicon.png">
@@ -98,15 +98,15 @@
 						<div class="col-xs-12 col-sm-6">
 							<div class="hdr_tp_left">
 								<div class="call_area">
-									<span class="single_con_add"><i class="fa fa-phone"></i> +0123456789</span>
-									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9affe2fbf7eaf6ffdafdf7fbf3f6b4f9f5f7">[email&#160;protected]</a></span>
+									<span class="single_con_add"><i class="fa fa-phone"></i> {{$pe['phone']]}}</span>
+									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="javascript:void(0)" class="__cf_email__">{{$pe['email']]}}</a></span>
 								</div>
 							</div>
 						</div>
 						
 						<div class="col-xs-12 col-sm-6">
 							<ul class="hdr_tp_right text-right">
-								<li class="account_area"><a href="login.html"><i class="fa fa-lock"></i> My Account</a></li>
+								<li class="account_area"><a href="{{$xu}}"><i class="fa fa-lock"></i> {{$xt}}</a></li>
 								<li class="lan_area"><a href="#"><i class="fa fa-language "></i> Language <i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
 										<li><a href="#">English</a></li>
@@ -127,7 +127,7 @@
 				<div class="container">
 					<div class="row">		
 						<div class="col-xs-12 col-sm-12 col-md-3"> 
-							<a class="logo" href="index.html"> <img alt="" src="img/logo.png"></a> 
+							<a class="logo" href="{{url('/')}}"> <img alt="" src="img/logo.png"></a> 
 						</div><!--  End Col -->
 						
 						<div class="col-xs-12 col-sm-12 col-md-9 text-right">
@@ -135,7 +135,7 @@
 								<div class="main-menu">
 									<nav>
 										<ul>
-											<li><a href="index.html">home</a>					
+											<li><a href="{{url('/')}}">home</a>					
 											</li>									
 											
 											<li><a href="shop.html">Shop <i class="fa fa-angle-down"></i></a>
@@ -248,7 +248,7 @@
 								<div class="mobile-menu text-right ">
 									<nav>
 										<ul>
-											<li><a href="index.html">home</a></li>																		
+											<li><a href="{{url('/')}}">home</a></li>																		
 											<li><a href="#">Shop</a>
 												<!-- Sub Menu -->
 												<ul>
