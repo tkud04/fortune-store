@@ -111,7 +111,8 @@
 								@else
 								<li class="lan_area"><a href="{{$xu}}"><i class="fa fa-lock"></i> {{$xt}}<i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
-										<li><a href="{{url('')}}">English</a></li>
+										<li><a href="{{$xu}}">{{$xt}}</a></li>
+										<li><a href="{{url('bye')}}">Sign out</a></li>
 									</ul>
 								</li>
 								@endif
