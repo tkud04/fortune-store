@@ -137,7 +137,10 @@
 				<div class="container">
 					<div class="row">		
 						<div class="col-xs-12 col-sm-12 col-md-3"> 
-							<a class="logo" href="{{url('/')}}"> <img alt="" src="img/logo.png"></a> 
+							<a class="logo" href="{{url('/')}}"> 
+							 <!--<img alt="" src="img/logo.png">-->
+							 Luxfabriqs  Fashion
+							</a> 
 						</div><!--  End Col -->
 						
 						<div class="col-xs-12 col-sm-12 col-md-9 text-right">

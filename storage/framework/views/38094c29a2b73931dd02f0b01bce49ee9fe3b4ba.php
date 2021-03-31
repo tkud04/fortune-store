@@ -138,7 +138,10 @@
 				<div class="container">
 					<div class="row">		
 						<div class="col-xs-12 col-sm-12 col-md-3"> 
-							<a class="logo" href="<?php echo e(url('/')); ?>"> <img alt="" src="img/logo.png"></a> 
+							<a class="logo" href="<?php echo e(url('/')); ?>"> 
+							 <!--<img alt="" src="img/logo.png">-->
+							 Luxfabriqs  Fashion
+							</a> 
 						</div><!--  End Col -->
 						
 						<div class="col-xs-12 col-sm-12 col-md-9 text-right">
@@ -152,44 +155,24 @@
 												<!-- Mega Menu -->
 												<div class="mega-menu mm-4-column mm-left">
 													<div class="mm-column mm-column-link float-left">
-														<h3>Men</h3>
+														<h3>Laces</h3>
 														<a href="#">Blazers</a>
 														<a href="#">Jackets</a>
 														<a href="#">Collections</a>
 														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>												
+														
 													</div>
 													
 													<div class="mm-column mm-column-link float-left">
-														<h3>Women</h3>
+														<h3>Georges</h3>
 														<a href="#">Blazers</a>
 														<a href="#">Jackets</a>
 														<a href="#">Collections</a>
 														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>												
+														
 													</div>
 													
-													<div class="mm-column mm-column-link float-left">
-														<h3>Jackets</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>						
-
-													<div class="mm-column mm-column-link float-left">
-														<h3>jens pant’s</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														<a href="#">jens pant’s</a>
-														<a href="#">sports shoes</a>	
-													</div>
+													
 
 												</div>
 											</li>
@@ -205,24 +188,22 @@
 									<nav>
 										<ul>
 											<li><a href="<?php echo e(url('/')); ?>">home</a></li>																		
-											<li><a href="#">Men</a>																		
+											<li><a href="#">Laces</a>																		
 												<ul>
 													<li><a href="#">Blazers</a></li>
 													<li><a href="#">Jackets</a></li>
 													<li><a href="#">Collections</a></li>
 													<li><a href="#">T-Shirts</a></li>
-													<li><a href="#">jens pant’s</a></li>
-													<li><a href="#">sports shoes</a></li>
+													
 												</ul>																				
 											</li>
-											<li><a href="#">Women</a>																		
+											<li><a href="#">Georges</a>																		
 												<ul>
 													<li><a href="#">Blazers</a></li>
 													<li><a href="#">Jackets</a></li>
 													<li><a href="#">Collections</a></li>
 													<li><a href="#">T-Shirts</a></li>
-													<li><a href="#">jens pant’s</a></li>
-													<li><a href="#">sports shoes</a></li>
+													
 												</ul>																				
 											</li>
 											<li><a href="<?php echo e(url('about')); ?>">about us</a></li>
