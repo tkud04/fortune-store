@@ -1110,7 +1110,7 @@ $subject = $data['subject'];
               $pdss = Products::where('id','>',"0")->get();
               $pdss = $pdss->sortByDesc('created_at');	
 			  $pds = $pdss->chunk(24);
-			  #dd($pds);
+			  dd($pds);
               if($pds != null)
                {
 				  foreach($pds[0] as $p)
