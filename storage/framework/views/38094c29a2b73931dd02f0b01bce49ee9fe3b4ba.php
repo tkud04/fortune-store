@@ -107,7 +107,17 @@
 						
 						<div class="col-xs-12 col-sm-6">
 							<ul class="hdr_tp_right text-right">
+							   <?php if($user == null): ?>
 								<li class="account_area"><a href="<?php echo e($xu); ?>"><i class="fa fa-lock"></i> <?php echo e($xt); ?></a></li>
+								<?php else: ?>
+								<li class="lan_area"><a href="<?php echo e($xu); ?>"><i class="fa fa-lock"></i> <?php echo e($xt); ?><i class="fa fa-caret-down"></i></a>
+									<ul class="csub-menu">
+										<li><a href="<?php echo e($xu); ?>"><?php echo e($xt); ?></a></li>
+										<li><a href="<?php echo e(url('bye')); ?>">Sign out</a></li>
+									</ul>
+								</li>
+								<?php endif; ?>
+								
 								<li class="lan_area"><a href="#"><i class="fa fa-language "></i> English <i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
 										<li><a href="#">English</a></li>
@@ -348,11 +358,11 @@
 				<div class="row">				
 					<div class="col-md-3 col-sm-6">
 						<div class="single_ftr">
-							<h4 class="sf_title">Contacts</h4>
+							<h4 class="sf_title">Luxfabriqs Fashion</h4>
 							<ul>
-								<li>4060 Reppert Coal Road Jackson, MS 39201 USA</li>
-								<li>(+123) 685 78 <br> (+064) 987 245</li>
-								<li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c182aeafb5a0a2b581b8aeb4b3a2aeacb1a0afb8efa2aeac">[email&#160;protected]</a></li>
+								<li>Ikeja, Lagos 10001 NG</li>
+								<li>(+234) <?php echo e($pe['phone']); ?></li>
+								<li><a href="javascript:void(0)" class="__cf_email__"><?php echo e($pe['email']); ?></a></li>
 							</ul>
 						</div>
 					</div> <!--  End Col -->
@@ -361,35 +371,23 @@
 						<div class="single_ftr">
 							<h4 class="sf_title">Information</h4>
 							<ul>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Delivery Information</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
-								<li><a href="#">Contact Us</a></li>
+								<li><a href="<?php echo e(url('about')); ?>">About Us</a></li>
+								<li><a href="<?php echo e(url('delivery')); ?>">Delivery Information</a></li>
+								<li><a href="<?php echo e(url('privacy')); ?>">Privacy Policy</a></li>
+								<li><a href="<?php echo e(url('terms')); ?>">Terms & Conditions</a></li>
+								<li><a href="<?php echo e(url('contact')); ?>">Contact Us</a></li>
 							</ul>
 						</div>
 					</div> <!--  End Col -->
+	
 					
-					<div class="col-md-3 col-sm-6">
-						<div class="single_ftr">
-							<h4 class="sf_title">Services</h4>
-							<ul>
-								<li><a href="#">Returns</a></li>
-								<li><a href="#">Site Map</a></li>
-								<li><a href="#">Wish List</a></li>
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">Order History</a></li>
-							</ul>
-						</div>
-					</div> <!--  End Col -->	
-					
-					<div class="col-md-3 col-sm-6">
+					<div class="col-md-6 col-sm-12">
 						<div class="single_ftr">
 							<h4 class="sf_title">Newsletter</h4>
 							<div class="newsletter_form">
 								<p>There are many variations of passages of Lorem Ipsum available, but the majority have </p>
 								<form method="post" class="form-inline">				
-									<input name="EMAIL" id="email" placeholder="Enter Your Email" class="form-control" type="email">
+									<input name="email" id="email" placeholder="Enter Your Email" class="form-control" type="email">
 									<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 								</form>
 							</div>
@@ -406,26 +404,21 @@
 						<div class="col-sm-4">
 							<div class="ftr_social_icon">
 								<ul>
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-google"></i></a></li>
-									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-rss"></i></a></li>
+									<li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
+									<li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="col-sm-4">
-							<p class="copyright_text text-center">&copy; 2018 All Rights Reserved FancyShop</p>
+							<p class="copyright_text text-center">&copy; <?php echo e(date("Y")); ?>, All Rights Reserved Luxfabriqs Fashion</p>
 						</div>
 						
 						<div class="col-sm-4">
 							<div class="payment_mthd_icon text-right">
 								<ul>
-									<li><i class="fa fa-cc-paypal"></i></li>
 									<li><i class="fa fa-cc-visa"></i></li>
-									<li><i class="fa fa-cc-discover"></i></li>
 									<li><i class="fa fa-cc-mastercard"></i></li>
-									<li><i class="fa fa-cc-amex"></i></li>
 								</ul>
 							</div>
 						</div>
