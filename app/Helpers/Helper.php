@@ -319,6 +319,12 @@ public $information_types = [
 											    'terms' => "Terms and Conditions",
 											    'sitemap' => "Sitemap",
 											  ];
+											  
+public $testimonials = [
+     ['name' => "Tunde",'msg' => "I love their fabrics!",'location' => "Lagos"],
+     ['name' => "Anayo",'msg' => "Simply the best",'location' => "Abuja"],
+     ['name' => "Rita",'msg' => "Amazing stuff, everyone at the party liked it",'location' => "Ikeja"],
+];
 
   public $suEmail = "kudayisitobi@gmail.com";
    

@@ -140,7 +140,7 @@
 						<div class="col-xs-12 col-sm-12 col-md-3"> 
 							<a class="logo" href="<?php echo e(url('/')); ?>"> 
 							 <!--<img alt="" src="img/logo.png">-->
-							 Luxfabriqs  Fashion
+							 <h3 class="testimonial-title">Luxfabriqs  Fashion</h3>
 							</a> 
 						</div><!--  End Col -->
 						

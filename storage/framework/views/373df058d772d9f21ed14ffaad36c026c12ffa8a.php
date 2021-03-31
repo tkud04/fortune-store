@@ -588,51 +588,29 @@ $title = "Welcome";
 				<div class="row">
 					<div class="col-md-12">
 						<div id="testimonial-slider" class="owl-carousel">
-							<div class="testimonial">
+						  <?php
+						   foreach($testimonials as $t)
+						   {
+						  ?>	
+                           <div class="testimonial">
 								<div class="pic">
-									<img src="img/testimonial/1.jpg" alt="">
+									<img src="img/avatar.png" alt="">
 								</div>
 								<div class="testimonial-content">
 									<p class="description">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-										Vivamus sed accumsan diam. Suspendisse molestie nibh at 
-										tempor mollis. Integer aliquet facilisis 
+									<?php echo e($t['msg']); ?>
+
 									</p>
-									<h3 class="testimonial-title">williamson</h3>
-									<small class="post"> - Themesvila</small>
+									<h3 class="testimonial-title"><?php echo e($t['name']); ?></h3>
+									<small class="post"> - <?php echo e($t['location']); ?></small>
 								</div>
 							</div>
+                          <?php						  
+						   }
+						  ?>
+							
 			 
-							<div class="testimonial">
-								<div class="pic">
-									<img src="img/testimonial/2.jpg" alt="">
-								</div>
-								<div class="testimonial-content">
-									<p class="description">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-										Vivamus sed accumsan diam. Suspendisse molestie nibh at 
-										tempor mollis. Integer aliquet facilisis 
-									</p>
-									<h3 class="testimonial-title">kristiana</h3>
-									<small class="post"> - Themesvila</small>
-								</div>
-							</div>	 
-							
-							
-							<div class="testimonial">
-								<div class="pic">
-									<img src="img/testimonial/3.jpg" alt="">
-								</div>
-								<div class="testimonial-content">
-									<p class="description">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-										Vivamus sed accumsan diam. Suspendisse molestie nibh at 
-										tempor mollis. Integer aliquet facilisis 
-									</p>
-									<h3 class="testimonial-title">williamson</h3>
-									<small class="post"> - Themesvila</small>
-								</div>
-							</div>
+						
 						</div>
 					</div>
 				</div>
