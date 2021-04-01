@@ -14,6 +14,7 @@ $pcClass = "";
 						<h3>Get in Touch</h3>
 						<p>Looking for help? Fill the form and we'll get back to you.</p>
 						<form action="{{url('contact')}}" method="post">
+							{!! csrf_field() !!}
 							<div class="form-row">
 								<div class="form-group col-sm-6"><input type="text" class="form-control" name="name" placeholder="Name*" /></div>
 								<div class="form-group col-sm-6"><input type="text" class="form-control" name="email" placeholder="Email*" /></div>
