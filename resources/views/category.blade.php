@@ -85,81 +85,34 @@ $(document).ready(() => {
 
 
 </script>
-<div class="container">
-<div class="row main-content-wrap gutter-lg">
-						@include('shop-sidebar',['c' => $c,'m' => $m])
-						<div class="col-lg-9 main-content">
-							<div class="shop-banner-default banner" style="background-image: url('images/shop/banner.jpg'); background-color: #f2f2f3;">
-								<div class="banner-content">
-									<h4 class="banner-subtitle mb-2  text-body text-uppercase ls-m font-weight-normal">
-										Mobile Buzz</h4>
-									<h1 class="banner-title font-weight-normal text-uppercase"><strong class="ls-m">{{$title}}</strong></h1>
-									<p class="font-primary lh-1 ls-m mb-0">Simple and Fresh ShopStyle</p>
-								</div>
-							</div>
-							<nav class="toolbox sticky-toolbox sticky-content fix-top">
-								<div class="toolbox-left">
-									<a href="#" class="toolbox-item left-sidebar-toggle btn btn-sm btn-outline btn-primary d-lg-none">Filters<i class="d-icon-arrow-right"></i></a>
-									<div class="toolbox-item toolbox-sort select-box">
-										<label>Sort By :</label>
-										<select name="orderby" id="orderby" class="form-control">
-											<option value="default">Default</option>
-											<option value="popularity" selected="selected">Most Popular</option>
-											<option value="rating">Average rating</option>
-											<option value="date">Latest</option>
-											<option value="price-low">Sort forward price low</option>
-											<option value="price-high">Sort forward price high</option>
-											<option value="none">Clear custom sort</option>
-										</select>
-									</div>
-								</div>
-								<div class="toolbox-right">
-									<div class="toolbox-item toolbox-show select-box">
-										<label>Show :</label>
-										<select name="count" id="count" class="form-control">
-											<option value="12">12</option>
-											<option value="24">24</option>
-											<option value="36">36</option>
-										</select>
-									</div>
-									<div class="toolbox-item toolbox-layout">
-										<a href="javascript:void(0)" id="list" class="d-icon-mode-list btn-layout"></a>
-										<a href="javascript:void(0)" id="grid" class="d-icon-mode-grid btn-layout active"></a>
-									</div>
-								</div>
-							</nav>
-						@if(count($products) > 0)	 
-			          <div id="pagination-row">
-							<div class="row cols-2 cols-sm-3 product-wrapper" id="products">
-								
-							</div>
-							<nav class="toolbox toolbox-pagination">
-								<p class="show-info">Showing <span>{{$page1}} of {{$pc}}</span> {{$pcText}}</p>
-								@if($pc > 1)
-								<ul class="pagination">
-									<li class="page-item disabled">
-										<a class="page-link page-link-prev"href="javascript:void(0)" onclick="showPreviousPage();" aria-label="Previous" tabindex="-1" aria-disabled="true">
-											<i class="d-icon-arrow-left"></i>Prev
-										</a>
-									</li>
-									<li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-									</li>
-									
-									<li class="page-item">
-										<a class="page-link page-link-next" href="javascript:void(0)" onclick="showNextPage();" aria-label="Next">
-											Next<i class="d-icon-arrow-right"></i>
-										</a>
-									</li>
-								</ul>
-								@endif
-							</nav>
-					 </div>
+<!-- Shop Product Area -->
+		<div class="shop_page_area">
+			<div class="container">
+			    @include('shop-sidebar',['c' => $c,'m' => $m])
+				<div class="shop_details text-center">
+						@if(count($products) > 0)	
+                     <div class="row" id="products"></div>						
 							@else
-							  <div class="row cols-2 cols-sm-3 product-wrapper">
+							  <div class="row">
 								<h3>No products in this category</h3>
 							</div>
 							@endif
+				 </div>
+						
+						@if($pc > 1)
+						<!-- Blog Pagination -->
+				<div class="col-xs-12">
+					<div class="blog_pagination pgntn_mrgntp fix">
+						<div class="pagination text-center">
+							<ul>
+								<li><a href="javascript:void(0)" onclick="showPreviousPage();"><i class="fa fa-angle-left"></i></a></li>
+								<li><a href="#" class="page-link active">1</a></li>
+								<li><a href="javascript:void(0)" onclick="showNextPage();"><i class="fa fa-angle-right"></i></a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
+				@endif
+				</div>
+			 </div>
 @stop
