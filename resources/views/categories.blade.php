@@ -24,7 +24,7 @@ $pcClass = "";
 	  $pcText = $pc == 1 ? "Product" : "Products";
    ?>
     <div class="carousel-item {{$ss}}">
-      <div class="text-center d-block w-100" style="background: url('img/blank.png'); padding: 50px; ">
+      <div class="text-center text-white d-block w-100" style="background: url('img/blank.png'); padding: 50px; ">
         <h4 class="category-name"><a href="{{$cu}}">{{ucwords($cc['name'])}}</a></h4>
          <span class="category-count">
             <span>{{$pc}}</span> {{$pcText}}
