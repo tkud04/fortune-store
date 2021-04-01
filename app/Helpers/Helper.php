@@ -850,6 +850,7 @@ $subject = $data['subject'];
 				  $temp['status'] = $product->status;
 				  $temp['data'] = $this->getProductData($product->id);
 				  #$temp['discounts'] = $this->getDiscounts($product->sku);
+				  $temp['rating'] = $this->getRating($product->sku);
 				  $imgs = $this->getImages($product->id);
 				  if($imgId) $temp['imgs'] = $imgs;
 				  $temp['imggs'] = $this->getCloudinaryImages($imgs);
