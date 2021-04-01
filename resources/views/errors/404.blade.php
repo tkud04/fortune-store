@@ -4,6 +4,7 @@ $ph = false;
 $pcClass = "";
 $plugins = [];
 $signals = ['okays' => []];
+$pe = ['phone' => "",'email' => ""];
 $user = null;
 if(Auth::check()) $user = Auth::user();
 ?>
