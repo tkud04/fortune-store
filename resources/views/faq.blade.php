@@ -7,7 +7,7 @@ $pcClass = "";
 
 @section('content')
 <!-- FAQ Section-->
-<div id="accordion">
+<div id="accordion" class="mb-10">
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
