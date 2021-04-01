@@ -13,7 +13,7 @@ $pcClass = "";
 			<div class="row about_inner">
 				<div class="about_img_area col-lg-6 col-md-12 col-xs-12">
 					<div>
-					  <img src="img/screenshot.jpg" alt="About Us">
+					  <img src="img/about.jpg" alt="About Us">
 					</div>
 				</div>
 				
