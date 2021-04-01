@@ -47,4 +47,4 @@
 				</div>
 			</div>
 		</section>
-		<!-- End Slider Area -->		
+		<!-- End Slider Area -->		<?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/banner.blade.php ENDPATH**/ ?>

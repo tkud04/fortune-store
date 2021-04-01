@@ -5,112 +5,85 @@ $title = "Welcome";
 
 <?php $__env->startSection('content'); ?>
 
-	<!-- Start Slider Area -->
-		<section id="slider_area" class="text-center">
-			<div class="slider_active owl-carousel">
-				<div class="single_slide" style="background-image: url(img/slider/1.jpg); background-size: cover; background-position: center;">
-					<div class="container">	
-						<div class="single-slide-item-table">
-							<div class="single-slide-item-tablecell">
-								<div class="slider_content text-left slider-animated-1">						
-									<p class="animated">New Year 2018</p>
-									<h1 class="animated">best shopping</h1>
-									<h4 class="animated">Big Sale of This Week 50% off</h4>
-									<a href="#" class="btn main_btn animated">shop now</a>
-								</div>
-							</div>
-						</div>						
-					</div>
-				</div>
-				
-				<div class="single_slide" style="background-image: url(img/slider/2.jpg); background-size: cover; background-position: center ;">
-					<div class="container">		
-						<div class="single-slide-item-table">
-							<div class="single-slide-item-tablecell">
-								<div class="slider_content text-center slider-animated-2">						
-									<p class="animated">Women fashion</p>
-									<h1 class="animated">popular style</h1>
-									<h4 class="animated">Big Sale of This Week 50% off</h4>
-									<a href="#" class="btn main_btn animated">shop now</a>
-								</div>
-							</div>
-						</div>	
-					</div>
-				</div>
-				
-				<div class="single_slide" style="background-image: url(img/slider/3.jpg); background-size: cover; background-position: center ;">
-					<div class="container">
-						<div class="single-slide-item-table">
-							<div class="single-slide-item-tablecell">
-								<div class="slider_content text-right slider-animated-3">						
-									<p class="animated">Men Collection</p>
-									<h1 class="animated">popular style</h1>
-									<h4 class="animated">Big Sale of This Week 50% off</h4>
-									<a href="#" class="btn main_btn animated">shop now</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- End Slider Area -->		
+ <?php echo $__env->make('banner', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 	
-		<!--  Promo ITEM STRAT  -->
+ <?php
+	$cCount = count($c) < 4 ? count($c) : 4;
+?>
+		<!--  Categories STRAT  -->
 		<section id="promo_area" class="section_padding">
 			<div class="container">
 				<div class="row">
+				   <?php
+	                if($cCount > 0)
+	                {
+					  for($i = 0; $i < $cCount; $i++)
+	                  {
+						  $cc = $c[$i];
+						  $cu = url('category')."?xf=".$cc['category'];
+                   ?>
+				   
+				   <?php if($i == 0): ?>
 					<div class="col-lg-4 col-md-6 col-sm-12">	
-						<a href="#">
+						<a href="<?php echo e($cu); ?>">
 							<div class="single_promo">
 								<img src="img/promo/1.jpg" alt="">
 								<div class="box-content">
-									<h3 class="title">Men</h3>
-									<span class="post">2018 Collection</span>
+									<h3 class="title"><?php echo e($cc['name']); ?></h3>
+									<span class="post">2021 Collection</span>
 								</div>
 							</div>
 						</a>						
 					</div><!--  End Col -->						
-					
+					 <?php elseif($i == 1): ?>
 					<div class="col-lg-4 col-md-6 col-sm-12">	
-						<a href="#">
+						<a href="<?php echo e($cu); ?>">
 							<div class="single_promo">
 								<img src="img/promo/2.jpg" alt="">
 								<div class="box-content">
-									<h3 class="title">Shoe</h3>
-									<span class="post">2018 Collection</span>
-								</div>
-							</div>	
-						</a>	
-
-						<a href="#">
-							<div class="single_promo">
-								<img src="img/promo/4.jpg" alt="">
-								<div class="box-content">
-									<h3 class="title">Watch</h3>
-									<span class="post">2018 Collection</span>
-								</div>
-							</div>	
-						</a>	
-						
-					</div><!--  End Col -->					
-
-					<div class="col-lg-4 col-md-6 col-sm-12">
-						<a href="#">
-							<div class="single_promo">
-								<img src="img/promo/3.jpg" alt="">
-								<div class="box-content">
-									<h3 class="title">Women</h3>
-									<span class="post">2018 Collection</span>
+									<h3 class="title"><?php echo e($cc['name']); ?></h3>
+									<span class="post">2021 Collection</span>
 								</div>
 							</div>
 						</a>	
+                      <?php if($cCount == 2): ?>
+					   </div><!--  End Col -->	
+					  <?php endif; ?>
+					  
+					  <?php elseif($i == 2): ?>
+						<a href="<?php echo e($cu); ?>">
+							<div class="single_promo">
+								<img src="img/promo/4.jpg" alt="">
+								<div class="box-content">
+									<h3 class="title"><?php echo e($cc['name']); ?></h3>
+									<span class="post">2021 Collection</span>
+								</div>
+							</div>
+						</a>	
+						
 					</div><!--  End Col -->					
-				
+                   <?php elseif($i == 3): ?>
+					
+					<div class="col-lg-4 col-md-6 col-sm-12">
+						<a href="<?php echo e($cu); ?>">
+							<div class="single_promo">
+								<img src="img/promo/3.jpg" alt="">
+								<div class="box-content">
+									<h3 class="title"><?php echo e($cc['name']); ?></h3>
+									<span class="post">2021 Collection</span>
+								</div>
+							</div>
+						</a>		
+					</div><!--  End Col -->	
+					<?php endif; ?>				
+				    <?php
+	                  }
+	                }
+                   ?>
 				</div>			
 			</div>		
 		</section>
-		<!--  Promo ITEM END -->	
+		<!--  Categories END -->	
 		
 
 		<!-- Start product Area -->
