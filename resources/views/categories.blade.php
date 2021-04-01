@@ -16,13 +16,14 @@ $pcClass = "";
 	 for($i = 0; $i < count($c); $i++)
      {
       $cc = $c[$i];
+      $ss = $i == 0 ? " active" : "";
 	  $cu = url('category')."?xf=".$cc['category']; 
 	  $imgs = $cc['image'];
 	  $parent = $cc['parent'];
 	  $pc = $cc['product_count'];
 	  $pcText = $pc == 1 ? "Product" : "Products";
    ?>
-    <div class="carousel-item active">
+    <div class="carousel-item {{$ss}}">
       <div class="d-block w-100">
          <h4 class="category-name"><a href="{{$cu}}">{{ucwords($cc['name'])}}</a></h4>
          <span class="category-count">
@@ -33,12 +34,7 @@ $pcClass = "";
    <?php
     }
    ?>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="..." alt="Third slide">
-    </div>
+    
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
