@@ -56,7 +56,7 @@ const showPage = (p) => {
 		if(p.name.length > 12){
 			nnn = `${p.name.substr(0,12)}..`;
 		}
-		let nn = p.name == "" ? p.model : nnn, imggs = JSON.parse(p.imggs);
+		let nn = p.name == "" ? p.sku : nnn, imggs = JSON.parse(p.imggs);
 		    //ppd = p.pd.replace(/(?:\r\n|\r|\n)/g, '<br>');
 			//console.log('ppd: ', ppd);
 			//let pd = JSON.parse(ppd);
@@ -70,44 +70,43 @@ const showPage = (p) => {
 				   
 		    }, aaa = JSON.stringify(aa);
  	        
-		hh = `
-				    <div class="product-wrap">
-									<div class="product shadow-media">
-										<figure class="product-media">
-											<a href="${p.uu}">
-												<img src="${imggs[0]}" alt="${nnn}" width="280" height="315">
-											</a>
-											<div class="product-label-group">
-												<label class="product-label label-new">new</label>
-											</div>
-											<div class="product-action-vertical">
-												<a href="javascript:void(0)" onclick="addToCart({xf: ${p.id},qty: 1})" class="btn-product-icon btn-cart" title="Add to cart"><i class="d-icon-bag"></i></a>
-											</div>
-											<div class="product-action">
-												<a href="javascript:void(0)" data-toggle="modal" data-target="#qv" onclick='populateQV(${aaa})'  class="btn-product btn-quickview" title="Quick View">Quick View</a>
-											</div>
-										</figure>
-										<div class="product-details">
-											<a href="javascript:void(0)" onclick="addToWishlist({xf: ${p.id}})" class="btn-wishlist" title="Add to wishlist"><i class="d-icon-heart"></i></a>
-											<div class="product-cat">
-												<a href="javascript:void(0)">${p.category}</a>
-											</div>
-											<h3 class="product-name">
-												<a href="${p.uu}">${nnn}</a>
-											</h3>
-											<div class="product-price">
-												<ins class="new-price">&#0163;${p.amount}</ins>
-											</div>
-											<div class="ratings-container">
-												<div class="ratings-full">
-													<span class="ratings" style="width:100%"></span>
-													<span class="tooltiptext tooltip-top"></span>
-												</div>
-												<a href="{{$uu}}" class="rating-reviews">( 0 reviews )</a>
-											</div>
-										</div>
-									</div>
+			/**
+			<div class="col-md-3 col-sm-6" onclick="window.location='${p.uu}'">
+							<div class="single_product">
+								<div class="product_image">
+									<img src="${imggs[0]}" alt="${nn}">
+									<div class="box-content">
+										<a href="javascript:void(0)" onclick="addToWishlist({xf: ${p.id}})"><i class="fa fa-heart-o"></i></a>
+										<a href="javascript:void(0)" onclick="addToCart({xf: ${p.id},qty: 1})"><i class="fa fa-cart-plus"></i></a>
+									</div>										
 								</div>
+
+								<div class="product_btm_text">
+									<h4><a href="${p.uu}">${nn}</a></h4>
+									<span class="price">&#8358;${p.amount}</span>
+								</div>
+							</div>								
+						</div>
+			**/
+			
+			
+		hh = `
+				   <div class="col-md-3 col-sm-6" onclick="window.location='${p.uu}'">
+							<div class="single_product">
+								<div class="product_image">
+									<img src="${imggs[0]}" alt="${nn}">
+									<div class="box-content">
+										<a href="javascript:void(0)" onclick="addToWishlist({xf: ${p.id}})"><i class="fa fa-heart-o"></i></a>
+										<a href="javascript:void(0)" onclick="addToCart({xf: ${p.id},qty: 1})"><i class="fa fa-cart-plus"></i></a>
+									</div>										
+								</div>
+
+								<div class="product_btm_text">
+									<h4><a href="${p.uu}">${nn}</a></h4>
+									<span class="price">&#8358;${p.amount}</span>
+								</div>
+							</div>								
+						</div>
 		`;
 		$('#products').append(hh);
 		

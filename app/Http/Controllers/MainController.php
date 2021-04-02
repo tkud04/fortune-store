@@ -283,10 +283,10 @@ class MainController extends Controller {
 					 #dd($product);
 
 					 //$reviews = $this->helpers->getReviews($["model"]);
-					 //$related = $this->helpers->getProducts();
+					 $related = $this->helpers->getProducts();
 					// dd($product);
 
-				   $reviews = []; $related = [];
+				   $reviews = [];
 					
 					if(isset($req['type']) && $req['type'] == "json")
 					{

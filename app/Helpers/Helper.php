@@ -830,7 +830,7 @@ $subject = $data['subject'];
            {
            	$ret = [];
               $product = Products::where('id',$id)                           
-			                 ->orWhere('model',$id)->first();
+			                 ->orWhere('sku',$id)->first();
        
               if($product != null && $product->status == "enabled")
                {

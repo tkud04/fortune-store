@@ -3,9 +3,9 @@ $title = $product['name'];
 $ph = true;
 $pcClass = "";
 ?>
-@extends('layout')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <?php
                $id = $product['id'];
                $name = $product['name'];
@@ -25,7 +25,7 @@ $pcClass = "";
 			    
 ?>
 <div class="container">
-<input type="hidden" id="product-xf" value="{{$id}}">
+<input type="hidden" id="product-xf" value="<?php echo e($id); ?>">
 					<div class="product product-single row mb-4">
 						<div class="col-md-6">
 							<div class="product-gallery pg-vertical">
@@ -39,12 +39,12 @@ $pcClass = "";
 										$ii = $imggs[$i];
 										$ss = $i == 0 ? " active" : "";
                                     ?>								    
-									<div class="owl-item active{{$ss}}" style="width: 461px;">
+									<div class="owl-item active<?php echo e($ss); ?>" style="width: 461px;">
 									   <figure class="product-image">
-										<img src="{{$ii}}" data-zoom-image="{{$ii}}" alt="{{$displayName}}" width="800" height="900">
+										<img src="<?php echo e($ii); ?>" data-zoom-image="<?php echo e($ii); ?>" alt="<?php echo e($displayName); ?>" width="800" height="900">
 									    <div class="zoomContainer" style="-webkit-transform: translateZ(0);position:absolute;left:0px;top:0px;height:519.109px;width:461px;">
 										  <div class="zoomWindowContainer" style="width: 400px;">
-										    <div style="z-index: 999; overflow: hidden; margin-left: 0px; margin-top: 0px; background-position: 0px 0px; width: 461px; height: 519.109px; float: left; display: none; cursor: crosshair; border: 0px solid rgb(136, 136, 136); background-repeat: no-repeat; position: absolute; background-image: url(&quot;{{$ii}}&quot;); top: 0px; left: 0px;" class="zoomWindow">&nbsp;</div>
+										    <div style="z-index: 999; overflow: hidden; margin-left: 0px; margin-top: 0px; background-position: 0px 0px; width: 461px; height: 519.109px; float: left; display: none; cursor: crosshair; border: 0px solid rgb(136, 136, 136); background-repeat: no-repeat; position: absolute; background-image: url(&quot;<?php echo e($ii); ?>&quot;); top: 0px; left: 0px;" class="zoomWindow">&nbsp;</div>
 										  </div>
 										</div>
 									   </figure>
@@ -65,8 +65,8 @@ $pcClass = "";
 										   $ii = $imggs[$i];
 										   $ss = $i == 0 ? " active" : "";
                                         ?>	
-										<div class="product-thumb{{$ss}}">
-											<img src="{{$ii}}" alt="product thumbnail" width="109" height="122">
+										<div class="product-thumb<?php echo e($ss); ?>">
+											<img src="<?php echo e($ii); ?>" alt="product thumbnail" width="109" height="122">
 										</div>
 										<?php
 									     }
@@ -81,19 +81,19 @@ $pcClass = "";
 							<div class="product-details">
 								<div class="product-navigation">
 									<ul class="breadcrumb breadcrumb-lg">
-										<li><a href="{{url('/')}}"><i class="d-icon-home"></i></a></li>
-										<li><a href="javascript:void(0)" class="active">{{$displayName}}</a></li>
+										<li><a href="<?php echo e(url('/')); ?>"><i class="d-icon-home"></i></a></li>
+										<li><a href="javascript:void(0)" class="active"><?php echo e($displayName); ?></a></li>
 										<li>Detail</li>
 									</ul>
 								</div>
 
-								<h1 class="product-name">{{$displayName}}</h1>
+								<h1 class="product-name"><?php echo e($displayName); ?></h1>
 								<div class="product-meta">
-									Model #: <span class="product-sku">{{$model}}</span>
-									@if($product['sku'] != "") SKU: <span class="product-sku">{{$product['sku']}}</span> @endif
+									Model #: <span class="product-sku"><?php echo e($model); ?></span>
+									<?php if($product['sku'] != ""): ?> SKU: <span class="product-sku"><?php echo e($product['sku']); ?></span> <?php endif; ?>
 									Manufacturer: <span class="product-brand"><a href="javascript:void(0)"></a></span>
 								</div>
-								<div class="product-price">&#0163;{{$amount}}</div>
+								<div class="product-price">&#0163;<?php echo e($amount); ?></div>
 								<div class="ratings-container">
 									<div class="ratings-full">
 										<span class="ratings" style="width:80%"></span>
@@ -101,7 +101,7 @@ $pcClass = "";
 									</div>
 									<a href="#product-tab-reviews" class="link-to-tab rating-reviews">( 6 reviews )</a>
 								</div>
-								<p class="product-short-desc">{!! $description !!}</p>
+								<p class="product-short-desc"><?php echo $description; ?></p>
 
 								<hr class="product-divider">
 
@@ -127,7 +127,7 @@ $pcClass = "";
 										<a href="javascript:void(0)" class="social-link social-vimeo fab fa-vimeo-v"></a>
 									</div>
 									<div class="product-action">
-										<a href="javascript:void(0)" onclick="addToWishlist({xf: '{{$product['id']}}')" class="btn-product btn-wishlist"><i class="d-icon-heart"></i>Add To
+										<a href="javascript:void(0)" onclick="addToWishlist({xf: '<?php echo e($product['id']); ?>')" class="btn-product btn-wishlist"><i class="d-icon-heart"></i>Add To
 											Wishlist</a>
 										<span class="divider"></span>
 									</div>
@@ -153,43 +153,43 @@ $pcClass = "";
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active in" id="product-tab-description">
-								<p>{!! $description !!}</p>
+								<p><?php echo $description; ?></p>
 							</div>
 							<div class="tab-pane" id="product-tab-additional">
 								<ul class="list-none">
 									<li>
-										<p><label>Model number:</label> {{$model}}</p>
+										<p><label>Model number:</label> <?php echo e($model); ?></p>
 									</li>
-									@if($product['sku'] != "")
+									<?php if($product['sku'] != ""): ?>
 									<li>
-										<p><label>SKU:</label> {{$product['sku']}}</p>
+										<p><label>SKU:</label> <?php echo e($product['sku']); ?></p>
 									</li>
-									@endif
-                                    @if($product['mpn'] != "")
+									<?php endif; ?>
+                                    <?php if($product['mpn'] != ""): ?>
 									<li>
-										<p><label>MPN:</label> {{$product['mpn']}}</p>
+										<p><label>MPN:</label> <?php echo e($product['mpn']); ?></p>
 									</li>
-									@endif
-									@if($product['upc'] != "")
+									<?php endif; ?>
+									<?php if($product['upc'] != ""): ?>
 									<li>
-										<p><label>UPC:</label> {{$product['upc']}}</p>
+										<p><label>UPC:</label> <?php echo e($product['upc']); ?></p>
 									</li>
-									@endif
-									@if($product['ean'] != "")
+									<?php endif; ?>
+									<?php if($product['ean'] != ""): ?>
 									<li>
-										<p><label>EAN:</label> {{$product['ean']}}</p>
+										<p><label>EAN:</label> <?php echo e($product['ean']); ?></p>
 									</li>
-									@endif
-									@if($product['jan'] != "")
+									<?php endif; ?>
+									<?php if($product['jan'] != ""): ?>
 									<li>
-										<p><label>JAN:</label> {{$product['jan']}}</p>
+										<p><label>JAN:</label> <?php echo e($product['jan']); ?></p>
 									</li>
-									@endif
-									@if($product['isbn'] != "")
+									<?php endif; ?>
+									<?php if($product['isbn'] != ""): ?>
 									<li>
-										<p><label>ISBN:</label> {{$product['isbn']}}</p>
+										<p><label>ISBN:</label> <?php echo e($product['isbn']); ?></p>
 									</li>
-									@endif
+									<?php endif; ?>
 								</ul>
 							</div>
 							<div class="tab-pane " id="product-tab-shipping-returns">
@@ -415,4 +415,6 @@ $pcClass = "";
 					 }
 					?>
 				</div>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/product.blade.php ENDPATH**/ ?>
