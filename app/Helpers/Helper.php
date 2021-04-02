@@ -873,6 +873,7 @@ $subject = $data['subject'];
 				  $temp['product_id'] = $pd->product_id;
 				  $temp['amount'] = $pd->amount;
 				  $temp['description'] = $pd->description;
+				  $temp['special'] = $pd->special;
 				  $temp['meta_title'] = $pd->meta_title;
 				  $temp['meta_description'] = $pd->meta_description;
 				  $temp['meta_keywords'] = $pd->meta_keywords;
@@ -1042,15 +1043,15 @@ $subject = $data['subject'];
                                                       
            }
 		   
-		   function getCloudinaryImage($dt)
+		    function getCloudinaryImage($dt)
 		   {
 			   $ret = [];
                   //dd($dt);       
-               if(is_null($dt)) { $ret = asset("images/avatar-2.png"); }
+               if(is_null($dt)) { $ret = "img/no-image.png"; }
                
 			   else
 			   {
-				    $ret = "https://res.cloudinary.com/dkrf5ih0l/image/upload/v1585236664/".$dt;
+				    $ret = "https://res.cloudinary.com/dq1kuzafi/image/upload/v1585236664/".$dt;
                 }
 				
 				return $ret;
@@ -1060,14 +1061,14 @@ $subject = $data['subject'];
 		   {
 			   $ret = [];
                  # dd($dt);       
-               if(count($dt) < 1) { $ret = [asset("images/avatar-2.png")]; }
+               if(count($dt) < 1) { $ret = [asset("images/avatar-2.jpg")]; }
                
 			   else
 			   {
                    $ird = isset($dt[0]['url']) ? $dt[0]['url'] : $dt[0];
 				   if($ird == "none")
 					{
-					   $imgg = asset("images/avatar-2.png");
+					   $imgg = asset("images/avatar-2.jpg");
 					}
 				   else
 					{
@@ -1076,11 +1077,11 @@ $subject = $data['subject'];
 							 $ird = isset($dt[$x]['url']) ? $dt[$x]['url'] : $dt[$x];
 							 if($ird == "" || $ird == null)
 							 {
-								 $imgg = asset("images/avatar-2.png");
+								 $imgg = asset("images/avatar-2.jpg");
 							 }
 							 else
 							 {
-								 $imgg = "https://res.cloudinary.com/dkrf5ih0l/image/upload/v1585236664/".$ird;
+								 $imgg = "https://res.cloudinary.com/dq1kuzafi/image/upload/v1585236664/".$ird;
 							 }
                             
                             array_push($ret,$imgg); 
