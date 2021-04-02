@@ -416,3 +416,12 @@ const addToCart = dt => {
 	   window.location = `add-to-cart?xf=${dt.xf}&qty=1`;
 	}
 }
+
+const showTab = xf => {
+	console.log(`showing tab ${xf}`);
+	hideElem('.tab-pane');
+	showElem(xf);
+	document.querySelector('.nav-link.active').classList.remove('active');
+	document.querySelector(`${xf}-link`).classList.add('active');
+}
+

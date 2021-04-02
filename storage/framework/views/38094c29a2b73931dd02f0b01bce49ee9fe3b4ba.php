@@ -110,9 +110,9 @@
 							   <?php if($user == null): ?>
 								<li class="account_area"><a href="<?php echo e($xu); ?>"><i class="fa fa-lock"></i> <?php echo e($xt); ?></a></li>
 								<?php else: ?>
-								<li class="lan_area"><a href="<?php echo e($xu); ?>"><i class="fa fa-lock"></i> <?php echo e($xt); ?><i class="fa fa-caret-down"></i></a>
+								<li class="account_area_2"><a href="#"><i class="fa fa-lock"></i> Hi <?php echo e($user->fname); ?><i class="fa fa-caret-down"></i></a>
 									<ul class="csub-menu">
-										<li><a href="<?php echo e($xu); ?>"><?php echo e($xt); ?></a></li>
+										<li><a href="<?php echo e($xu); ?>">Dashboard</a></li>
 										<li><a href="<?php echo e(url('bye')); ?>">Sign out</a></li>
 									</ul>
 								</li>

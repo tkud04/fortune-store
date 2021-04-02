@@ -3,27 +3,27 @@ $title = "Dashboard";
 $ph = true;
 $pcClass = "";
 ?>
-@extends('layout')
 
-@section('scripts')
+
+<?php $__env->startSection('scripts'); ?>
   <!-- DataTables CSS -->
-  <link href="{{asset('lib/datatables/css/buttons.bootstrap.min.css')}}" rel="stylesheet" /> 
-  <link href="{{asset('lib/datatables/css/buttons.dataTables.min.css')}}" rel="stylesheet" /> 
-  <link href="{{asset('lib/datatables/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" /> 
+  <link href="<?php echo e(asset('lib/datatables/css/buttons.bootstrap.min.css')); ?>" rel="stylesheet" /> 
+  <link href="<?php echo e(asset('lib/datatables/css/buttons.dataTables.min.css')); ?>" rel="stylesheet" /> 
+  <link href="<?php echo e(asset('lib/datatables/css/dataTables.bootstrap.min.css')); ?>" rel="stylesheet" /> 
   
       <!-- DataTables js -->
-       <script src="{{asset('lib/datatables/js/datatables.min.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js')}}"></script>
-    <script src="{{asset('lib/datatables/js/datatables-init.js')}}"></script>
-@stop
+       <script src="<?php echo e(asset('lib/datatables/js/datatables.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('lib/datatables/js/datatables-init.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 				<div class="container pt-1">
 				  <div class="row mb-5">
                    <div class="col-md-12">
@@ -52,7 +52,7 @@ $pcClass = "";
 							    <a id="returns-link" class="nav-link" href="javascript:void(0)" onclick="showTab('#returns')">Returns</a>
 							</li>
 							<li class="nav-item">
-							   <a class="nav-link" href="{{url('bye')}}">Logout</a>
+							   <a class="nav-link" href="<?php echo e(url('bye')); ?>">Logout</a>
 							</li>
 						  </ul>
 						</div>
@@ -60,7 +60,7 @@ $pcClass = "";
 						  <div class="tab-content">
 							<div class="tab-pane" id="dashboard">
 								<p class="mb-2">
-									Hello <span>{{$user->fname}}</span> (not <span>{{$user->fname}}</span>? <a href="{{url('bye')}}" class="text-secondary">Log out</a>)
+									Hello <span><?php echo e($user->fname); ?></span> (not <span><?php echo e($user->fname); ?></span>? <a href="<?php echo e(url('bye')); ?>" class="text-secondary">Log out</a>)
 								</p>
 								<p>
 									From your account dashboard you can view your <a href="#orders" class="link-to-tab text-secondary">recent orders</a>, manage your <a href="#address" class="link-to-tab text-secondary">shipping and billing
@@ -69,26 +69,27 @@ $pcClass = "";
 								</p>
 							</div>
 							<div class="tab-pane active in" id="account">
-								<form action="{{url('profile')}}" id="profile-form" method="post" class="form">
-									{!! csrf_field() !!}
+								<form action="<?php echo e(url('profile')); ?>" id="profile-form" method="post" class="form">
+									<?php echo csrf_field(); ?>
+
 									<div class="row">
 										<div class="col-sm-6">
 											<label>First Name <span class="req">*</span></label>
-											<input type="text" class="form-control" name="fname" value="{{$user->fname}}" id="profile-fname" required="">
+											<input type="text" class="form-control" name="fname" value="<?php echo e($user->fname); ?>" id="profile-fname" required="">
 										</div>
 										<div class="col-sm-6">
 											<label>Last Name <span class="req">*</span></label>
-											<input type="text" class="form-control" name="lname" value="{{$user->lname}}" id="profile-lname" required="">
+											<input type="text" class="form-control" name="lname" value="<?php echo e($user->lname); ?>" id="profile-lname" required="">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-sm-6">
 									       <label>Email address <span class="req">*</span></label>
-									      <input type="email" class="form-control" value="{{$user->email}}" name="email" id="profile-email" required="">
+									      <input type="email" class="form-control" value="<?php echo e($user->email); ?>" name="email" id="profile-email" required="">
 			                            </div>
 										<div class="col-sm-6">
 									       <label>Phone number <span class="req">*</span></label>
-									      <input type="number" class="form-control" value="{{$user->phone}}" name="phone" id="profile-phone" required="">
+									      <input type="number" class="form-control" value="<?php echo e($user->phone); ?>" name="phone" id="profile-phone" required="">
 			                            </div>
 									</div>
 
@@ -96,8 +97,9 @@ $pcClass = "";
 								</form>
 							</div>
 							<div class="tab-pane" id="password">
-								<form action="{{url('password')}}" method="post" class="form">	
-									{!! csrf_field() !!}
+								<form action="<?php echo e(url('password')); ?>" method="post" class="form">	
+									<?php echo csrf_field(); ?>
+
 									
 									<label>New password (leave blank to leave unchanged)</label>
 									<input type="password" class="form-control" name="pass">
@@ -132,15 +134,15 @@ $pcClass = "";
 										  <td>
 										   <div class="card card-address">
 											   <div class="card-body">
-												   <p>{{strtoupper($pdd['fname']." ".$pdd['lname'])}}<br>
-													   {{$pdd['company']}}<br>
-													   {{$pdd['address_1']}}<br>
-													   @if($pdd['address_2'] != "") {{$pdd['address_2']}}<br>@endif
-													   {{$pdd['city']}}, {{$pdd['zip']}}<br>
-													   {{$pdd['region']}}<br>
-													   {{$countries[$pdd['country']]}}<br>
+												   <p><?php echo e(strtoupper($pdd['fname']." ".$pdd['lname'])); ?><br>
+													   <?php echo e($pdd['company']); ?><br>
+													   <?php echo e($pdd['address_1']); ?><br>
+													   <?php if($pdd['address_2'] != ""): ?> <?php echo e($pdd['address_2']); ?><br><?php endif; ?>
+													   <?php echo e($pdd['city']); ?>, <?php echo e($pdd['zip']); ?><br>
+													   <?php echo e($pdd['region']); ?><br>
+													   <?php echo e($countries[$pdd['country']]); ?><br>
 												   </p>
-												   <a href="{{$pdu}}" class="btn btn-link btn-secondary btn-underline">Edit <i class="fas fa-edit"></i></a>
+												   <a href="<?php echo e($pdu); ?>" class="btn btn-link btn-secondary btn-underline">Edit <i class="fas fa-edit"></i></a>
 											   </div>
 											</div>
 											</td>
@@ -170,15 +172,15 @@ $pcClass = "";
 										  <td>
 										   <div class="card card-address">
 											   <div class="card-body">
-												   <p>{{strtoupper($sdd['fname']." ".$sdd['lname'])}}<br>
-													   {{$sdd['company']}}<br>
-													   {{$sdd['address_1']}}<br>
-													   @if($sdd['address_2'] != "") {{$sdd['address_2']}}<br>@endif
-													   {{$sdd['city']}}, {{$sdd['zip']}}<br>
-													   {{$sdd['region']}}<br>
-													   {{$countries[$sdd['country']]}}<br>
+												   <p><?php echo e(strtoupper($sdd['fname']." ".$sdd['lname'])); ?><br>
+													   <?php echo e($sdd['company']); ?><br>
+													   <?php echo e($sdd['address_1']); ?><br>
+													   <?php if($sdd['address_2'] != ""): ?> <?php echo e($sdd['address_2']); ?><br><?php endif; ?>
+													   <?php echo e($sdd['city']); ?>, <?php echo e($sdd['zip']); ?><br>
+													   <?php echo e($sdd['region']); ?><br>
+													   <?php echo e($countries[$sdd['country']]); ?><br>
 												   </p>
-												   <a href="{{$sdu}}" class="btn btn-link btn-secondary btn-underline">Edit <i class="fas fa-edit"></i></a>
+												   <a href="<?php echo e($sdu); ?>" class="btn btn-link btn-secondary btn-underline">Edit <i class="fas fa-edit"></i></a>
 											   </div>
 											</div>
 											</td>
@@ -196,7 +198,7 @@ $pcClass = "";
 							
 							<div class="tab-pane" id="wishlist">
 								<p class=" b-2">No items in your wishlist yet.</p>
-								<a href="{{url('shop')}}" class="btn btn-primary">Go Shopping</a>
+								<a href="<?php echo e(url('shop')); ?>" class="btn btn-primary">Go Shopping</a>
 							</div>
 							<div class="tab-pane" id="orders">
 							  <div class="row">
@@ -226,8 +228,8 @@ $pcClass = "";
 								    <tbody>
 									 <tr>
 									    <td class="product-name">
-										    <p class="mb-2">Reference: <b class="badge badge-success">{{$o['reference']}}</b></p>
-										    <p class="mb-2">Date: {{$o['date']}}</p>
+										    <p class="mb-2">Reference: <b class="badge badge-success"><?php echo e($o['reference']); ?></b></p>
+										    <p class="mb-2">Date: <?php echo e($o['date']); ?></p>
 										   <?php
 										    for($x = 0; $x < count($items); $x++)
 											{
@@ -245,25 +247,25 @@ $pcClass = "";
 												
 										   ?>
 										   <div class="mb-2">
-										   <a href="{{$uu}}" class="mb-2">
+										   <a href="<?php echo e($uu); ?>" class="mb-2">
 										     <figure>
-											  <img src="{{$imggs[0]}}" width="60" height="60" alt="{{$pname}}">
+											  <img src="<?php echo e($imggs[0]); ?>" width="60" height="60" alt="<?php echo e($pname); ?>">
 										     </figure>
 									       </a>
-									       <a href="{{$uu}}">{{$pname}}</a> <b class="badge badge-success">x{{$i['qty']}}</b>
+									       <a href="<?php echo e($uu); ?>"><?php echo e($pname); ?></a> <b class="badge badge-success">x<?php echo e($i['qty']); ?></b>
 										   </div>
 										   <?php
 									        }
 										   ?>
 								        </td>
 								<td class="product-price">
-									<span class="amount">&#0163;{{number_format($o['amount'],2)}}</span>
+									<span class="amount">&#0163;<?php echo e(number_format($o['amount'],2)); ?></span>
 								</td>
 								<td class="product-stock-status">
-									<span class="badge badge-success">{{strtoupper($statuses[$o['status']])}}</span>
+									<span class="badge badge-success"><?php echo e(strtoupper($statuses[$o['status']])); ?></span>
 								</td>
 								<td class="product-add-to-cart">
-									<a href="{{$ou}}" class="btn-product"><span>VIEW</span></a>
+									<a href="<?php echo e($ou); ?>" class="btn-product"><span>VIEW</span></a>
 								</td>
 									  </tr>
 									</tbody>
@@ -272,14 +274,14 @@ $pcClass = "";
 									}
 								?>
 								  </table>
-								  <a href="{{url('orders')}}" class="btn-product"><span>VIEW MORE</span></a>
+								  <a href="<?php echo e(url('orders')); ?>" class="btn-product"><span>VIEW MORE</span></a>
 								<?php
 								}
 								else
 								{
 								?>
 								  <p class=" b-2">No order has been made yet.</p>
-								  <a href="{{url('shop')}}" class="btn btn-primary">Go Shop</a>
+								  <a href="<?php echo e(url('shop')); ?>" class="btn btn-primary">Go Shop</a>
 								<?php
 								}
 								?>
@@ -302,4 +304,6 @@ $pcClass = "";
 				   </div>
 				  </div>
 				</div>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/dashboard.blade.php ENDPATH**/ ?>

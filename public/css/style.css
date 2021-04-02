@@ -520,10 +520,12 @@ input:focus, textarea:focus {
 }
 
 .lan_area,
+.account_area_2,
 .currency_area {
 	position: relative;
 }
 .lan_area .csub-menu,
+.account_area_2 .csub-menu,
 .currency_area .csub-menu{
 	background: #fff;
 	width: 92px;
@@ -537,6 +539,7 @@ input:focus, textarea:focus {
 	display: none;
 }
 .lan_area .csub-menu li a,
+.account_area_2 .csub-menu li a,
 .currency_area .csub-menu li a{
 	padding: 7px 0;
 	display: block;
@@ -544,6 +547,7 @@ input:focus, textarea:focus {
 	transition: .5s;
 }
 .lan_area .csub-menu li a:hover,
+.account_area_2.csub-menu li a:hover,
 .currency_area .csub-menu li a:hover{
 	color: #33d286;
 }

@@ -26,6 +26,12 @@ $(document).ready(function() {
 	 $(".currency_area").on('click', function() {
 	   $(".currency_area .csub-menu").toggle();
 
+	 }); 
+	 
+	 /*Account area JS*/
+	 $(".account_area_2").on('click', function() {
+	   $(".account_area_2 .csub-menu").toggle();
+
 	 });
 	 
 	 /*Start Search JS*/
