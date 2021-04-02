@@ -36,10 +36,13 @@ class LoginController extends Controller {
 		$req = $request->all();
 		$cart = $this->helpers->getCart($user);
 		$c = $this->helpers->getCategories();
+		$ads = $this->helpers->getAds();
+		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
+		shuffle($ads);
+		$ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
 		$signals = $this->helpers->signals;
-		$plugins = $this->helpers->getPlugins();
 		#dd($info);
-		return view("register",compact(['user','cart','c','signals','plugins']));	
+		return view("register",compact(['user','cart','c','ad','pe','signals','plugins']));	
     }
 	/**
 	 * Show the application welcome screen to the user.
@@ -64,10 +67,13 @@ class LoginController extends Controller {
 		$req = $request->all();
 		$cart = $this->helpers->getCart($user);
 		$c = $this->helpers->getCategories();
+		$ads = $this->helpers->getAds();
+		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
+		shuffle($ads);
+		$ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
 		$signals = $this->helpers->signals;
-		$plugins = $this->helpers->getPlugins();
 		#dd($info);
-		return view("login",compact(['user','cart','c','signals','plugins']));	
+		return view("login",compact(['user','cart','c','ad','pe','signals','plugins']));	
     }
 
   
@@ -179,9 +185,22 @@ class LoginController extends Controller {
    
 	public function getForgotUsername()
     {
-		$layoutAd = $this->helpers->getAds();
-		$plugins = $this->helpers->getPlugins();
-         return view('forgot_username',compact(['layoutAd','plugins']));
+    	$user = null;
+    
+        if(Auth::check())
+		{
+			$user = Auth::user();
+			return redirect()->intended('/');
+		}
+		
+		$cart = [];
+		$c = $this->helpers->getCategories();
+		$ads = $this->helpers->getAds();
+		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
+		shuffle($ads);
+		$ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
+		$signals = $this->helpers->signals;
+         return view('forgot_username',compact(['user','cart','c','ad','pe','signals','plugins']));
     }
     
     /**
@@ -231,10 +250,15 @@ class LoginController extends Controller {
 			$user = Auth::user();
 			return redirect()->intended('/');
 		}
+		
+		$cart = $this->helpers->getCart($user);
+		$c = $this->helpers->getCategories();
+		$ads = $this->helpers->getAds();
+		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
+		shuffle($ads);
+		$ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
 		$signals = $this->helpers->signals;
-		$plugins = $this->helpers->getPlugins();
-		$layoutAd = $this->helpers->getAds();
-         return view('forgot-password', compact(['layoutAd','user','signals','plugins']));
+         return view('forgot-password', compact(['user','cart','c','ad','pe','signals','plugins']));
     }
     
     /**
@@ -299,7 +323,7 @@ class LoginController extends Controller {
        $user = null;
        $req = $request->all();
        $return = isset($req['return']) ? $req['return'] : '/';
-	   $plugins = $this->helpers->getPlugins();
+	   
 		
 		if(Auth::check())
 		{
@@ -318,8 +342,14 @@ class LoginController extends Controller {
                 	return redirect()->back()->withErrors("The code is invalid or has expired. ","errors"); 
                 }
                 $v = ($user->role == "user") ? 'reset' : 'admin.reset';
-				$layoutAd = $this->helpers->getAds();
-            	return view($v,compact(['layoutAd','user','return','plugins']));
+				$cart = $this->helpers->getCart($user);
+		$c = $this->helpers->getCategories();
+		$ads = $this->helpers->getAds();
+		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
+		shuffle($ads);
+		$ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
+		$signals = $this->helpers->signals;
+            	return view($v,compact(['user','cart','c','ad','pe','signals','plugins']));
             }
             
             else
