@@ -96,15 +96,15 @@ $pcClass = "";
 						<!-- Product Action -->
 						<div class="pd_btn fix">
 							<a class="btn btn-default acc_btn" href="javascript:void(0)" id="product-add-to-cart-btn" >add to bag</a>
-							<a class="btn btn-default acc_btn btn_icn"><i class="fa fa-heart"></i></a>
+							<a class="btn btn-default acc_btn btn_icn" href="javascript:void(0)" id="product-add-to-wishlist-btn"><i class="fa fa-heart"></i></a>
 							
 						</div>
 						<div class="pd_share_area fix">
 							<h4>share this on:</h4>
 							<div class="pd_social_icon">
-								<a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-								<a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-								<a class="instagram" href="#"><i class="fa fa-instagram"></i></a>
+								<a class="facebook" href="javascript:void(0)"><i class="fa fa-facebook"></i></a>
+								<a class="twitter" href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
+								<a class="instagram" href="javascript:void(0)"><i class="fa fa-instagram"></i></a>
 								
 							</div>
 						</div>
