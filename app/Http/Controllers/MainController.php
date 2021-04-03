@@ -854,13 +854,13 @@ class MainController extends Controller {
 			$sd = $this->helpers->getShippingDetails($user);
 			
 			$orders = $this->helpers->getOrders($user);
-			
+			$wishlist = $this->helpers->getWishlist($user);
 			#dd($orders);
 			
 		    $statuses = $this->helpers->statuses;
 		    $signals = $this->helpers->signals;
 			$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
-		    return view("dashboard",compact(['user','cart','c','countries','sd','pd','orders','statuses','pe','signals','plugins']));			
+		    return view("dashboard",compact(['user','cart','c','countries','sd','pd','wishlist','orders','statuses','pe','signals','plugins']));			
 		
 		}
 		else
