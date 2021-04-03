@@ -39,6 +39,7 @@ $pcClass = "";
  ?>
  	
  $(document).ready(() => {
+ 	alert("imgs.length: " + imgs.length);
  	showImage(0);
  });
  </script>
