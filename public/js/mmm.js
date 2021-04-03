@@ -311,6 +311,23 @@ new WOW().init();
 			   }
              
 		  });
+		
+		$("#product-add-to-wishlist-btn").click(function(e){            
+		       e.preventDefault();
+			   let xf = $('#product-xf').val(), 
+			       validation = (xf == "");
+			   
+		       if(validation){
+				 Swal.fire({
+			            icon: 'error',
+                        title: "Please select a product"
+                 });
+			   }
+			   else{
+				   window.location = `add-to-wishlist?xf=${xf}`;
+			   }
+             
+		  });
 		  
 		  $(".product-qty").change(function(e){            
 		       e.preventDefault();
@@ -418,8 +435,7 @@ new WOW().init();
                e.preventDefault();
               let vimg = $('#va').attr('data-img');
 			  Swal.fire({
-			            icon: 'success',
-                        imageUrl: vimg           
+			            imageUrl: vimg           
                  });
            });
            
