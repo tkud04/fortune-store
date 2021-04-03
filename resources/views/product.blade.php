@@ -26,7 +26,7 @@ $pcClass = "";
 ?>
 
 <script>
-	let imgs = [];
+	let i = 0, imgs = [];
 <?php
      for($i = 0; $i < count($imggs); $i++)
 		{
@@ -37,6 +37,10 @@ $pcClass = "";
  <?php
 	   }
  ?>
+ 	
+ $(document).ready(() => {
+ 	showImage(0);
+ });
  </script>
 <!-- Product Details Area  -->
 	<div class="prdct_dtls_page_area">
@@ -49,8 +53,8 @@ $pcClass = "";
 						  <a id="va" href="javascript:void(0)"><img id="vi" src="" alt="{{$displayName}}"/></a>
 					</div>
 					<div class="pd_btn fix">
-							<a id="vprev" class="btn btn-default acc_btn btn_icn"><i class="fa fa-chevron-left"></i></a>
-							<a id="vnext" class="btn btn-default acc_btn btn_icn"><i class="fa fa-chevron-right"></i></a>
+							<a href="javascript:void(0)" id="vprev" class="btn btn-default acc_btn btn_icn"><i class="fa fa-chevron-left"></i></a>
+							<a href="javascript:void(0)" id="vnext" class="btn btn-default acc_btn btn_icn"><i class="fa fa-chevron-right"></i></a>
 						</div>
 				</div>
 				<!-- Product Details Content -->
