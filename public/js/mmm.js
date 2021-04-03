@@ -413,5 +413,32 @@ new WOW().init();
 			   }
              
 		  });
+		
+		$("#va").click(function(e) {
+               e.preventDefault();
+              let vimg = $('#va').attr('data-img');
+			  Swal.fire({
+			            icon: 'success',
+                        img: vimg
+                 });
+           });
+           
+        $("#vprev").click(function(e) {
+               e.preventDefault();
+               let ti = i - 1;
+              if(ti >= 0 && ti < imgs.length){
+              	i = ti;
+		        showImage(i);
+	         }
+           });
+           
+         $("#vnext").click(function(e) {
+               e.preventDefault();
+               let ti = i + 1;
+              if(ti > 0 && ti < imgs.length){
+              	i = ti;
+		        showImage(i);
+	         }
+           });
 	
 });
