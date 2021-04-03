@@ -1130,7 +1130,7 @@ class MainController extends Controller {
 			#dd($wishlist);
 			 $signals = $this->helpers->signals;
 			    $pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
-		        return view("wishlist",compact(['user','cart','c','wishlist','signals','plugins']));	
+		        return view("wishlist",compact(['user','cart','c','pe','wishlist','signals','plugins']));	
 		
     }
 	
