@@ -427,9 +427,9 @@ const showTab = xf => {
 const showImage = xf => {
 	//console.log(`showing tab ${xf}`);
 	let img = imgs.find(ii => ii.i == xf);
-	alert(img);
+	//alert(img);
 	if(img != null){
-		$('#va').attr('href',img.img);
+		$('#va').attr('data-img',img.img);
 		$('#vi').attr('src',img.img);
     }
 	
