@@ -419,7 +419,7 @@ new WOW().init();
               let vimg = $('#va').attr('data-img');
 			  Swal.fire({
 			            icon: 'success',
-                        img: vimg
+                        image: vimg
                  });
            });
            
