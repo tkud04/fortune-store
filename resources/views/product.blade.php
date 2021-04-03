@@ -24,6 +24,20 @@ $pcClass = "";
 			   $imggs = $product['imggs'];
 			    
 ?>
+
+<script>
+	let imgs = [];
+<?php
+     for($i = 0; $i < count($imggs); $i++)
+		{
+			$ii = $imggs[$i];
+			$ss = $i == 0 ? " active" : "";
+ ?>
+      imgs.push({i: "{{$i}}"}, img: "{{$ii}}"}); 
+ <?php
+	   }
+ ?>
+ </script>
 <!-- Product Details Area  -->
 	<div class="prdct_dtls_page_area">
 		<div class="container">
@@ -32,19 +46,12 @@ $pcClass = "";
 				<!-- Product Details Image -->
 				<div class="col-md-6 col-xs-12">
 					<div class="pd_img fix">
-					    <?php
-                                     for($i = 0; $i < count($imggs); $i++)
-									 {
-										$ii = $imggs[$i];
-										$ss = $i == 0 ? " active" : "";
-                                    ?>			
-						
-						  <a class="venobox" data-gall="myGallery" href="{{$ii}}"><img src="{{$ii}}" alt="{{$displayName}}"/></a>
-						
-						<?php
-									     }
-									    ?>
+						  <a id="va" href="javascript:void(0)"><img id="vi" src="" alt="{{$displayName}}"/></a>
 					</div>
+					<div class="pd_btn fix">
+							<a id="vprev" class="btn btn-default acc_btn btn_icn"><i class="fa fa-chevron-left"></i></a>
+							<a id="vnext" class="btn btn-default acc_btn btn_icn"><i class="fa fa-chevron-right"></i></a>
+						</div>
 				</div>
 				<!-- Product Details Content -->
 				<div class="col-md-6 col-xs-12">
