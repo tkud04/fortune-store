@@ -429,8 +429,10 @@ const showImage = xf => {
 	let img = imgs.find(ii => ii.i == xf);
 	//alert(img);
 	if(img != null){
+		hideElem(['#vi']);
 		$('#va').attr('data-img',img.img);
 		$('#vi').attr('src',img.img);
+		showElem(['#vi']);
     }
 	
 }
