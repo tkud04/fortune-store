@@ -424,3 +424,14 @@ const showTab = xf => {
 	document.querySelector(`${xf}-link`).classList.add('active');
 }
 
+const showImage = xf => {
+	//console.log(`showing tab ${xf}`);
+	let img = imgs.find(ii => ii.i == xf);
+	
+	if(img != null){
+		$('#va').attr('href',img.img);
+		$('#vi').attr('src',img.img);
+    }
+	
+}
+
