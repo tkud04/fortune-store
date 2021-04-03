@@ -33,7 +33,7 @@ $pcClass = "";
 			$ii = $imggs[$i];
 			$ss = $i == 0 ? " active" : "";
  ?>
-      imgs.push({i: "{{$i}}"}, img: "{{$ii}}"}); 
+      imgs.push({i: "{{$i}}", img: "{{$ii}}"}); 
  <?php
 	   }
  ?>
