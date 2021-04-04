@@ -1143,6 +1143,7 @@ class MainController extends Controller {
     {
 		$user = null;
 		$cart = [];
+		$req = $request->all();
 		
     	if(Auth::check())
 		{
