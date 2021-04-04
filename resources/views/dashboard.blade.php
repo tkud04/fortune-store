@@ -195,8 +195,30 @@ $pcClass = "";
 							</div>
 							
 							<div class="tab-pane" id="wishlist">
+								<?php
+							    if(count($wishlist) > 0)
+								{
+							   ?>
+							       <table class="shop-table wishlist-table mt-2 mb-5">
+								    <thead>
+									  <tr>
+										<th>Details</th>
+								        <th class="product-price"><span>Total</span></th>
+								        <th class="product-stock-status"><span>Status</span></th>
+								        <th class="product-add-to-cart"></th>
+									  </tr>
+									</thead>
+							   <?php
+								}
+								else
+								{
+								?>
 								<p class=" b-2">No items in your wishlist yet.</p>
 								<a href="{{url('shop')}}" class="btn btn-primary">Go Shopping</a>
+								<?php
+								}
+						
+								?>
 							</div>
 							<div class="tab-pane" id="orders">
 							  <div class="row">
