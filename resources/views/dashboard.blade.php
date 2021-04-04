@@ -238,9 +238,9 @@ $pcClass = "";
 										   </div>
                                        </td>
 									    <td>
-										<a href="{{$uu}}" class="btn btn-primary btn-reveal-right"><span>VIEW</span></a>
-										<a href="{{$cu}}" class="btn btn-primary btn-reveal-right"><span>ADD TO BAG</span></a>
-										<a href="{{$du}}" class="btn btn-primary btn-reveal-right"><span>REMOVE</span></a>
+										<a href="{{$uu}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>VIEW</span></a>
+										<a href="{{$cu}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>ADD TO BAG</span></a>
+										<a href="{{$du}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>REMOVE</span></a>
                                         </td>
                                       </tr>
                                       <?php
