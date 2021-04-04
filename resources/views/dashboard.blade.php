@@ -243,6 +243,10 @@ $pcClass = "";
 										<a href="{{$du}}" class="btn-product"><span>REMOVE</span></a>
                                         </td>
                                       </tr>
+                                      <?php
+								       }
+						
+								       ?>
 									</tbody>
 									</table>
 							   <?php
