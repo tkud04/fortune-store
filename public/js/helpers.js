@@ -91,13 +91,13 @@ const showPage = (p) => {
 			
 			
 		hh = `
-				   <div class="col-md-3 col-sm-6" onclick="window.location='${p.uu}'">
+				   <div class="col-md-3 col-sm-6" >
 							<div class="single_product">
 								<div class="product_image">
-									<img src="${imggs[0]}" alt="${nn}">
+									<img src="${imggs[0]}" alt="${nn}" onclick="window.location='${p.uu}'">
 									<div class="box-content">
-										<a href="javascript:void(0)" onclick="addToWishlist({xf: ${p.id}})"><i class="fa fa-heart-o"></i></a>
-										<a href="javascript:void(0)" onclick="addToCart({xf: ${p.id},qty: 1})"><i class="fa fa-cart-plus"></i></a>
+										<a href="javascript:void(0)" onclick="addToWishlist({xf: '${p.id}'}); return false;"><i class="fa fa-heart-o"></i></a>
+										<a href="javascript:void(0)" onclick="addToCart({xf: '${p.id}',qty: '1'}); return false;"><i class="fa fa-cart-plus"></i></a>
 									</div>										
 								</div>
 
@@ -410,9 +410,16 @@ const refreshProducts = dt => {
      	$(`${dt.target}`).html(html);
 }
 
+const addToWishlist = dt => {
+	if(typeof dt.xf !== 'undefined'){
+	   window.location = `add-to-wishlist?xf=${dt.xf}&qty=1`;
+	}
+}
+
 const addToCart = dt => {
 	if(typeof dt.xf !== 'undefined'){
-	   window.location = `add-to-cart?xf=${dt.xf}&qty=1`;
+	   //window.location = `add-to-cart?xf=${dt.xf}&qty=1`;
+	   console.log(`add-to-cart?xf=${dt.xf}&qty=1`);
 	}
 }
 

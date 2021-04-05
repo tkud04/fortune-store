@@ -1518,7 +1518,7 @@ class MainController extends Controller {
         #dd($req);
         
         $validator = Validator::make($req, [
-                             'xf' => 'required|numeric',
+                             'xf' => 'required',
                              'qty' => 'required|numeric'
          ]);
          

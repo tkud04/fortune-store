@@ -1409,13 +1409,14 @@ $subject = $data['subject'];
 			 $xf = $data['xf'];
 			 $ret = "error";
 			 
-			 $c = Carts::where('user_id',$userId)
-			           ->where('product_id',$xf)->first();
-
-			 $p = Products::where('id',$xf)->first();
+			 $p = Products::where('id',$xf)
+			               ->orWhere('sku',$xf)->first();
              #dd($p);
 			 if($p != null)
 			 {
+				 $c = Carts::where('user_id',$userId)
+			           ->where('product_id',$p->id)->first();
+					   
 				if($data['qty'] <= $p->qty)
 				{
 					

@@ -3,9 +3,9 @@ $title = "My Wishlist";
 $ph = true;
 $pcClass = "";
 ?>
-@extends('layout')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 				<div class="container">
 				<div class="col-md-12">
 					<?php
@@ -42,18 +42,18 @@ $pcClass = "";
 								      <tr>
 									   <td>
 										<div class="mb-2">
-										   <a href="{{$uu}}" class="mb-2">
+										   <a href="<?php echo e($uu); ?>" class="mb-2">
 										     <figure>
-											  <img src="{{$imggs[0]}}" width="60" height="60" alt="{{$displayName}}">
+											  <img src="<?php echo e($imggs[0]); ?>" width="60" height="60" alt="<?php echo e($displayName); ?>">
 										     </figure>
 									       </a>
-									       <a href="{{$uu}}">{{$displayName}}</a> <b class="badge badge-success">&#8358;{{number_format($amount,2)}}</b>
+									       <a href="<?php echo e($uu); ?>"><?php echo e($displayName); ?></a> <b class="badge badge-success">&#8358;<?php echo e(number_format($amount,2)); ?></b>
 										   </div>
                                        </td>
 									    <td>
-										<a href="{{$uu}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>VIEW</span></a>
-										<a href="{{$cu}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>ADD TO BAG</span></a>
-										<a href="{{$du}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>REMOVE</span></a>
+										<a href="<?php echo e($uu); ?>" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>VIEW</span></a>
+										<a href="<?php echo e($cu); ?>" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>ADD TO BAG</span></a>
+										<a href="<?php echo e($du); ?>" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>REMOVE</span></a>
                                         </td>
                                       </tr>
                                       <?php
@@ -68,11 +68,13 @@ $pcClass = "";
 								{
 								?>
 								<p class=" b-2">No items in your wishlist yet.</p>
-								<a href="{{url('shop')}}" class="btn btn-primary">Go Shopping</a>
+								<a href="<?php echo e(url('shop')); ?>" class="btn btn-primary">Go Shopping</a>
 								<?php
 								}
 						
 								?>
 				  </div>
 				</div>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/wishlist.blade.php ENDPATH**/ ?>
