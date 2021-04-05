@@ -29,6 +29,7 @@ use App\Wishlists;
 use App\Senders;
 use App\Settings;
 use App\Plugins;
+use App\Shipping;
 use App\Couriers;
 use App\Comparisons;
 use App\Debugs;
@@ -2810,6 +2811,42 @@ $subject = $data['subject'];
 			 
 			 return $ret;
 		 }
+		 
+		 function getShipping()
+   {
+	   $ret = [];
+	   
+	   $shipping = Shipping::where('id','>',"0")->get();
+	   
+	   if(!is_null($shipping))
+	   {
+		   foreach($shipping as $s)
+		   {
+		     $temp = $this->getShippingSingle($s->id);
+		     array_push($ret,$temp);
+	       }
+	   }
+	   
+	   return $ret;
+   }
+   
+   function getShippingSingle($id)
+           {
+           	$ret = [];
+               $s = Shipping::where('id',$id)->first();
+ 
+              if($s != null)
+               {
+                   	$temp['name'] = $s->name; 
+                       $temp['value'] = $s->value; 	 
+                       $temp['id'] = $s->id; 
+                       $temp['date'] = $s->created_at->format("jS F, Y"); 
+                       $temp['updated'] = $s->updated_at->format("jS F, Y"); 
+                       $ret = $temp; 
+               }                          
+                                                      
+                return $ret;
+           }
 
  
 }

@@ -3,9 +3,9 @@ $title = "Cart";
 $ph = true;
 $pcClass = "";
 ?>
-@extends('layout')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <script>
 let cart = [];
@@ -43,19 +43,19 @@ let cart = [];
 				                 ?>
 									<tr>
 										<td>
-                                          <a href="{{$uu}}" class="cp_img"><img src="{{$imgs[0]}}" alt="{{$item['name']}}" /></a>
-                                          <a href="{{$uu}}" class="cp_title">{{$item['name']}}</a>
-                                          <a href="{{$uu}}" class="cp_title">{{$item['name']}}</a>
+                                          <a href="<?php echo e($uu); ?>" class="cp_img"><img src="<?php echo e($imgs[0]); ?>" alt="<?php echo e($item['name']); ?>" /></a>
+                                          <a href="<?php echo e($uu); ?>" class="cp_title"><?php echo e($item['name']); ?></a>
+                                          <a href="<?php echo e($uu); ?>" class="cp_title"><?php echo e($item['name']); ?></a>
                                         </td>
 										<td></td>
 										<td>										
 											<div class="cp_quntty">																			
-												<input name="quantity" value="{{$qty}}" data-val="{{$qty}}" data-xf="{{$xf}}" size="2" type="number">													
+												<input name="quantity" value="<?php echo e($qty); ?>" data-val="<?php echo e($qty); ?>" data-xf="<?php echo e($xf); ?>" size="2" type="number">													
 											</div>
 										</td>
-										<td><p class="cp_price">&#8358;{{number_format($itemAmount,2)}}</p></td>
-										<td><p class="cpp_total">&#8358;{{number_format($itemAmount * $qty,2)}}</p></td>
-										<td><a href="{{$ru}}" title="Remove this product" class="btn btn-default cp_remove"><i class="fa fa-trash"></i></a></td>
+										<td><p class="cp_price">&#8358;<?php echo e(number_format($itemAmount,2)); ?></p></td>
+										<td><p class="cpp_total">&#8358;<?php echo e(number_format($itemAmount * $qty,2)); ?></p></td>
+										<td><a href="<?php echo e($ru); ?>" title="Remove this product" class="btn btn-default cp_remove"><i class="fa fa-trash"></i></a></td>
 									</tr>
 									<?php
 								   }
@@ -73,7 +73,7 @@ let cart = [];
 						<div class="row">
 							<div class="col-sm-7">
 								<div class="cart-action">
-									<a href="{{url('/')}}" class="btn border-btn">continue shopping</a>
+									<a href="<?php echo e(url('/')); ?>" class="btn border-btn">continue shopping</a>
 									<a href="javascript:void(0)" id="update-cart-btn" class="btn border-btn">update shopping bag</a>
 								</div>
 							</div>
@@ -93,7 +93,7 @@ let cart = [];
 					
 					<div class="col-md-4 col-xs-12 cart-checkout-process text-right">
 						<div class="wrap">
-							<h4><span>Total</span><span>&#8358;{{number_format($subtotal,2)}}</span></h4>
+							<h4><span>Total</span><span>&#8358;<?php echo e(number_format($subtotal,2)); ?></span></h4>
 							<p>Shipping fee:</p>
 							<form action="#" class="cuppon-form">
 							  <select>
@@ -102,13 +102,13 @@ let cart = [];
 								  foreach($shipping as $s)
 								  {
 								?>
-							    <option value="{{$s['id']}}">{{$s['name']}} - &#8358;{{number_format($s['value'],2)}}</option>
+							    <option value="<?php echo e($s['id']); ?>"><?php echo e($s['name']); ?> - &#8358;<?php echo e(number_format($s['value'],2)); ?></option>
 								<?php
 								  }
 								?>
 							  </select>
 							</form>
-							<a href="{{url('checkout')}}" class="btn border-btn">proced to checkout</a>
+							<a href="<?php echo e(url('checkout')); ?>" class="btn border-btn">proced to checkout</a>
 						</div>
 					</div>
 					
@@ -116,4 +116,6 @@ let cart = [];
 			</div>
 		</div>
 
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/cart.blade.php ENDPATH**/ ?>

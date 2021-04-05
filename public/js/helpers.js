@@ -418,8 +418,8 @@ const addToWishlist = dt => {
 
 const addToCart = dt => {
 	if(typeof dt.xf !== 'undefined'){
-	   //window.location = `add-to-cart?xf=${dt.xf}&qty=1`;
-	   console.log(`add-to-cart?xf=${dt.xf}&qty=1`);
+	   window.location = `add-to-cart?xf=${dt.xf}&qty=1`;
+	   //console.log(`add-to-cart?xf=${dt.xf}&qty=1`);
 	}
 }
 

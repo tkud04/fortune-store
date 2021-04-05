@@ -325,8 +325,8 @@ class MainController extends Controller {
 		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
 		shuffle($ads);
 		$ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
-		#session()->reflash();
-		return view("cart",compact(['user','cart','totals','c','ad','pe','signals','plugins']));					 
+		$shipping = $this->helpers->getShipping();
+		return view("cart",compact(['user','cart','totals','shipping','c','ad','pe','signals','plugins']));					 
     }
 	
 	/**
