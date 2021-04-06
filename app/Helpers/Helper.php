@@ -93,6 +93,7 @@ class Helper implements HelperContract
 					 "track-order-status-error" => "Invalid reference number, please try again.",
 					 "no-cart-status-error" => "Your cart is empty.",
 					 "invalid-order-status-error" => "We could not find your order.",
+					 "checkout-st-status-error" => "Select a shipping fee.",
                      ]
                    ];
 
@@ -2027,7 +2028,7 @@ $subject = $data['subject'];
 		 status: aoStatus,
 		 products: JSON.stringify(orderProducts),
 			**/	
-			   $data['ref'] = "MBZ".$data['ref'];
+			   $data['ref'] = "LXFB".$data['ref'];
 			   $data['user_id'] = $user->id;
 			   
 			   $pd = $data['payment_xf'];

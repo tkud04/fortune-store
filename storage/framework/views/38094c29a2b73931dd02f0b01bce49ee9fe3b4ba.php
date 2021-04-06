@@ -268,7 +268,7 @@
 									 $uu = url('product')."?xf=".$item['id'];
 				                 ?>
 														<div class="mc-sin-pro fix">
-															<a href="<?php echo e($uu); ?>" class="mc-pro-image float-left"><img src="<?php echo e($imgs[0]); ?>" alt="<?php echo e($item['name']); ?>" /></a>
+															<a href="<?php echo e($uu); ?>" class="mc-pro-image float-left"><img src="<?php echo e($imgs[0]); ?>" alt="<?php echo e($item['name']); ?>" style="width: 80px; height: 80px;" /></a>
 															<div class="mc-pro-details fix">
 																<a href="<?php echo e($uu); ?>"><?php echo e($item['name']); ?></a>
 																<span><?php echo e($qty); ?>x&#8358;<?php echo e(number_format($itemAmount,2)); ?></span>
@@ -286,6 +286,7 @@
 													<!-- Cart Button -->
 													<div class="mc-button">
 														<a href="<?php echo e(url('checkout')); ?>" class="checkout_btn">checkout</a>
+														<a href="<?php echo e(url('cart')); ?>" class="text-bold">View cart</a>
 													</div>
 												</div>											
 											</div>	

@@ -96,8 +96,8 @@ let cart = [];
 							<h4><span>Total</span><span>&#8358;<?php echo e(number_format($subtotal,2)); ?></span></h4>
 							<p>Shipping fee:</p>
 							<form action="#" class="cuppon-form">
-							  <select>
-							    <option value="none">Select shipping location</option>
+							  <select id="st">
+							    <option value="none">Select shipping fee</option>
 								<?php
 								  foreach($shipping as $s)
 								  {
@@ -108,7 +108,7 @@ let cart = [];
 								?>
 							  </select>
 							</form>
-							<a href="<?php echo e(url('checkout')); ?>" class="btn border-btn">proced to checkout</a>
+							<a href="javascript:void(0)" id="cart-btn" class="btn border-btn">proced to checkout</a>
 						</div>
 					</div>
 					

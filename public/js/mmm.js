@@ -295,7 +295,23 @@ new WOW().init();
     });
 	
 	 //CART 
-		  $("#product-add-to-cart-btn").click(function(e){            
+		  $("#cart-btn").click(function(e){            
+		       e.preventDefault();
+			   let st = $('#st').val(), validation = (st == "none" || st == "");
+			   
+		       if(validation){
+				 Swal.fire({
+			            icon: 'error',
+                        title: "Select a shipping fee."
+                 });
+			   }
+			   else{
+				   window.location = `checkout?st=${st}`;
+			   }
+             
+		  });
+		  
+		 $("#product-add-to-cart-btn").click(function(e){            
 		       e.preventDefault();
 			   let xf = $('#product-xf').val(), qty = $('#product-qty').val(),
 			       validation = (xf == "" || qty == "" || parseInt(qty) < 1);

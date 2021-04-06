@@ -338,12 +338,12 @@ class MainController extends Controller {
     {
         $user = null;
 		$cart = [];
-		$shipping = [];
+		$sd = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
-		    $shipping = $this->helpers->getShippingDetails($user);	
+		    #$shipping = $this->helpers->getShippingDetails($user);	
 		}
 		else
 		{
@@ -351,19 +351,27 @@ class MainController extends Controller {
 		}
 		$req = $request->all();
 		
-		
-		$c = $this->helpers->getCategories();
-		
-		$pd = $this->helpers->getPaymentDetails($user);
-		$sd = $this->helpers->getShippingDetails($user);
-		
-		$countries = $this->helpers->countries;
-		$signals = $this->helpers->signals;
-		$pe = $this->helpers->getPhoneAndEmail();
-		$plugins = $this->helpers->getPlugins();
-		#dd($sd);
-		 $totals = []; $ss = []; $ref = ""; 
-			return view("checkout",compact(['user','cart','totals','countries','pd','sd','c','pe','signals','plugins']));		
+		if(isset($req['st']))
+		{
+			
+			$c = $this->helpers->getCategories();
+    		$pd = [];
+    		$sd = $this->helpers->getShippingDetails($user);
+		    $st = $this->helpers->getShippingSingle($req['st']);
+		    $countries = $this->helpers->countries;
+		    $signals = $this->helpers->signals;
+		    $pe = $this->helpers->getPhoneAndEmail();
+		    $plugins = $this->helpers->getPlugins();
+		    #dd($st);
+		    $totals = []; $ss = []; $ref = ""; 
+			return view("checkout",compact(['user','cart','totals','st','countries','pd','sd','c','pe','signals','plugins']));	
+		}
+		else
+		{
+			session()->flash("checkout-st-status-error","ok");
+		     return redirect()->intended('cart');  
+		}
+			
 								 
     }
 	

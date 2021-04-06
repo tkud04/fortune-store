@@ -267,7 +267,7 @@
 									 $uu = url('product')."?xf=".$item['id'];
 				                 ?>
 														<div class="mc-sin-pro fix">
-															<a href="{{$uu}}" class="mc-pro-image float-left"><img src="{{$imgs[0]}}" alt="{{$item['name']}}" /></a>
+															<a href="{{$uu}}" class="mc-pro-image float-left"><img src="{{$imgs[0]}}" alt="{{$item['name']}}" style="width: 80px; height: 80px;" /></a>
 															<div class="mc-pro-details fix">
 																<a href="{{$uu}}">{{$item['name']}}</a>
 																<span>{{$qty}}x&#8358;{{number_format($itemAmount,2)}}</span>
@@ -285,6 +285,7 @@
 													<!-- Cart Button -->
 													<div class="mc-button">
 														<a href="{{url('checkout')}}" class="checkout_btn">checkout</a>
+														<a href="{{url('cart')}}" class="text-bold">View cart</a>
 													</div>
 												</div>											
 											</div>	
