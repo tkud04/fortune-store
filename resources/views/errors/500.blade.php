@@ -4,6 +4,7 @@ $ph = false;
 $pcClass = "";
 $plugins = [];
 $signals = ['okays' => []];
+$pe = ['phone' => "",'email' => ""];
 $user = null;
 if(Auth::check()) $user = Auth::user();
 ?>
@@ -12,12 +13,24 @@ if(Auth::check()) $user = Auth::user();
 @section('title',"Not Found")
 
 @section('content')
-<section class="error-section d-flex flex-column justify-content-center align-items-center text-center pl-3 pr-3">
-                    <h1 class="mb-2 ls-m">Error 500</h1>
-                    <img src="{{asset('images/404.png')}}" alt="error 404" width="609" height="131">
-                    <h4 class="mt-7 mb-0 ls-m text-uppercase">Ooopps.! A technical error has occured.</h4>
+<!-- 404 Page -->
+		<div id="page_404_area">
+			<div class="container">
+				<div class="row text-left">
+					<div class="col-sm-6">
+						<div class="page_404_content">
+							<h1>500</h1>
+							<h3>Something went wrong while processing your request. It's most likely a technical error or an issue with your Internet connection.</h3>
+						</div>
+						<div class="404_btn">
+							<a href="{{url('/')}}" class="btn border-btn"><i class="fa fa-arrow-circle-o-left"></i> Back To Home</a>
+						</div>
+					</div>
 					
-                    <p class="text-grey font-primary ls-m">It looks like an error occured in the server due to your request and we are looking into this right now. Please try again later</p>
-                    <a href="{{url('/')}}" class="btn btn-primary mb-4">Go home</a>
-                </section>
+					<div class="col-sm-6 text-center">
+						<img src="img/404.png" class="img-responsive" width="350" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
 @stop

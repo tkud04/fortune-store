@@ -70,7 +70,7 @@ class PaymentController extends Controller {
 		 
 		   $md = $req['metadata'];
 		   $metadata = json_decode($md);
-	    	dd($metadata);	 
+	    	#dd($metadata);	 
 			
 			 if($metadata->pt == "card")
 			 {
