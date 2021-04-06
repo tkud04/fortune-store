@@ -64,75 +64,93 @@ $(document).ready(() => {
 							
 							<div id="accordion">
 							   <div class="card border-light">
-                                        <div class="card-header" id="heading1-1">
-                                            <a data-toggle="collapse" data-target="#collapse1-1" href="javascript:void(0)" aria-expanded="true" aria-controls="collapse1-1">Billing Details</a>
-                                        </div>
+                                  <div class="card-header" id="heading1-1">
+                                     <a data-toggle="collapse" data-target="#collapse1-1" href="javascript:void(0)" aria-expanded="true" aria-controls="collapse1-1">Billing Details</a>
+                                  </div>
 								  <div id="collapse1-1" class="collapse show" aria-labelledby="heading1-1" data-parent="#accordion">
 								     <div class="card-body">
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<input name="first_name" placeholder="First name" class="form-control" type="text">
-								</div>
+							           <div class="form-row">
+								         <div class="form-group col-md-12">
+										   <div class="custom-select-wrapper">
+									       <select class="custom-select" id="checkout-pd" name="pd">
+									       <option value="none">Add new billing detail</option>
+										<?php
+										 if(count($pd) > 0)
+										 {
+											 foreach($pd as $p)
+											 {
+										?>
+									    <option value="<?php echo e($p['id']); ?>"><?php echo e($p['address_1'].", ".$p['city'].", ".strtoupper($p['country'])); ?></option>
+									    <?php
+											 }
+										 }
+										?>
+									       </select>
+										   </div>
+								         </div>
 								
-								 <div class="form-group col-md-6">								
-									<input name="last_name" placeholder="Last name" class="form-control" type="text">
-								</div>
-							</div>
+								         <div class="form-group col-md-6">								
+									      <label>First Name *</label>
+										   <input type="text" class="form-control" id="pd-fname" name="pd-fname" required="">
+								         </div>
+										 <div class="form-group col-md-6">								
+									      <label>Last Name *</label>
+										  <input type="text" class="form-control" id="pd-lname" name="pd-lname" required="">
+								         </div>
+							           </div>
 							
-                            <div class="form-group">      
-                                  <input name="company_name" placeholder="Company name" class="form-control" type="text">                         
-                            </div>
+                                       <div class="form-group">      
+                                        <label>Company Name(Optional)</label>
+								        <input type="text" class="form-control" id="pd-company" name="pd-company" required="">                     
+                                       </div>
 							
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <input name="email" placeholder="Email address" class="form-control" type="email">
-                                </div>
+                                       <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <input name="email" placeholder="Email address" class="form-control" type="email">
+                                        </div>
                            
-      
-                                <div class="form-group col-md-6">
-                                    <input name="phone" placeholder="Phone number" class="form-control" type="text">
-                                </div>
-							</div>
+                                        <div class="form-group col-md-6">
+                                          <input name="phone" placeholder="Phone number" class="form-control" type="text">
+                                        </div>
+							           </div>
 								
-                            <div class="form-group">  
-								<label for="country">Country:</label>
-								<div class="custom-select-wrapper">
-									<select id="country" class="custom-select">
-										<option value="canada">Canada *</option>
-										<option value="american">American</option>
-										<option value="australia">Australia</option>
-									</select>
-								</div>
-                            </div>
+                                       <div class="form-group">  
+								         <label for="country">Country:</label>
+								         <div class="custom-select-wrapper">
+									        <select id="country" class="custom-select">
+										      <option value="canada">Canada *</option>
+										      <option value="american">American</option>
+									          <option value="australia">Australia</option>
+									         </select>
+								         </div>
+                                       </div>
 							
+							           <div class="form-group">
+								         <label for="address">Address:</label>    
+							             <textarea rows="3" name="street" id="address" placeholder="Street address. Apartment, suite, unit etc. (optional)" class="form-control"></textarea>
+                                       </div>
 							
-                            <div class="form-group">
-								<label for="address">Address:</label>    
-								<textarea rows="3" name="street" id="address" placeholder="Street address. Apartment, suite, unit etc. (optional)" class="form-control"></textarea>
-                            </div>
-							
-                             <div class="form-row">
-                               <div class="form-group col-md-6">
-                                    <input name="code" placeholder="Post code / Zip" class="form-control" type="text">
-                                </div>
+                                       <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                         <input name="code" placeholder="Post code / Zip" class="form-control" type="text">
+                                        </div>
 								
-								 <div class="form-group col-md-6">
-                                    <input name="city" placeholder="Town / City" class="form-control" type="text">
-                                </div>								
-                            </div>
+								        <div class="form-group col-md-6">
+                                         <input name="city" placeholder="Town / City" class="form-control" type="text">
+                                        </div>								
+                                       </div>
 
-                            <div class="form-group">
-								<label for="address">Order note:</label>    
-								<textarea rows="3" name="street" placeholder="Order note" class="form-control"></textarea>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="customCheck1">
-									<label class="custom-control-label" for="customCheck1">SHIP TO A DIFFERENT ADDRESS?</label>
-								</div>                             
-                            </div>
-							
-                            </div>
-                            </div>
-                            </div>
+                                        <div class="form-group">
+								          <label for="address">Order note:</label>    
+								          <textarea rows="3" name="street" placeholder="Order note" class="form-control"></textarea>
+							               <div class="custom-control custom-checkbox">
+									         <input type="checkbox" class="custom-control-input" id="customCheck1">
+									         <label class="custom-control-label" for="customCheck1">SHIP TO A DIFFERENT ADDRESS?</label>
+								           </div>                             
+                                        </div>
+                                     </div>
+                                   </div>
+                                </div>
                             </div>
                         </form>
                     </div>
