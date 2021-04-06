@@ -21,6 +21,18 @@ class PaymentController extends Controller {
     	$this->helpers = $h;                     
     }
     
+	
+	 /**
+	 * Redirect GET requests to /pay.
+	 * This could happen due to an expired page or network issues
+	 *
+	 * @return Response
+	 */
+	public function getPay()
+    {
+       return redirect()->intended('checkout');
+    }
+    
     
     /**
 	 * Show the application welcome screen to the user.
@@ -30,6 +42,7 @@ class PaymentController extends Controller {
     public function postRedirectToGateway(Request $request)
     {
 		$user = null;
+		$messages = [];
 		
     	if(Auth::check())
 		{
@@ -38,22 +51,11 @@ class PaymentController extends Controller {
 		
 		
 		$req = $request->all();
-      # dd($req);
-        $type = json_decode($req['metadata']);
-        //dd($type);
-        
-		$name = isset($req['name']) ? $req['name'] : $req['fname']." ".$req['lname'];
-        #dd($name);
-		
+		#dd($req);
+
         $validator = Validator::make($req, [
 							 'amount' => 'required',
-                             'email' => 'required|email|filled',
-							 'courier' => 'required',
-                             'address' => 'required|filled',
-                             'city' => 'required|filled',
-                             'state' => 'required|not_in:none',
-                             'phone' => 'required|filled',
-                             'terms' => 'required|accepted',
+                             'email' => 'required|email|filled'
          ]);
          
          if($validator->fails())
@@ -64,32 +66,343 @@ class PaymentController extends Controller {
          }
          
          else
-         {
-			 if($req['amount'] < 1)
+         {		
+		 
+		   $md = $req['metadata'];
+		   $metadata = json_decode($md);
+	    	dd($metadata);	 
+			
+			 if($metadata->pt == "card")
 			 {
-				 $err = "error";
-				 session()->flash("no-cart-status",$err);
-				 return redirect()->back();
+				 if($req['amount'] < 1)
+			      {
+				    $err = "error";
+				    session()->flash("no-cart-status-error","ok");
+				    return redirect()->back();
+			      }
+			      else
+			      {
+			        #dd($spl);
+			       
+					 $rr = [
+                  'data' => json_encode([
+				    'email' => $req['email'],
+					'amount' => $req['amount'],
+					'metadata' => $md,
+					'split' => $this->helpers->getSplitObect($user)
+				  ]),
+                  'headers' => [
+		           'Authorization' => "Bearer ".env("PAYSTACK_SECRET_KEY")
+		           ],
+                  'url' => "https://api.paystack.co/transaction/initialize",
+                  'type' => "raw",
+                  'method' => "post",
+                 ];
+      
+                  $dt = [];
+		          #dd($rr);
+			       $rett = $this->helpers->bomb($rr);
+                   $ret = json_decode($rett);
+				   
+				   
+				   #dd($ret);
+
+                    
+                    if($ret->status)
+                     {
+						 $dt = $ret->data;
+						 return redirect()->away($dt->authorization_url);
+					 }
+
+			      } 
 			 }
 			 else
 			 {
-			   //$paystack = new Paystack();
-			   #dd($request);
-			   $request->reference = Paystack::genTranxRef();
-               $request->key = config('paystack.secretKey');
+				 #dd($metadata);
+				 $sp = $this->helpers->getSavedPayment($metadata->pt);
+				 
+				 if(count($sp) > 0)
+				 {
+					 $spdt = $sp['data'];
+					 $spl = $req['split'];
+					 $spl = str_replace('/','',$spl);
+					 #dd($spl);
+					 $rr = [
+                  'data' => json_encode([
+				    'authorization_code' => trim($spdt->authorization_code),
+					'email' => trim($spdt->auth_email),
+					'amount' => $req['amount'],
+					'metadata' => $md,
+					'split' => $this->helpers->getSplitObect($user)
+				  ]),
+                  'headers' => [
+		           'Authorization' => "Bearer ".env("PAYSTACK_SECRET_KEY")
+		           ],
+                  'url' => "https://api.paystack.co/transaction/charge_authorization",
+                  'type' => "raw",
+                  'method' => "post",
+                 ];
+      
+                  $dt = [];
+		         #  dd($rr);
+			       $rett = $this->helpers->bomb($rr);
+                   $ret = json_decode($rett);
+				   
+				   
+				   #dd($ret);
+
+                    
+                    if($ret->status == 'success')
+                     {
+						 $paymentData = $ret->data;	
+			           $id = $metadata->ref;
 			 
-			   try{
-				 return Paystack::getAuthorizationUrl()->redirectNow(); 
-			   }
-			   catch(Exception $e)
-			   {
-				 $request->session()->flash("pay-card-status","error");
-			     return redirect()->intended("checkout");
-			   } 
-			 }        
-         }        
-        
-        
+			           #dd($paymentData);
+					   $au = [];
+					   
+					   $rep = [
+					     'metadata' => [
+						   'type' => "checkout",
+						   'ref' => $metadata->ref,
+						   'sps' => "no",
+						   'notes' => $metadata->notes,
+						 ],
+					     'amount' => $paymentData->amount,
+					     'reference' => $paymentData->reference,
+						 'authorization' => $au
+					   ];
+        	           $this->helpers->checkout($user,$rep);
+			
+			   
+                    $request->session()->flash("pay-card-status","ok");
+			
+			         $gid = isset($_COOKIE['gid']) ? $_COOKIE['gid'] : "";
+		            $cart = $this->helpers->getCart($user,$gid);
+		            $c = $this->helpers->getCategories();
+	             	$ads = $this->helpers->getAds();
+		            $plugins = $this->helpers->getPlugins();
+		            shuffle($ads);
+		            $ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
+	        	    $signals = $this->helpers->signals;
+					$banner = $this->helpers->getBanner();
+			
+			        return view("cps",compact(['user','cart','c','messages','ad','signals','plugins','banner']));
+               }
+               else
+               {
+        	      //Payment failed, redirect to orders
+                  $request->session()->flash("pay-card-status-error","ok");
+			      return redirect()->back();
+                }					
+				 }
+				 else
+				 {
+					 session()->flash("pay-card-status-error","ok");
+					 return redirect()->back();
+				 }
+				  
+			 }
+			        
+         }		
+    }
+	
+		
+	/**
+	 * Handle redirect.
+	 *
+	 * @return Response
+	 */
+	public function getPayForBooking(Request $request)
+    {
+	    return redirect()->intended('bookings');
+    }
+	
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postPayForBooking(Request $request)
+    {
+		$user = null;
+		$messages = [];
+		
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+			$messages = $this->helpers->getMessages(['user_id' => $user->id]);
+		}
+		else
+         {
+             session()->flash("auth-status-error","ok");
+			 return redirect()->back()->withInput();
+         }
+		
+		
+		$req = $request->all();
+		#dd($req);
+
+		 /**********/
+        $validator = Validator::make($req, [
+							 'xf' => 'required',
+                             'pt' => 'required'
+         ]);
+         
+         if($validator->fails())
+         {
+             session()->flash("validation-status-error","ok");
+			 return redirect()->back()->withInput();
+         }
+         
+         else
+         {		
+            $o = $this->helpers->getOrder($req['xf']);
+			
+			$md = [
+			        'type' => "pay-for-booking",
+			        'xf' => $o['id'],
+			        'sps' => isset($req['sps']) ? $req['sps'] : "yes"
+			      ];
+            #dd($o);			
+			 if(count($o) > 1 && $o['status'] == "unpaid")
+			 {
+				$split = $this->helpers->getSplitObect($user,['order' => true,'o' => $o]);
+				
+			 if($req['pt'] == "card")
+			 {
+				 if($o['amount'] < 1)
+			      {
+				    $err = "error";
+				    session()->flash("no-cart-status-error","ok");
+				    return redirect()->back();
+			      }
+			      else
+			      {
+			        #dd($spl);
+			       
+					 $rr = [
+                  'data' => json_encode([
+				    'email' => $user->email,
+					'amount' => $o['amount'] * 100,
+					'metadata' => $md,
+					'split' => $split
+				  ]),
+                  'headers' => [
+		           'Authorization' => "Bearer ".env("PAYSTACK_SECRET_KEY")
+		           ],
+                  'url' => "https://api.paystack.co/transaction/initialize",
+                  'type' => "raw",
+                  'method' => "post",
+                 ];
+      
+                  $dt = [];
+		          #dd($rr);
+			       $rett = $this->helpers->bomb($rr);
+                   $ret = json_decode($rett);
+				   
+				   
+				   #dd($ret);
+
+                    
+                    if($ret->status)
+                     {
+						 $dt = $ret->data;
+						 return redirect()->away($dt->authorization_url);
+					 }
+
+			      } 
+			 }
+			 else
+			 {
+				 #dd($metadata);
+				 $sp = $this->helpers->getSavedPayment($req['pt']);
+				 
+				 if(count($sp) > 0)
+				 {
+					 $spdt = $sp['data'];
+					 #$spl = $req['split'];
+					 #$spl = str_replace('/','',$spl);
+					 #dd($spl);
+					 $rr = [
+                  'data' => json_encode([
+				    'authorization_code' => trim($spdt->authorization_code),
+					'email' => trim($spdt->auth_email),
+					'amount' => $o['amount'] * 100,
+					'metadata' => $md,
+					'split' => $split
+				  ]),
+                  'headers' => [
+		           'Authorization' => "Bearer ".env("PAYSTACK_SECRET_KEY")
+		           ],
+                  'url' => "https://api.paystack.co/transaction/charge_authorization",
+                  'type' => "raw",
+                  'method' => "post",
+                 ];
+      
+                  $dt = [];
+		         #  dd($rr);
+			       $rett = $this->helpers->bomb($rr);
+                   $ret = json_decode($rett);
+				   
+				   
+				   #dd($ret);
+
+                    
+                    if($ret->status == 'success')
+                     {
+						 $paymentData = $ret->data;	
+			           #dd($paymentData);
+					   $md = $paymentData->metadata;
+					   $mdd = [
+					      'xf' => $md->xf,
+					      'type' => $md->type,
+					      'sps' => "no",
+					   ];
+					   $tpd = [
+					      'metadata' => $mdd,
+					      'amount' => $paymentData->amount,
+					      'reference' => $paymentData->reference,
+					   ];
+        	           $this->helpers->checkout($user,$tpd);
+			
+			   
+                    $request->session()->flash("pay-card-status","ok");
+			
+			         $gid = isset($_COOKIE['gid']) ? $_COOKIE['gid'] : "";
+		            $cart = $this->helpers->getCart($user,$gid);
+		            $c = $this->helpers->getCategories();
+	             	$ads = $this->helpers->getAds();
+		            $plugins = $this->helpers->getPlugins();
+		            shuffle($ads);
+		            $ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
+	        	    $signals = $this->helpers->signals;
+					$banner = $this->helpers->getBanner();
+			
+			        return view("cps",compact(['user','cart','c','messages','ad','signals','plugins','banner']));
+               }
+               else
+               {
+        	      //Payment failed, redirect to orders
+                  $request->session()->flash("pay-card-status-error","ok");
+			      return redirect()->back();
+                }					
+				 }
+				 else
+				 {
+					 session()->flash("pay-card-status-error","ok");
+					 return redirect()->back();
+				 }
+				  
+			 }
+		   } 
+          else
+           {
+             session()->flash("validation-status-error","ok");
+			 return redirect()->back()->withInput();
+           }		   
+         }		 
+		 /**********/	
     }
     
     /**
@@ -100,163 +413,95 @@ class PaymentController extends Controller {
 	public function getPaymentCallback(Request $request)
     {
 		$user = null;
+		$messages = [];
+		#dd($request);
 		
+		$paymentDetails = Paystack::getPaymentData();
+
+        #dd($paymentDetails);     
 		if(Auth::check())
 		{
 			$user = Auth::user();
+			$messages = $this->helpers->getMessages(['user_id' => $user->id]);
+		}
+		else
+		{
+			return redirect()->intended('/');
 		}
 		
-		
-        $paymentDetails = Paystack::getPaymentData();
-
-        #dd($paymentDetails);       
+          
         
         $paymentData = $paymentDetails['data'];
-        $md = $paymentData['metadata'];
-		#dd($paymentData);       
-		$successLocation = "";
-        $failureLocation = "";
         
-        switch($md['type'])
-        {
+		if(isset($paymentData['plan']))
+		{
+			//host subscription
+			$successLocation = "add-apartment";
+            $failureLocation = "my-apartments";
+			
+			if($paymentData['status'] == 'success')
+			{
+				$this->helpers->subscribe($user,$paymentData);
+				$request->session()->flash("subscribe-status","ok");
+			    return redirect()->intended($successLocation);
+			}
+			else
+            {
+        	  //Payment failed, redirect to orders
+              $request->session()->flash("subscribe-status","error");
+			  return redirect()->intended($failureLocation);
+            }
+		}
+		else
+		{
+		  //guest checkout
+		  $md = $paymentData['metadata'];
+		
+		 # dd($paymentData);       
+		  $successLocation = "";
+          $failureLocation = "";
+        
+          switch($md['type'])
+          {
         	case 'checkout':
+        	case 'pay-for-booking':
               $successLocation = "orders";
              $failureLocation = "checkout";           
             break; 
             
-            case 'kloudpay':
-              $successLocation = "transactions";
-             $failureLocation = "deposit";
-            break; 
-       }
-        //status, reference, metadata(order-id,items,amount,ssa), type
-        if($paymentData['status'] == 'success')
-        {
+          }
+          //status, reference, metadata(order-id,items,amount,ssa), type
+          if($paymentData['status'] == 'success')
+          {
 			#dd($md);
-			$id = $md['ref'];
-			 //get the user 
-				   if($user == null)
-				   {
-					   
-					   $name = $md['name'];
-					   $email = $md['email'];
-					   $phone = $md['phone'];
-					   $shipping = [
-					     'address' => $md['address'],
-					     'city' => $md['city'],
-					     'state' => $md['state'],
-					   ];
-				   }
-				   else
-				   {
-					   $u = $this->helpers->getUser($user->id);
-					   $name = $user->fname." ".$user->lname;
-					   $email = $user->email;
-					   $phone = $user->phone;
-					   $sd = $this->helpers->getShippingDetails($user->id);
-					   $shipping = $sd[0];
-				   }
-				   
+			#$id = $md['ref'];
+			 
 			#dd($paymentData);
-			#dd($md);
-			if(isset($md['pod']) && $md['pod'] == "yes")
-			{
-				$md['amount'] = $paymentData['amount'] * 2;
-				$md['payment_type'] = "card";
-				$ret = $this->helpers->checkout($user,$md,"pod");
-				$payStatus = $ret['status'];
-				$rett = $this->helpers->getCurrentSender();
-				
-				if(is_null($user))
-				{
-					$u = $this->helpers->getAnonOrder($id);
-					$view = "emails.anon-new-order-pod";
-				}
-				else
-				{
-					$view = "emails.new-order-pod";
-				}
-				
-				$o = $this->helpers->getOrder($id);
-				#dd([$o,$ret]);
-				$rett['u'] = $u;
-				$rett['order'] = $o;
-				$rett['subject'] = "Your order has been placed via POD. Reference#: ".$ret->reference;
-				$rett['name'] = $name;
-		        $rett['em'] = $email;
-				$rett['shipping'] = $shipping;
-				#dd($rett);
-		        $this->helpers->sendEmailSMTP($rett,$view);
-				
-				#$ret = $this->helpers->smtp;
-				
-				$rett['user'] = $email;
-				$rett['phone'] = $phone;
-		        $rett['subject'] = "URGENT:Received part payment for order ".$o['reference']." via POD";
-		        $rett['shipping'] = $shipping;
-		        $rett['em'] = $this->helpers->adminEmail;
-		        $this->helpers->sendEmailSMTP($rett,"emails.admin-payment-alert");
-				$rett['em'] = $this->helpers->suEmail;
-		        $this->helpers->sendEmailSMTP($rett,"emails.admin-payment-alert");
-			} 
-			
-			
-			else
-			{
-				$stt = $this->helpers->checkout($user,$paymentData);
-				$payStatus = $stt['status'];
-				//send email to user
-			   $o = $this->helpers->getOrder($id);
-               #dd($o);
+        	$this->helpers->checkout($user,$paymentData);
 			   
-               if($o != null || count($o) > 0)
-               {		  
-				  
-               	//We have the user, notify the customer and admin
-				//$ret = $this->helpers->smtp;
-				$ret = $this->helpers->getCurrentSender();
-				$ret['name'] = $name;
-				$ret['order'] = $o;
-				$ret['subject'] = "Your order has been placed via card. Reference #: ".$o['reference'];
-		        $ret['em'] = $email;
-		        $this->helpers->sendEmailSMTP($ret,"emails.confirm-payment");
-				
-				#$ret = $this->helpers->smtp;
-				
-				$ret['user'] =$email;
-				$ret['phone'] =$phone;
-		        $ret['subject'] = "URGENT: Received payment for order ".$o['reference']." via card";
-		        $ret['shipping'] = $shipping;
-		        $ret['em'] = $this->helpers->adminEmail;
-		        $this->helpers->sendEmailSMTP($ret,"emails.admin-payment-alert");
-				$ret['em'] = $this->helpers->suEmail;
-		        $this->helpers->sendEmailSMTP($ret,"emails.admin-payment-alert");
-               }
-			} 
-			
-			
-			   
-            $request->session()->flash("pay-card-status",$payStatus);
+            $request->session()->flash("pay-card-status","ok");
 			//return redirect()->intended($successLocation);
 			
-			$gid = isset($_COOKIE['gid']) ? $_COOKIE['gid'] : "";
-		$cart = $this->helpers->getCart($user,$gid);
-		$c = $this->helpers->getCategories();
-		$ads = $this->helpers->getAds();
-		$plugins = $this->helpers->getPlugins();
-		shuffle($ads);
-		$ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
-		$signals = $this->helpers->signals;
+		   $gid = isset($_COOKIE['gid']) ? $_COOKIE['gid'] : "";
+		   $cart = $this->helpers->getCart($user,$gid);
+		   $c = $this->helpers->getCategories();
+		   $ads = $this->helpers->getAds();
+		   $plugins = $this->helpers->getPlugins();
+		   shuffle($ads);
+		   $ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
+		   $signals = $this->helpers->signals;
+		   $banner = $this->helpers->getBanner();
 			
-			return view("cps",compact(['user','cart','c','o','ad','signals','plugins']));
-        }
-        else
-        {
+			return view("cps",compact(['user','cart','c','messages','ad','signals','plugins','banner']));
+          }
+          else
+          {
         	//Payment failed, redirect to orders
             $request->session()->flash("pay-card-status","error");
 			return redirect()->intended($failureLocation);
-        }
+          }
+		}
+		
     }
-    
     
 }

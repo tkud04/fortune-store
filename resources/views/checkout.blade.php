@@ -2,6 +2,26 @@
 $title = "Checkout";
 $ph = true;
 $pcClass = "";
+$ii = count($cart) == 1 ? "item" : "items";
+ $subtotal = 0;
+				                   for($a = 0; $a < $ii; $a++)
+				                   {
+					                 $item = $cart[$a]['product'];
+									 $xf = $item['id'];
+					                 $qty = $cart[$a]['qty'];
+					                 $itemAmount = $item['data']['amount'];
+									 $subtotal += ($itemAmount * $qty);
+								   }
+
+ //for tests
+			  $secureCheckout = "http://etukng.tobi-demos.tk/checkout";
+			  $unsecureCheckout = url('checkout');
+			  $securePay = "http://etukng.tobi-demos.tk/pay";
+			  $unsecurePay = url('pay');
+			  
+			  $isSecure = (isset($secure) && $secure);
+			  $pay = $isSecure ? $securePay : $unsecurePay;
+			  $checkout = $isSecure ? $secureCheckout : $unsecureCheckout;
 ?>
 @extends('layout')
 
@@ -12,23 +32,6 @@ $pcClass = "";
 let pd = [], sd = [], ppd = null, pm = "none";
 
 $(document).ready(() => {
-
-@if(count($pd) > 0)
-  @foreach($pd as $p)
-   pd.push({
-	  xf: "{{$p['id']}}",
-	  fname: "{{$p['fname']}}",
-	  lname: "{{$p['lname']}}",
-	  company: "{{$p['company']}}",
-	  address_1: "{{$p['address_1']}}",
-	  address_2: "{{$p['address_2']}}",
-	  city: "{{$p['city']}}",
-	  region: "{{$p['region']}}",
-	  zip: "{{$p['zip']}}",
-	  country: "{{$p['country']}}",
-   });
-  @endforeach
-@endif
 
 @if(count($sd) > 0)
   @foreach($sd as $p)
@@ -49,7 +52,10 @@ $(document).ready(() => {
 
 });
 </script>
-			
+		
+<input type="hidden" id="card-action" value="{{$pay}}">
+                            	<input type="hidden" id="checkout-cc" value="{{count($cart)}}">
+		
 <section class="checkout_page">
             <div class="container">
                 <div class="row">
@@ -59,7 +65,8 @@ $(document).ready(() => {
                         </div>
                         <form class="checkout_form" action="{{url('checkout')}}" method="post" id="checkout-form">
 						   {!! csrf_field() !!}
-						    <input type="hidden" id="pm" name="pm" value="">
+						    <input type="hidden" id="pm" name="pm" value="card">
+							<input type="hidden" id="checkout-ref" name="ref" value="{{$ref}}">
 							
 							<div id="accordion">
 							   <div class="card border-light">
@@ -148,11 +155,69 @@ $(document).ready(() => {
 								          <label for="address">Order notes:</label>    
 								          <textarea class="form-control" cols="30" rows="6" id="notes" name="notes" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>                       
                                         </div>
+										
+										<div class="form-row">
+								        <div class="form-group col-md-6">
+                                        <?php
+										 if(count($sps) > 0)
+										 {
+										?>
+											<div class="form-group">
+												<label>Select saved payment</label>
+												<select class="form-control" id="checkout-payment-type">
+												  <option value="none">Select a card to pay with</option>
+												  <?php
+												   foreach($sps as $s)
+												   {
+													   $dt = $s['data'];
+													   $n = $dt->bank." | **** ".$dt->last4." | Expires: ".$dt->exp_month."/".$dt->exp_year;
+												  ?>
+												    <option value="{{$s['id']}}">{{$n}}</option>
+												  <?php
+												   }
+												  ?>
+												  <option value="card">Use a different card</option>
+												</select>
+											</div>
+											
+										<?php
+										 }
+										 else
+										 {
+										?>
+										<div class="form-group">
+												<label>Payment type</label>
+												<select class="form-control" id="checkout-payment-type">
+												  <option value="none">Select payment type</option>
+												  <option value="card" selected="selected">Card</option>
+												</select>
+											</div>
+										<?php
+										 }
+										?>
+                                        </div>		
+										
+										<div class="form-group col-md-6">
+                                        <label>Save payment info?</label>
+												<select class="form-control" name="sps" id="checkout-sps">
+												  <option value="yes" selected="selected">Yes</option>
+												  <option value="no">No</option>
+												</select>
+                                        </div>		
+                                       </div>
                                      </div>
                                    </div>
                                 </div>
 								
                             </div>
+							
+								 <!-- payment form -->
+                            	<input type="hidden" name="email" value="{{$user->email}}"> {{-- required --}}
+                            	<input type="hidden" name="quantity" value="1"> {{-- required --}}
+                            	<input type="hidden" name="amount" value="{{($subtotal + $st['value']) * 100}}"> {{-- required in kobo --}}
+                            	<input type="hidden" name="metadata" id="nd" value="" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                            
+							
                         </form>
                     </div>
 					
@@ -231,7 +296,7 @@ $(document).ready(() => {
                         </div>
 						
                         <div class="qc-button">
-                            <a href="javascript:void(0)" onclick="payCard({ref: '{{$ref}}',anon: true,pod: true}); return false;" class="btn border-btn" tabindex="0">Place Order</a>
+                            <a href="javascript:void(0)" id="checkout-btn" class="btn border-btn" tabindex="0">Place Order</a>
                         </div>
                     </div>
 					

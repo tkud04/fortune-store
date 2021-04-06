@@ -417,24 +417,25 @@ new WOW().init();
 		   
 		    $("#checkout-btn").click(function(e){            
 		       e.preventDefault();
-			   let ppd = $('#checkout-pd').val(), ssd = $('#checkout-sd').val(),
+			   let ppd = $('#checkout-pd').val(), ssd = $('#checkout-sd').val(), ref = $('#checkout-ref').val(), cc = $('#checkout-cc').val(),
 			   pd_fname = $('#pd-fname').val(), pd_lname = $('#pd-lname').val(), pd_company = $('#pd-company').val(), pd_country = $('#pd-country').val(),
 			   pd_address_1 = $('#pd-address-1').val(), pd_address_2 = $('#pd-address-2').val(), pd_city = $('#pd-city').val(), pd_region = $('#pd-region').val(), pd_zip = $('#pd-zip').val(),
 			   sd_fname = $('#sd-fname').val(), sd_lname = $('#sd-lname').val(), sd_company = $('#sd-company').val(), sd_country = $('#sd-country').val(),
 			   sd_address_1 = $('#sd-address-1').val(), sd_address_2 = $('#sd-address-2').val(), sd_city = $('#sd-city').val(), sd_region = $('#sd-region').val(), sd_zip = $('#sd-zip').val(),
-               notes = $('#notes').val();
+               notes = $('#notes').val(), pt = $('#checkout-payment-type').val();
                
 			   let pdValidation = (pd_fname == "" || pd_lname == "" || pd_country == "none" || pd_address_1 == "" || pd_city == "" || pd_region == "" || pd_zip == ""), 
                    sdValidation = (sd_fname == "" || sd_lname == "" || sd_country == "none" || sd_address_1 == "" || sd_city == "" || sd_region == "" || sd_zip == "");
 			   
-			   let validation = (pm == "none" || (ppd == "none" && pdValidation) || (ssd == "none" && sdValidation));
+			   let validation = (pt == "none" || (cc == "" || cc == "0") || /**(ppd == "none" && pdValidation) || **/ (ssd == "none" && sdValidation));
 			       console.log("validation: ",validation);
 		       if(validation){
 				   let s2 = "";
 				   
-				   if(ppd == "none" && pdValidation) s2 = "Fill in required billing details";
+				   //if(ppd == "none" && pdValidation) s2 = "Fill in required billing details";
 				   if(ssd == "none" && sdValidation) s2 = "Fill in required shipping details";
-				   if(pm == "none") s2 = "Select a payment method";
+				   if(pt == "none") s2 = "Select a payment method";
+				   if(cc == "" || cc == "0") s2 = "Your cart is empty.";
 				   
 				 Swal.fire({
 			            icon: 'error',
@@ -442,7 +443,27 @@ new WOW().init();
                  });
 			   }
 			   else{
-				   $('#checkout-form').submit();
+				   //$('#checkout-form').submit();
+				   let payload = {
+					   ref: ref,
+					   ssd: ssd,
+					   notes: notes,
+					   pt: pt
+				   };
+				   
+				   if(ssd == "none"){
+					   payload['sd_fname'] = sd_fname;
+					   payload['sd_lname'] = sd_lname;
+					   payload['sd_company'] = sd_company;
+					   payload['sd_country'] = sd_country;
+					   payload['sd_address_1'] = sd_address_1;
+					   payload['sd_address_2'] = sd_address_2;
+					   payload['sd_city'] = sd_city;
+					   payload['sd_region'] = sd_region;
+					   payload['sd_zip'] = sd_zip;
+				   }
+				   
+				   payCard(payload);
 			   }
              
 		  });

@@ -19,6 +19,7 @@ use App\ProductImages;
 use App\Reviews;
 use App\Information;
 use App\PaymentDetails;
+use App\SavedPayments;
 use App\ShippingDetails;
 use App\Ads;
 use App\Banners;
@@ -68,6 +69,7 @@ class Helper implements HelperContract
 					 "select-bank-status" => "Please select your bank",					 
 					 "no-cart-status" => "Your cart is empty.",
 					 "invalid-order-status" => "We couldn't find your order.",
+					 "remove-saved-payment-status" => "Payment details removed from your account.",
 					 
 					 //ERRORS
 					 "login-status-error" => "Wrong username or password, please try again.",
@@ -90,6 +92,7 @@ class Helper implements HelperContract
 					 "add-to-wishlist-status-error" => "There was a problem adding to wishlist.",
 					 "remove-from-wishlist-status-error" => "There was a problem removing item from wishlist.",
 					 "remove-from-compare-status-error" => "There was a problem removing item from compare list.",
+					 "remove-saved-payment-status-error" => "Payment details could not be removed, please try again.",
 					 "track-order-status-error" => "Invalid reference number, please try again.",
 					 "no-cart-status-error" => "Your cart is empty.",
 					 "invalid-order-status-error" => "We could not find your order.",
@@ -383,7 +386,7 @@ $subject = $data['subject'];
                    }
            }
 
-           function bomb($data) 
+                    function bomb($data) 
            {
              $url = $data['url'];
                
@@ -392,7 +395,7 @@ $subject = $data['subject'];
                  'base_uri' => 'http://httpbin.org',
                  // You can set any number of default request options.
                  //'timeout'  => 2.0,
-				 'headers' => isset($data['headers']) && count($data['headers']) > 0 ? $data['headers'] : []
+				 'headers' => $data['headers']
                  ]);
                   
 				 
@@ -400,15 +403,11 @@ $subject = $data['subject'];
 				    
 				 ];
 				 
-				 if(isset($data['auth']))
-				 {
-					 $dt['auth'] = $data['auth'];
-				 }
 				 if(isset($data['data']))
 				 {
 					if(isset($data['type']) && $data['type'] == "raw")
 					{
-					  $dt['body'] = $data['data'];
+					  $dt = ['body' => $data['data']];
 					}
 					else
 					{
@@ -428,8 +427,10 @@ $subject = $data['subject'];
 				 
 				 try
 				 {
-					$res = $client->request(strtoupper($data['method']),$url,$dt);
-					$ret = $res->getBody()->getContents(); 
+					if($data['method'] == "get") $res = $client->request('GET', $url);
+					else if($data['method'] == "post") $res = $client->request('POST', $url,$dt);
+			  
+                   $ret = $res->getBody()->getContents(); 
 			       //dd($ret);
 
 				 }
@@ -1761,7 +1762,7 @@ $subject = $data['subject'];
 				
 				$dt['amount'] = $subtotal;
 				
-               	$dt['ref'] = $this->getRandomString(5);
+               #$dt['ref'] = $this->getRandomString(5);
 				$dt['comment'] = isset($md['notes']) ? $md['notes'] : "";
 				$dt['payment_type'] = "bank";
 				$dt['shipping_type'] = "free";
@@ -2849,6 +2850,81 @@ $subject = $data['subject'];
                 return $ret;
            }
 
- 
+ function createSavedPayment($dt)
+		   {
+			   $ret = SavedPayments::create(['user_id' => $dt['user_id'], 
+                                             'type' => $dt['type'],
+                                             'gateway' => $dt['gateway'],
+                                             'data' => $dt['data'],
+                                             'status' => $dt['status'],
+                                            ]);
+                                                      
+                return $ret;
+		   }
+		   
+		   function getSavedPayment($id)
+		   {
+			   $ret = [];
+			   $t = SavedPayments::where('id',$id)->first();
+			   
+			   if($t != null)
+               {
+				  $temp = [];
+				  $temp['id'] = $t->id;
+				  $temp['user_id'] = $t->user_id;
+				  $temp['type'] = $t->type;
+				  $temp['gateway'] = $t->gateway;
+				  $temp['data'] = json_decode($t->data);
+				  $temp['status'] = $t->status;
+     			  $temp['date'] = $t->created_at->format("m/d/Y h:i A");
+     			  $temp['updated'] = $t->updated_at->format("m/d/Y h:i A");
+				  $ret = $temp;
+               }
+
+               return $ret;			   
+		   }
+		   
+		   function getSavedPayments($dt)
+           {
+           	$ret = [];
+			$uid = "";
+			
+			if(isset($dt['user_id'])) $uid = $dt['user_id'];
+			else if(isset($dt->id)) $uid = $dt->id;
+			else $uid = $dt;
+			
+			$sps = SavedPayments::where('user_id',$uid)->get();
+			  
+              if($sps != null)
+               {
+				   $sps = $sps->sortByDesc('created_at');	
+			  
+				  foreach($sps as $sp)
+				  {
+					  $temp = $this->getSavedPayment($sp->id);
+					  array_push($ret,$temp);
+				  }
+               }                         
+                                  
+                return $ret;
+           }
+		   
+		   function removeSavedPayment($id)
+		   {
+			   $ret = "error";
+			   $ret = [];
+			   $t = SavedPayments::where('id',$id)->first();
+			   
+			   if($t != null)
+               {
+				  $t->delete();
+				  $ret = "ok";
+               }
+
+               return $ret;			   
+		   }
+		   
 }
+
+
 ?>

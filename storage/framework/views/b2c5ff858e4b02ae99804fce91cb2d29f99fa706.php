@@ -2,6 +2,26 @@
 $title = "Checkout";
 $ph = true;
 $pcClass = "";
+$ii = count($cart) == 1 ? "item" : "items";
+ $subtotal = 0;
+				                   for($a = 0; $a < $ii; $a++)
+				                   {
+					                 $item = $cart[$a]['product'];
+									 $xf = $item['id'];
+					                 $qty = $cart[$a]['qty'];
+					                 $itemAmount = $item['data']['amount'];
+									 $subtotal += ($itemAmount * $qty);
+								   }
+
+ //for tests
+			  $secureCheckout = "http://etukng.tobi-demos.tk/checkout";
+			  $unsecureCheckout = url('checkout');
+			  $securePay = "http://etukng.tobi-demos.tk/pay";
+			  $unsecurePay = url('pay');
+			  
+			  $isSecure = (isset($secure) && $secure);
+			  $pay = $isSecure ? $securePay : $unsecurePay;
+			  $checkout = $isSecure ? $secureCheckout : $unsecureCheckout;
 ?>
 
 
@@ -12,23 +32,6 @@ $pcClass = "";
 let pd = [], sd = [], ppd = null, pm = "none";
 
 $(document).ready(() => {
-
-<?php if(count($pd) > 0): ?>
-  <?php $__currentLoopData = $pd; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-   pd.push({
-	  xf: "<?php echo e($p['id']); ?>",
-	  fname: "<?php echo e($p['fname']); ?>",
-	  lname: "<?php echo e($p['lname']); ?>",
-	  company: "<?php echo e($p['company']); ?>",
-	  address_1: "<?php echo e($p['address_1']); ?>",
-	  address_2: "<?php echo e($p['address_2']); ?>",
-	  city: "<?php echo e($p['city']); ?>",
-	  region: "<?php echo e($p['region']); ?>",
-	  zip: "<?php echo e($p['zip']); ?>",
-	  country: "<?php echo e($p['country']); ?>",
-   });
-  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-<?php endif; ?>
 
 <?php if(count($sd) > 0): ?>
   <?php $__currentLoopData = $sd; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -49,7 +52,10 @@ $(document).ready(() => {
 
 });
 </script>
-			
+		
+<input type="hidden" id="card-action" value="<?php echo e($pay); ?>">
+                            	<input type="hidden" id="checkout-cc" value="<?php echo e(count($cart)); ?>">
+		
 <section class="checkout_page">
             <div class="container">
                 <div class="row">
@@ -60,7 +66,8 @@ $(document).ready(() => {
                         <form class="checkout_form" action="<?php echo e(url('checkout')); ?>" method="post" id="checkout-form">
 						   <?php echo csrf_field(); ?>
 
-						    <input type="hidden" id="pm" name="pm" value="">
+						    <input type="hidden" id="pm" name="pm" value="card">
+							<input type="hidden" id="checkout-ref" name="ref" value="<?php echo e($ref); ?>">
 							
 							<div id="accordion">
 							   <div class="card border-light">
@@ -149,11 +156,69 @@ $(document).ready(() => {
 								          <label for="address">Order notes:</label>    
 								          <textarea class="form-control" cols="30" rows="6" id="notes" name="notes" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>                       
                                         </div>
+										
+										<div class="form-row">
+								        <div class="form-group col-md-6">
+                                        <?php
+										 if(count($sps) > 0)
+										 {
+										?>
+											<div class="form-group">
+												<label>Select saved payment</label>
+												<select class="form-control" id="checkout-payment-type">
+												  <option value="none">Select a card to pay with</option>
+												  <?php
+												   foreach($sps as $s)
+												   {
+													   $dt = $s['data'];
+													   $n = $dt->bank." | **** ".$dt->last4." | Expires: ".$dt->exp_month."/".$dt->exp_year;
+												  ?>
+												    <option value="<?php echo e($s['id']); ?>"><?php echo e($n); ?></option>
+												  <?php
+												   }
+												  ?>
+												  <option value="card">Use a different card</option>
+												</select>
+											</div>
+											
+										<?php
+										 }
+										 else
+										 {
+										?>
+										<div class="form-group">
+												<label>Payment type</label>
+												<select class="form-control" id="checkout-payment-type">
+												  <option value="none">Select payment type</option>
+												  <option value="card" selected="selected">Card</option>
+												</select>
+											</div>
+										<?php
+										 }
+										?>
+                                        </div>		
+										
+										<div class="form-group col-md-6">
+                                        <label>Save payment info?</label>
+												<select class="form-control" name="sps" id="checkout-sps">
+												  <option value="yes" selected="selected">Yes</option>
+												  <option value="no">No</option>
+												</select>
+                                        </div>		
+                                       </div>
                                      </div>
                                    </div>
                                 </div>
 								
                             </div>
+							
+								 <!-- payment form -->
+                            	<input type="hidden" name="email" value="<?php echo e($user->email); ?>"> 
+                            	<input type="hidden" name="quantity" value="1"> 
+                            	<input type="hidden" name="amount" value="<?php echo e(($subtotal + $st['value']) * 100); ?>"> 
+                            	<input type="hidden" name="metadata" id="nd" value="" > 
+                            
+							
                         </form>
                     </div>
 					
@@ -232,7 +297,7 @@ $(document).ready(() => {
                         </div>
 						
                         <div class="qc-button">
-                            <a href="javascript:void(0)" onclick="payCard({ref: '<?php echo e($ref); ?>',anon: true,pod: true}); return false;" class="btn border-btn" tabindex="0">Place Order</a>
+                            <a href="javascript:void(0)" id="checkout-btn" class="btn border-btn" tabindex="0">Place Order</a>
                         </div>
                     </div>
 					

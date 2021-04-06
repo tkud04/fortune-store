@@ -339,6 +339,7 @@ class MainController extends Controller {
         $user = null;
 		$cart = [];
 		$sd = [];
+		$sps = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
@@ -357,14 +358,16 @@ class MainController extends Controller {
 			$c = $this->helpers->getCategories();
     		$pd = [];
     		$sd = $this->helpers->getShippingDetails($user);
+			$sps = $this->helpers->getSavedPayments($user);
 		    $st = $this->helpers->getShippingSingle($req['st']);
+			$ref = $this->helpers->getRandomString(5);
 		    $countries = $this->helpers->countries;
 		    $signals = $this->helpers->signals;
 		    $pe = $this->helpers->getPhoneAndEmail();
 		    $plugins = $this->helpers->getPlugins();
-		    #dd($st);
-		    $totals = []; $ss = []; $ref = ""; 
-			return view("checkout",compact(['user','cart','totals','st','countries','pd','sd','c','pe','signals','plugins']));	
+		   #dd($ref);
+		    $totals = []; $ss = [];
+			return view("checkout",compact(['user','cart','totals','st','sps','ref','countries','pd','sd','c','pe','signals','plugins']));	
 		}
 		else
 		{
