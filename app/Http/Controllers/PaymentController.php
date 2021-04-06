@@ -88,8 +88,7 @@ class PaymentController extends Controller {
                   'data' => json_encode([
 				    'email' => $req['email'],
 					'amount' => $req['amount'],
-					'metadata' => $md,
-					'split' => $this->helpers->getSplitObect($user)
+					'metadata' => $md
 				  ]),
                   'headers' => [
 		           'Authorization' => "Bearer ".env("PAYSTACK_SECRET_KEY")
@@ -124,16 +123,13 @@ class PaymentController extends Controller {
 				 if(count($sp) > 0)
 				 {
 					 $spdt = $sp['data'];
-					 $spl = $req['split'];
-					 $spl = str_replace('/','',$spl);
-					 #dd($spl);
+					 
 					 $rr = [
                   'data' => json_encode([
 				    'authorization_code' => trim($spdt->authorization_code),
 					'email' => trim($spdt->auth_email),
 					'amount' => $req['amount'],
-					'metadata' => $md,
-					'split' => $this->helpers->getSplitObect($user)
+					'metadata' => $md
 				  ]),
                   'headers' => [
 		           'Authorization' => "Bearer ".env("PAYSTACK_SECRET_KEY")
@@ -176,17 +172,7 @@ class PaymentController extends Controller {
 			   
                     $request->session()->flash("pay-card-status","ok");
 			
-			         $gid = isset($_COOKIE['gid']) ? $_COOKIE['gid'] : "";
-		            $cart = $this->helpers->getCart($user,$gid);
-		            $c = $this->helpers->getCategories();
-	             	$ads = $this->helpers->getAds();
-		            $plugins = $this->helpers->getPlugins();
-		            shuffle($ads);
-		            $ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
-	        	    $signals = $this->helpers->signals;
-					$banner = $this->helpers->getBanner();
-			
-			        return view("cps",compact(['user','cart','c','messages','ad','signals','plugins','banner']));
+			         return redirect()->intended('orders');
                }
                else
                {
@@ -479,20 +465,7 @@ class PaymentController extends Controller {
 			#dd($paymentData);
         	$this->helpers->checkout($user,$paymentData);
 			   
-            $request->session()->flash("pay-card-status","ok");
-			//return redirect()->intended($successLocation);
-			
-		   $gid = isset($_COOKIE['gid']) ? $_COOKIE['gid'] : "";
-		   $cart = $this->helpers->getCart($user,$gid);
-		   $c = $this->helpers->getCategories();
-		   $ads = $this->helpers->getAds();
-		   $plugins = $this->helpers->getPlugins();
-		   shuffle($ads);
-		   $ad = count($ads) < 1 ? "images/inner-ad-2.png" : $ads[0]['img'];
-		   $signals = $this->helpers->signals;
-		   $banner = $this->helpers->getBanner();
-			
-			return view("cps",compact(['user','cart','c','messages','ad','signals','plugins','banner']));
+            return redirect()->intended($successLocation);
           }
           else
           {
