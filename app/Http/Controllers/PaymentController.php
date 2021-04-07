@@ -408,7 +408,7 @@ class PaymentController extends Controller {
 		if(Auth::check())
 		{
 			$user = Auth::user();
-			$messages = $this->helpers->getMessages(['user_id' => $user->id]);
+			
 		}
 		else
 		{

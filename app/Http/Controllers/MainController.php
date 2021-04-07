@@ -360,12 +360,13 @@ class MainController extends Controller {
     		$sd = $this->helpers->getShippingDetails($user);
 			$sps = $this->helpers->getSavedPayments($user);
 		    $st = $this->helpers->getShippingSingle($req['st']);
+			 #dd($stt);
 			$ref = $this->helpers->getRandomString(5);
 		    $countries = $this->helpers->countries;
 		    $signals = $this->helpers->signals;
 		    $pe = $this->helpers->getPhoneAndEmail();
 		    $plugins = $this->helpers->getPlugins();
-		   #dd($ref);
+		  
 		    $totals = []; $ss = [];
 			return view("checkout",compact(['user','cart','totals','st','sps','ref','countries','pd','sd','c','pe','signals','plugins']));	
 		}

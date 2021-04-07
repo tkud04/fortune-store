@@ -305,6 +305,7 @@ class Helper implements HelperContract
 												     'canceled-reversal' => "Cancelled Reversal",
 												     'chargeback' => "Chargeback",
 												     'completed' => "Completed",
+												     'paid' => "Completed",
 												     'denied' => "Denied",
 												     'expired' => "Expired",
 												     'failed' => "Failed",
@@ -1660,7 +1661,7 @@ $subject = $data['subject'];
 		   {
 			  #dd($data);
 			   $ret = [];
-			   $type = $data['pm'];
+			   $type = "online";
 			
 			   switch($type)
 			   {
@@ -1668,7 +1669,7 @@ $subject = $data['subject'];
                  	$ret = $this->payWithBank($u, $data);
                   break;
 				  case "online":
-                 #	$ret = $this->payWithPayStack($u, $data);
+                   $ret = $this->payWithPayStack($u, $data);
                   break;
 				  case "pod":
                  	$ret = $this->payOnDelivery($u, $data);
@@ -1785,14 +1786,9 @@ $subject = $data['subject'];
               $dt = [];
               
               if($type == "checkout"){
-               	$dt['amount'] = $amount;
-				$dt['ref'] = $ref;
-				$dt['notes'] = isset($md['notes']) ? $md['notes'] : "";
-				$dt['courier_id'] = $md['courier'];
-				$dt['payment_type'] = "card";
-				$dt['ps_ref'] = $psref;
-				$dt['type'] = "card";
-				$dt['status'] = "paid";
+               	$md['amount'] = $amount;
+				$md['ps_ref'] = $psref;
+				$md['status'] = "paid";
 				
 				if(is_null($user))
 				{
@@ -1805,14 +1801,23 @@ $subject = $data['subject'];
 				}
 				else
 				{
+					$md['fname'] = $md['sd_fname'];
+					$md['lname'] = $md['sd_lname'];
+					$md['company'] = $md['sd_company'];
+					$md['country'] = $md['sd_country'];
+					$md['address_1'] = $md['sd_address_1'];
+					$md['address_2'] = $md['sd_address_2'];
+					$md['city'] = $md['sd_city'];
+					$md['region'] = $md['sd_region'];
+					$md['zip'] = $md['sd_zip'];
 					$this->updateShippingDetails($user,$md);
 				}
               }
               
               #create order
 
-              $this->addOrder($user,$dt);
-                return ['status' => "ok",'dt' => $dt];
+              $this->addOrder($user,$md);
+                return ['status' => "ok",'dt' => $md];
            }
 		   
 		
@@ -1849,19 +1854,19 @@ $subject = $data['subject'];
 		
 		  function createShippingDetails($data)
            {
-			  $company = isset($dt['company']) && $dt['company'] != null ? $dt['company'] : "";
-			   $a2 = isset($dt['address_2']) && $dt['address_2'] != null ? $dt['address_2'] : "";
+			  $company = isset($dt['sd_company']) && $dt['sd_company'] != null ? $dt['sd_company'] : "";
+			   $a2 = isset($dt['sd_address_2']) && $dt['sd_address_2'] != null ? $dt['sd_address_2'] : "";
 			   
            	$ret = ShippingDetails::create(['user_id' => $data['user_id'], 
-                                                      'fname' => $data['shipping_fname'],                                                       
-                                                      'lname' => $data['shipping_lname'],                                                    
+                                                      'fname' => $data['sd_fname'],                                                       
+                                                      'lname' => $data['sd_lname'],                                                    
                                                       'company' => $company,                                                      
-                                                      'address_1' => $data['shipping_address_1'],                                                      
+                                                      'address_1' => $data['sd_address_1'],                                                      
                                                       'address_2' => $a2,                                                 
-                                                      'city' => $data['shipping_city'],                                                     
-                                                      'region' => $data['shipping_region'],                                                     
-                                                      'zip' => $data['shipping_postcode'],                                                     
-                                                      'country' => $data['shipping_country'],                                                     
+                                                      'city' => $data['sd_city'],                                                     
+                                                      'region' => $data['sd_region'],                                                     
+                                                      'zip' => $data['sd_zip'],                                                     
+                                                      'country' => $data['sd_country'],                                                     
                                                       ]);
                               
                 return $ret;
@@ -1999,6 +2004,7 @@ $subject = $data['subject'];
 		
 		    function addOrder($user,$data)
            {
+			 #  dd($data);
 			   				/**
 				
 				customer: aoCustomer,
@@ -2032,20 +2038,13 @@ $subject = $data['subject'];
 			   $data['ref'] = "LXFB".$data['ref'];
 			   $data['user_id'] = $user->id;
 			   
-			   $pd = $data['payment_xf'];
-			   if($pd == "new")
-			   {
-				   $ppd = $this->createPaymentDetails($data);
-				   $pd = $ppd->id;
-			   }
-			   $data['payment_id'] = $pd;
-			   
-			   $sd = $data['shipping_xf'];
-			   if($sd == "new")
+			   $sd = $data['ssd'];
+			   if($sd == "none")
 			   {
 				   $ssd = $this->createShippingDetails($data);
 				   $sd = $ssd->id;
 			   }
+			   $data['payment_id'] = "";
 			   $data['shipping_id'] = $sd;
 			   
 			   
@@ -2060,7 +2059,7 @@ $subject = $data['subject'];
 				   {
 					   $dt = [];
                        $dt['product_id'] = $p['id'];
-				       $dt['qty'] = $p['qty'];
+				       $dt['qty'] = $c['qty'];
 				       $dt['order_id'] = $order->id;
 				       $this->updateStock($dt['product_id'],$dt['qty']);
                        $oi = $this->createOrderItems($dt);
@@ -2090,8 +2089,8 @@ $subject = $data['subject'];
 			                          'amount' => $dt['amount'],
 			                          'payment_id' => $dt['payment_id'],
 			                          'shipping_id' => $dt['shipping_id'],
-			                          'payment_type' => $dt['payment_type'],
-			                          'shipping_type' => $dt['shipping_type'],
+			                          'payment_type' => $dt['pt'],
+			                          'shipping_type' => $dt['st'],
 			                          'comment' => $comment,
 			                          'status' => $dt['status'],
 			                 ]);   

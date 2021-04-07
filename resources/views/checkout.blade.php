@@ -4,7 +4,7 @@ $ph = true;
 $pcClass = "";
 $ii = count($cart) == 1 ? "item" : "items";
  $subtotal = 0;
-				                   for($a = 0; $a < $ii; $a++)
+				                   for($a = 0; $a < count($cart); $a++)
 				                   {
 					                 $item = $cart[$a]['product'];
 									 $xf = $item['id'];
@@ -14,9 +14,9 @@ $ii = count($cart) == 1 ? "item" : "items";
 								   }
 
  //for tests
-			  $secureCheckout = "http://etukng.tobi-demos.tk/checkout";
+			  $secureCheckout = "http://luxfabriqs.tobi-demos.tk/checkout";
 			  $unsecureCheckout = url('checkout');
-			  $securePay = "http://etukng.tobi-demos.tk/pay";
+			  $securePay = "http://luxfabriqs.tobi-demos.tk/pay";
 			  $unsecurePay = url('pay');
 			  
 			  $isSecure = (isset($secure) && $secure);
@@ -67,6 +67,7 @@ $(document).ready(() => {
 						   {!! csrf_field() !!}
 						    <input type="hidden" id="pm" name="pm" value="card">
 							<input type="hidden" id="checkout-ref" name="ref" value="{{$ref}}">
+							<input type="hidden" id="checkout-st" name="st" value="{{$st['id']}}">
 							
 							<div id="accordion">
 							   <div class="card border-light">
@@ -147,7 +148,7 @@ $(document).ready(() => {
                                         </div>
 													
 										<div class="form-group col-md-4">
-                                         <input name="code" placeholder="Post code / Zip*" class="form-control" type="text">
+                                         <input name="code" placeholder="Post code / Zip*" class="form-control" id="sd-zip" type="text">
                                         </div>			
                                        </div>
 
