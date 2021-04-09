@@ -1635,8 +1635,7 @@ $subject = $data['subject'];
              function getBanners()
 		   {
 			   $ret = [];
-			   $banners = Banners::where('id',">",'0')
-			                     ->where('status',"enabled")->get();
+			   $banners = Banners::where('id',">",'0')->get();
 			   #dd($ads);
 			   if(!is_null($banners))
 			   {
@@ -1644,18 +1643,45 @@ $subject = $data['subject'];
 				   {
 					   $temp = [];
 					   $temp['id'] = $b->id;
-					   $img = $b->img;
+					   $img = $b->url;
 					   $temp['img'] = $this->getCloudinaryImage($img);
 					   $temp['title'] = $b->title;
-					   $temp['subtitle'] = $b->subtitle;
-					   $temp['copy'] = $b->copy;
+					   $temp['cover'] = $b->cover;
+					   $temp['subtitle_1'] = $b->subtitle_1;
+					   $temp['subtitle_2'] = $b->subtitle_2;
+					   $temp['delete_token'] = $b->delete_token;
 					   $temp['status'] = $b->status;
+					   $temp['date'] = $b->created_at->format("jS F, Y h:i A");
 					   array_push($ret,$temp);
 				   }
 			   }
 			   
 			   return $ret;
-		   }
+		   }	   
+
+		   function getBanner($id)
+		   {
+			   $ret = [];
+			   $b = Banners::where('id',$id)->first();
+			   #dd($banners);
+			   if(!is_null($b))
+			   {
+					   $temp = [];
+					   $temp['id'] = $b->id;
+					   $img = $b->url;
+					   $temp['img'] = $this->getCloudinaryImage($img);
+					   $temp['title'] = $b->title;
+					   $temp['cover'] = $b->cover;
+					   $temp['subtitle_1'] = $b->subtitle_1;
+					   $temp['subtitle_2'] = $b->subtitle_2;
+					   $temp['delete_token'] = $b->delete_token;
+					   $temp['status'] = $b->status;
+					   $temp['date'] = $b->created_at->format("jS F, Y h:i A");
+					   $ret = $temp;
+			   }
+			   
+			   return $ret;
+		   }	 
 
            function checkout($u,$data)
 		   {
