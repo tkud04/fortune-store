@@ -21,14 +21,14 @@ $title = "Welcome";
 	                  {
 						  $cc = $c[$i];
 						  $cu = url('category')."?xf=".$cc['category'];
-						  $img = $cc['img'];
+						  $img = $cc['image'];
                    ?>
 				   
 				   @if($i == 0)
 					<div class="col-lg-4 col-md-6 col-sm-12">	
 						<a href="{{$cu}}">
 							<div class="single_promo">
-								<img src="img/promo/1.jpg" alt="">
+								<img src="{{$img}}" alt="">
 								<div class="box-content">
 									<h3 class="title">{{$cc['name']}}</h3>
 									<span class="post">2021 Collection</span>
@@ -40,7 +40,7 @@ $title = "Welcome";
 					<div class="col-lg-4 col-md-6 col-sm-12">	
 						<a href="{{$cu}}">
 							<div class="single_promo">
-								<img src="img/promo/2.jpg" alt="">
+								<img src="{{$img}}" alt="">
 								<div class="box-content">
 									<h3 class="title">{{$cc['name']}}</h3>
 									<span class="post">2021 Collection</span>
@@ -54,7 +54,7 @@ $title = "Welcome";
 					  @elseif($i == 2)
 						<a href="{{$cu}}">
 							<div class="single_promo">
-								<img src="img/promo/4.jpg" alt="">
+								<img src="{{$img}}" alt="">
 								<div class="box-content">
 									<h3 class="title">{{$cc['name']}}</h3>
 									<span class="post">2021 Collection</span>
@@ -68,7 +68,7 @@ $title = "Welcome";
 					<div class="col-lg-4 col-md-6 col-sm-12">
 						<a href="{{$cu}}">
 							<div class="single_promo">
-								<img src="img/promo/3.jpg" alt="">
+								<img src="{{$img}}" alt="">
 								<div class="box-content">
 									<h3 class="title">{{$cc['name']}}</h3>
 									<span class="post">2021 Collection</span>
