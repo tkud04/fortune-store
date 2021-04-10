@@ -43,12 +43,13 @@ class MainController extends Controller {
 		$c = $this->helpers->getCategories(['children' => true,'id' => true]);
 		$testimonials = $this->helpers->testimonials;
 		$bs = $this->helpers->getBestSellers();
+		$banners = $this->helpers->getBanners();
 		$tp = $this->helpers->getTopProducts();		
 		$cart = $this->helpers->getCart($user);
-	    #dd($cart);
+	    dd($banners);
 		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
 		
-    	return view("index",compact(['user','cart','c','testimonials','tp','bs','pe','signals','plugins']));
+    	return view("index",compact(['user','cart','c','testimonials','tp','bs','pe','banners','signals','plugins']));
     }
 	
 	/**
