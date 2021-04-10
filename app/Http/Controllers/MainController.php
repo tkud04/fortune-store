@@ -43,6 +43,7 @@ class MainController extends Controller {
 		$c = $this->helpers->getCategories(['children' => true,'id' => true]);
 		$testimonials = $this->helpers->testimonials;
 		$bs = $this->helpers->getBestSellers();
+		//$banners = [];
 		$banners = $this->helpers->getBanners();
 		$tp = $this->helpers->getTopProducts();		
 		$cart = $this->helpers->getCart($user);
