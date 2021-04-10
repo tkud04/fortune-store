@@ -155,6 +155,7 @@
 											<li><a href="{{url('categories')}}">Categories <i class="fa fa-angle-down"></i></a>
 												<!-- Mega Menu -->
 												<div class="mega-menu mm-4-column mm-left">
+												<div class="mm-column mm-column-link float-left">
 												 <?php
 	                if($cCount > 0)
 	                {
@@ -164,14 +165,15 @@
 						  $cu = url('category')."?xf=".$cc['category'];
 						  $img = $cc['image'][0];
                    ?>
-													<div class="mm-column mm-column-link float-left">
+													
 														<h3><a href="{{$cu}}">{{$cc['name']}}</a></h3>
-													</div>
+													
 													
 												 <?php
 	                  }
 	                }
                    ?>
+				                                </div>
 												</div>
 											</li>
 											
@@ -186,24 +188,25 @@
 									<nav>
 										<ul>
 											<li><a href="{{url('/')}}">home</a></li>																		
-											<li><a href="#">Laces</a>																		
+											<li><a href="#">Categories</a>																		
 												<ul>
-													<li><a href="#">Blazers</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Collections</a></li>
-													<li><a href="#">T-Shirts</a></li>
-													
+												      <?php
+	                                                    if($cCount > 0)
+	                                                    {
+					                                      for($i = 0; $i < $cCount; $i++)
+	                                                      {
+					                                    	  $cc = $c[$i];
+					                                    	  $cu = url('category')."?xf=".$cc['category'];
+					                                    	  $img = $cc['image'][0];
+                                                       ?>
+													<li><a href="{{$cu}}">{{$cc['name']}}</a></li>
+													 <?php
+	                                                      }
+	                                                    }
+                                                     ?>												
 												</ul>																				
 											</li>
-											<li><a href="#">Georges</a>																		
-												<ul>
-													<li><a href="#">Blazers</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Collections</a></li>
-													<li><a href="#">T-Shirts</a></li>
-													
-												</ul>																				
-											</li>
+											
 											<li><a href="{{url('about')}}">about us</a></li>
 											<li><a href="{{url('faq')}}">faq</a></li>
 											<li><a href="{{url('contact')}}">contact</a></li>

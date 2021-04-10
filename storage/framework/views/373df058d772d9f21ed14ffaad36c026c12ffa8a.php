@@ -177,7 +177,7 @@ $title = "Welcome";
 					<div class="col-md-7 text-left">
 						<div class="special_info">			
 							<h3>Laces Collection 2021</h3>
-							<p>Get as mucch as <b>10% off</b> from our exquisite range of Lace and George fabrics today! Available while stocks last.</p>							
+							<p>Get as much as <b>10% off</b> from our exquisite range of Lace and George fabrics today! Available while stocks last.</p>							
 							<a href="<?php echo e(url('shop')); ?>" class="btn main_btn">Shop Now</a>					
 						</div>
 					</div>

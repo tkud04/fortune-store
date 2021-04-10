@@ -143,7 +143,9 @@
 							 <h3 class="testimonial-title">Luxfabriqs  Fashion</h3>
 							</a> 
 						</div><!--  End Col -->
-						
+						 <?php
+	$cCount = count($c) < 4 ? count($c) : 4;
+?>
 						<div class="col-xs-12 col-sm-12 col-md-9 text-right">
 							<div class="menu_wrap">
 								<div class="main-menu">
@@ -154,26 +156,25 @@
 											<li><a href="<?php echo e(url('categories')); ?>">Categories <i class="fa fa-angle-down"></i></a>
 												<!-- Mega Menu -->
 												<div class="mega-menu mm-4-column mm-left">
-													<div class="mm-column mm-column-link float-left">
-														<h3>Laces</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														
-													</div>
+												<div class="mm-column mm-column-link float-left">
+												 <?php
+	                if($cCount > 0)
+	                {
+					  for($i = 0; $i < $cCount; $i++)
+	                  {
+						  $cc = $c[$i];
+						  $cu = url('category')."?xf=".$cc['category'];
+						  $img = $cc['image'][0];
+                   ?>
 													
-													<div class="mm-column mm-column-link float-left">
-														<h3>Georges</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														
-													</div>
+														<h3><a href="<?php echo e($cu); ?>"><?php echo e($cc['name']); ?></a></h3>
 													
 													
-
+												 <?php
+	                  }
+	                }
+                   ?>
+				                                </div>
 												</div>
 											</li>
 											
@@ -188,24 +189,25 @@
 									<nav>
 										<ul>
 											<li><a href="<?php echo e(url('/')); ?>">home</a></li>																		
-											<li><a href="#">Laces</a>																		
+											<li><a href="#">Categories</a>																		
 												<ul>
-													<li><a href="#">Blazers</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Collections</a></li>
-													<li><a href="#">T-Shirts</a></li>
-													
+												      <?php
+	                                                    if($cCount > 0)
+	                                                    {
+					                                      for($i = 0; $i < $cCount; $i++)
+	                                                      {
+					                                    	  $cc = $c[$i];
+					                                    	  $cu = url('category')."?xf=".$cc['category'];
+					                                    	  $img = $cc['image'][0];
+                                                       ?>
+													<li><a href="<?php echo e($cu); ?>"><?php echo e($cc['name']); ?></a></li>
+													 <?php
+	                                                      }
+	                                                    }
+                                                     ?>												
 												</ul>																				
 											</li>
-											<li><a href="#">Georges</a>																		
-												<ul>
-													<li><a href="#">Blazers</a></li>
-													<li><a href="#">Jackets</a></li>
-													<li><a href="#">Collections</a></li>
-													<li><a href="#">T-Shirts</a></li>
-													
-												</ul>																				
-											</li>
+											
 											<li><a href="<?php echo e(url('about')); ?>">about us</a></li>
 											<li><a href="<?php echo e(url('faq')); ?>">faq</a></li>
 											<li><a href="<?php echo e(url('contact')); ?>">contact</a></li>
