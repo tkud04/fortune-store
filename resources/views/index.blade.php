@@ -168,7 +168,7 @@ $title = "Welcome";
 				<div class="row">
 					<div class="col-md-5">
 						<div class="special_img text-left">
-							<img src="img/special.png" width="370" alt="" class="img-responsive">
+							<img src="img/lace.jpg" width="370" alt="" class="img-responsive">
 							<span class="off_baudge text-center">10% <br /> Off</span>
 						</div>
 					</div>			
@@ -176,7 +176,7 @@ $title = "Welcome";
 					<div class="col-md-7 text-left">
 						<div class="special_info">			
 							<h3>Laces Collection 2021</h3>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy Lorem Ipsum</p>							
+							<p>Get as mucch as <b>10% off</b> from our exquisite range of Lace and George fabrics today! Available while stocks last.</p>							
 							<a href="{{url('shop')}}" class="btn main_btn">Shop Now</a>					
 						</div>
 					</div>
