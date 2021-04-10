@@ -25,6 +25,11 @@ $pcClass = "";
 
                                 </div>
 			
+
+                        <?php
+				if(count($team) > 0)
+					 {
+                    ?>
 			<div class="team_area">
 				<div class="row">
 					<div class="col-md-12 text-center">
@@ -69,6 +74,9 @@ $pcClass = "";
 				</div>				
 				
 			</div>
+                  <?php
+                   }
+                   ?>
 		</div>
 	</div>
 @stop
