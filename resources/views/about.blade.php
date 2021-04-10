@@ -27,6 +27,7 @@ $pcClass = "";
 			
 
                         <?php
+                               $team = [];
 				if(count($team) > 0)
 					 {
                     ?>
@@ -42,7 +43,7 @@ $pcClass = "";
 
 				<div class="row">
 					<?php
-					  $team = [];
+					  
 					
 					 foreach($team as $t)
 					 {
