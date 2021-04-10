@@ -25,6 +25,12 @@ $pcClass = "";
 
                                 </div>
 			
+
+                        <?php
+                               $team = [];
+				if(count($team) > 0)
+					 {
+                    ?>
 			<div class="team_area">
 				<div class="row">
 					<div class="col-md-12 text-center">
@@ -37,7 +43,7 @@ $pcClass = "";
 
 				<div class="row">
 					<?php
-					  $team = [];
+					  
 					
 					 foreach($team as $t)
 					 {
@@ -69,6 +75,9 @@ $pcClass = "";
 				</div>				
 				
 			</div>
+                  <?php
+                   }
+                   ?>
 		</div>
 	</div>
 @stop
