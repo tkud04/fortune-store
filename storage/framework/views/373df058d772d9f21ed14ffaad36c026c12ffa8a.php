@@ -114,6 +114,7 @@ $title = "Welcome";
 							<?php
                              foreach($tp as $p)
 									  {
+										  $tag = $p['tag'];
 										  $data = $p['data'];
 										  $imgs = $p['imggs'];
 										  $pc = $data['category'];
@@ -122,9 +123,9 @@ $title = "Welcome";
 										  $xf = $p['id'];
 										  $uu = url('product')."?xf=".$p['sku'];
 										  $ss = "";
-										  if($data['special'] == "sale") $ss = "sale";
-										  else if($data['special'] == "bestseller") $ss = "bslr";
-										  else if($data['special'] == "featured") $ss = "ftrd";
+										  if($tag == "sale") $ss = "sale";
+										  else if($tag == "bestseller") $ss = "bslr";
+										  else if($tag == "featured") $ss = "ftrd";
 						?>						
 							<div class="col-lg-3 col-md-4 col-sm-6 mix bslr">
 								<div class="single_product">
@@ -176,7 +177,7 @@ $title = "Welcome";
 					<div class="col-md-7 text-left">
 						<div class="special_info">			
 							<h3>Laces Collection 2021</h3>
-							<p>Get the most exquisite range of Lace and George fabrics available</p>							
+							<p>Get as mucch as <b>10% off</b> from our exquisite range of Lace and George fabrics today! Available while stocks last.</p>							
 							<a href="<?php echo e(url('shop')); ?>" class="btn main_btn">Shop Now</a>					
 						</div>
 					</div>
@@ -209,7 +210,7 @@ $title = "Welcome";
 										  $xf = $p['id'];
 										  $uu = url('product')."?xf=".$p['sku'];
 										  
-										  if($data['special'] == "featured")
+										  if($tag == "featured")
 										  {
 						?>					
 					<div class="col-lg-3 col-md-4 col-sm-6">

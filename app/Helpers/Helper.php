@@ -844,6 +844,7 @@ $subject = $data['subject'];
 				  $temp['name'] = $product->name;
 				  $temp['sku'] = $product->sku;
 				  $temp['model'] = $product->model;
+				  $temp['tag'] = $product->tag;
 				  $temp['upc'] = $product->upc;
 				  $temp['ean'] = $product->ean;
 				  $temp['jan'] = $product->jan;
@@ -1124,7 +1125,7 @@ $subject = $data['subject'];
 		   function getBestSellers()
            {
            	$ret = [];
-              $pdss = Products::where('id','>',"0")->get();
+              $pdss = Products::where('tag',"bestseller")->get();
               $pdss = $pdss->sortByDesc('created_at');	
 			  $pds = $pdss->chunk(24);
 			  #dd($pds);
