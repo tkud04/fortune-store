@@ -46,7 +46,7 @@ class MainController extends Controller {
 		$banners = $this->helpers->getBanners();
 		$tp = $this->helpers->getTopProducts();		
 		$cart = $this->helpers->getCart($user);
-	    dd($banners);
+	    #dd($banners);
 		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
 		
     	return view("index",compact(['user','cart','c','testimonials','tp','bs','pe','banners','signals','plugins']));
