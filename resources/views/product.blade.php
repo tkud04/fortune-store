@@ -95,7 +95,7 @@ $pcClass = "";
 						</div>
 						<!-- Product Action -->
 						<div class="pd_btn fix">
-							<a class="btn btn-default acc_btn" href="javascript:void(0)" id="product-add-to-cart-btn" >add to bag</a>
+							<a class="btn btn-default acc_btn" href="javascript:void(0)" id="product-add-to-cart-btn" >add to cart</a>
 							<a class="btn btn-default acc_btn btn_icn" href="javascript:void(0)" id="product-add-to-wishlist-btn"><i class="fa fa-heart"></i></a>
 							
 						</div>
@@ -161,10 +161,16 @@ $pcClass = "";
 										<div class="rtng_cmnt_form_area fix">
 											<h3>Add your Comments</h3>
 											<div class="rtng_form">
-												<form action="#">
-													<div class="input-area"><input type="text" placeholder="Type your name" /></div>
-													<div class="input-area"><input type="text" placeholder="Type your email address" /></div>
-													<div class="input-area"><textarea name="message" placeholder="Write a review"></textarea></div>
+												<form action="{{url('add-review')}}" method="post">
+													{!! csrf_field() !!}
+													<input type="hidden" name="xf" value="{{$id}}">
+													<div class="input-area">
+													  <select name="rating">
+													    <option value="none">Rate this product</option>
+													    <option value="1">Rate this product</option>
+													  </select>
+													</div>
+													<div class="input-area"><textarea name="msg" placeholder="Write a review"></textarea></div>
 													<input class="btn border-btn" type="submit" value="Add Review" />
 												</form>
 											</div>

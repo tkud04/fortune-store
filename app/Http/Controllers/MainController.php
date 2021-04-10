@@ -284,11 +284,11 @@ class MainController extends Controller {
 					 $product = $this->helpers->getProduct($req["xf"]);
 					 #dd($product);
 
-					 //$reviews = $this->helpers->getReviews($["model"]);
+					 $reviews = $this->helpers->getReviews($product["sku"]);
 					 $related = $this->helpers->getProducts();
 					// dd($product);
 
-				   $reviews = [];
+				   //$reviews = [];
 					
 					if(isset($req['type']) && $req['type'] == "json")
 					{
@@ -1485,8 +1485,7 @@ class MainController extends Controller {
         
         $validator = Validator::make($req, [
                              'rating' => 'required',
-                             'name' => 'required',
-							 'review' => 'required'
+                            'msg' => 'required'
          ]);
          
          if($validator->fails())

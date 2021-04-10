@@ -1343,8 +1343,7 @@ $subject = $data['subject'];
            	$ret = Reviews::create(['user_id' => $userId, 
                                                       'sku' => $data['sku'], 
                                                       'rating' => $data['rating'],
-                                                      'name' => $data['name'],
-                                                      'review' => $data['review'],
+                                                      'review' => $data['msg'],
                                                       'status' => "pending",
                                                       ]);
                                                       
