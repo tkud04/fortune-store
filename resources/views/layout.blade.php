@@ -142,7 +142,9 @@
 							 <h3 class="testimonial-title">Luxfabriqs  Fashion</h3>
 							</a> 
 						</div><!--  End Col -->
-						
+						 <?php
+	$cCount = count($c) < 4 ? count($c) : 4;
+?>
 						<div class="col-xs-12 col-sm-12 col-md-9 text-right">
 							<div class="menu_wrap">
 								<div class="main-menu">
@@ -153,26 +155,23 @@
 											<li><a href="{{url('categories')}}">Categories <i class="fa fa-angle-down"></i></a>
 												<!-- Mega Menu -->
 												<div class="mega-menu mm-4-column mm-left">
+												 <?php
+	                if($cCount > 0)
+	                {
+					  for($i = 0; $i < $cCount; $i++)
+	                  {
+						  $cc = $c[$i];
+						  $cu = url('category')."?xf=".$cc['category'];
+						  $img = $cc['image'][0];
+                   ?>
 													<div class="mm-column mm-column-link float-left">
-														<h3>Laces</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														
+														<h3><a href="{{$cu}}">{{$cc['name']}}</a></h3>
 													</div>
 													
-													<div class="mm-column mm-column-link float-left">
-														<h3>Georges</h3>
-														<a href="#">Blazers</a>
-														<a href="#">Jackets</a>
-														<a href="#">Collections</a>
-														<a href="#">T-Shirts</a>
-														
-													</div>
-													
-													
-
+												 <?php
+	                  }
+	                }
+                   ?>
 												</div>
 											</li>
 											

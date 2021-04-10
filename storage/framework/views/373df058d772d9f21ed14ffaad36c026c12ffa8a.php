@@ -127,7 +127,7 @@ $title = "Welcome";
 										  else if($tag == "bestseller") $ss = "bslr";
 										  else if($tag == "featured") $ss = "ftrd";
 						?>						
-							<div class="col-lg-3 col-md-4 col-sm-6 mix bslr">
+							<div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo e($ss); ?>">
 								<div class="single_product">
 									<div class="product_image">
 										<img src="<?php echo e($imgs[0]); ?>" alt=""/>
@@ -376,7 +376,7 @@ $title = "Welcome";
 							<!-- process Content -->
 							<div class="process_content">
 								<h3>free shipping</h3>
-								<p>Lorem ipsum dummy</p>
+								<p>for orders in Lagos</p>
 							</div>
 						</div>	
 					</div>	<!-- End Col -->				
@@ -387,8 +387,8 @@ $title = "Welcome";
 							<div class="picon"><i class="fa fa-money"></i></div>
 							<!-- process Content -->
 							<div class="process_content">
-								<h3>Cash On Delivery</h3>
-								<p>Lorem ipsum dummy</p>
+								<h3>Pay On Delivery</h3>
+								<p>for orders in Lagos</p>
 							</div>
 						</div>	
 					</div>	<!-- End Col -->				
@@ -400,7 +400,7 @@ $title = "Welcome";
 							<!-- process Content -->
 							<div class="process_content">
 								<h3>Support 24/7</h3>
-								<p>Lorem ipsum dummy</p>
+								<p>We're always here to help!</p>
 							</div>
 						</div>	
 					</div>	<!-- End Col -->				
@@ -411,8 +411,8 @@ $title = "Welcome";
 							<div class="picon"><i class="fa fa-clock-o"></i></div>
 							<!-- process Content -->
 							<div class="process_content">
-								<h3>Opening All Week</h3>
-								<p>Lorem ipsum dummy</p>
+								<h3>Open All Week</h3>
+								<p>24/7</p>
 							</div>
 						</div>	
 					</div>	<!-- End Col -->
