@@ -22,6 +22,7 @@ $pcClass = "";
 			   $manufacturer = $pd['manufacturer'];
 			   $amount = $pd['amount'];
 			   $imggs = $product['imggs'];
+			   $rating = $product['rating'];
 			    
 ?>
 
@@ -135,10 +136,16 @@ $pcClass = "";
 
 								<div role="tabpanel" class="tab-pane fade" id="reviews">
 									<div class="pda_rtng_area fix">
-										<h4>4.5 <span>(Overall)</span></h4>
-										<span>Based on 9 Comments</span>
+										<h4><?php echo e(number_format($rating)); ?></h4>
+										<span>Based on <?php echo e(count($reviews)); ?> reviews</span>
 									</div>
 									<div class="rtng_cmnt_area fix">
+									   <?php
+									     if(count($reviews) > 0)
+										 {
+									       foreach($reviews as $r)
+										   {
+									   ?>
 										<div class="single_rtng_cmnt">
 											<div class="rtngs">
 												<i class="fa fa-star"></i>
@@ -155,6 +162,10 @@ $pcClass = "";
 											</div>
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost rud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nost.</p>
 										</div>
+										<?php
+									     }
+										 }
+									   ?>
 
 									</div>
 									<div class="col-md-6 rcf_pdnglft">
@@ -168,7 +179,9 @@ $pcClass = "";
 													<div class="input-area">
 													  <select name="rating">
 													    <option value="none">Rate this product</option>
-													    <option value="1">Rate this product</option>
+														<?php for($i = 0; $i < 5; $i++): ?>
+													    <option value="1"><?php echo e($i + 1); ?></option>
+														<?php endfor; ?>
 													  </select>
 													</div>
 													<div class="input-area"><textarea name="msg" placeholder="Write a review"></textarea></div>

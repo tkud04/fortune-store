@@ -285,8 +285,10 @@ class MainController extends Controller {
 					 #dd($product);
 
 					 $reviews = $this->helpers->getReviews($product["sku"]);
+					#dd($reviews);
+					 #$rating = $this->helpers->getRating($reviews);
 					 $related = $this->helpers->getProducts();
-					// dd($product);
+					 
 
 				   //$reviews = [];
 					
@@ -1484,6 +1486,7 @@ class MainController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
+                             'xf' => 'required',
                              'rating' => 'required',
                             'msg' => 'required'
          ]);
@@ -1497,6 +1500,7 @@ class MainController extends Controller {
          
          else
          {
+			 $req['sku'] = $req['xf'];
          	$this->helpers->createReview($user,$req);
 	        session()->flash("add-review-status","ok");
 			return redirect()->back();

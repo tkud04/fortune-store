@@ -1354,7 +1354,7 @@ $subject = $data['subject'];
            {
            	$ret = [];
               $reviews = Reviews::where('sku',$sku)
-			                    ->where('status',"enabled")->get();
+			                    ->where('status',"approved")->get();
               $reviews = $reviews->sortByDesc('created_at');	
 			  
               if($reviews != null)
@@ -1375,11 +1375,19 @@ $subject = $data['subject'];
                 return $ret;
            }
 		   
-		   function getRating($sku)
+		   function getRating($r,$optionalParams=[])
 		   {
-			   $ret = 0;
+			   $ret = 0; $reviews = [];
+			   #dd($reviews);
 			   
-			   $reviews = $this->getReviews($sku);
+			   if(isset($optionalParams['arr']) && $optionalParams['arr'])
+			   {
+				   $reviews = $r;
+			   } 
+			   else
+			   {
+				   $reviews = $this->getReviews($r);
+			   }
 			   
 			   if($reviews != null && count($reviews) > 0)
 			   {
