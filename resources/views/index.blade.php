@@ -21,7 +21,7 @@ $title = "Welcome";
 	                  {
 						  $cc = $c[$i];
 						  $cu = url('category')."?xf=".$cc['category'];
-						  $img = $cc['image'];
+						  $img = $cc['image'][0];
                    ?>
 				   
 				   @if($i == 0)
