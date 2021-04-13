@@ -2165,9 +2165,9 @@ $subject = $data['subject'];
 						  $ret['subtotal'] += ($amount * $qty);
                        }	
                     }
-                   
-				   //$c = $this->getCourier($o->courier_id);
-				  // 	$ret['delivery'] = isset($c['price']) ? $c['price'] : "1000";
+                  $s = $this->getShippingSingle($o->shipping_type);
+				   #dd([$o,$s]);
+				   $ret['delivery'] =  $s['value'];
                   
                }                                 
                                                       
