@@ -33,7 +33,7 @@ let pd = [], sd = [], ppd = null, pm = "none";
 
 $(document).ready(() => {
 
-$('.edh').prop("readonly", true );
+//$('.edh').prop("readonly", true );
 
 @if(count($sd) > 0)
   @foreach($sd as $p)
