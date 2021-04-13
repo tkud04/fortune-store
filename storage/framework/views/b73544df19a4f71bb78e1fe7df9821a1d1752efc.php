@@ -9,13 +9,13 @@ $pcClass = "";
 <?php
                $id = $product['id'];
                $name = $product['name'];
-               $model = $product['model'];
+               $sku = $product['sku'];
 			   $pd = $product['data'];
 			   $imgs = $product['imggs'];
-			   $displayName = $name == "" ? $model : $name;
-			   $uu = url('product')."?xf=".$model;
-			   $cu = url('add-to-cart')."?xf=".$model."&qty=1";
-			   $wu = url('add-to-wishlist')."?xf=".$model;
+			   $displayName = $name == "" ? $sku : $name;
+			   $uu = url('product')."?xf=".$sku;
+			   $cu = url('add-to-cart')."?xf=".$sku."&qty=1";
+			   $wu = url('add-to-wishlist')."?xf=".$sku;
 			   //$ccu = url('add-to-compare')."?sku=".$sku;
 			   $description = $pd['description'];
 			   $category = $pd['category'];
@@ -175,7 +175,7 @@ $pcClass = "";
 												<form action="<?php echo e(url('add-review')); ?>" method="post">
 													<?php echo csrf_field(); ?>
 
-													<input type="hidden" name="xf" value="<?php echo e($id); ?>">
+													<input type="hidden" name="xf" value="<?php echo e($sku); ?>">
 													<div class="input-area">
 													  <select name="rating">
 													    <option value="none">Rate this product</option>

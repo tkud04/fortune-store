@@ -138,8 +138,8 @@
 					<div class="row">		
 						<div class="col-xs-12 col-sm-12 col-md-3"> 
 							<a class="logo" href="{{url('/')}}"> 
-							 <!--<img alt="" src="img/logo.png">-->
-							 <h3 class="testimonial-title">Luxfabriqs  Fashion</h3>
+							 <img alt="" src="img/logoo.png">
+							 <!--<h3 class="testimonial-title">Luxfabriqs  Fashion</h3>-->
 							</a> 
 						</div><!--  End Col -->
 						 <?php
