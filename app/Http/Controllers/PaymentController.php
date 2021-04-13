@@ -464,13 +464,13 @@ class PaymentController extends Controller {
 			 
 			#dd($paymentData);
         	$this->helpers->checkout($user,$paymentData);
-			   
+			 $request->session()->flash("checkout-status","ok");
             return redirect()->intended($successLocation);
           }
           else
           {
         	//Payment failed, redirect to orders
-            $request->session()->flash("pay-card-status","error");
+            $request->session()->flash("checkout-status-error","ok");
 			return redirect()->intended($failureLocation);
           }
 		}

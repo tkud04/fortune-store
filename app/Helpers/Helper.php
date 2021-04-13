@@ -70,6 +70,7 @@ class Helper implements HelperContract
 					 "no-cart-status" => "Your cart is empty.",
 					 "invalid-order-status" => "We couldn't find your order.",
 					 "remove-saved-payment-status" => "Payment details removed from your account.",
+					 "checkout-status" => "Payment received! Your order is being processed.",
 					 
 					 //ERRORS
 					 "login-status-error" => "Wrong username or password, please try again.",
@@ -97,6 +98,7 @@ class Helper implements HelperContract
 					 "no-cart-status-error" => "Your cart is empty.",
 					 "invalid-order-status-error" => "We could not find your order.",
 					 "checkout-st-status-error" => "Select a shipping fee.",
+					 "checkout-status-error" => "Your payment could not be processed, please try again.",
                      ]
                    ];
 
@@ -1812,7 +1814,7 @@ $subject = $data['subject'];
 		   function payWithPayStack($user, $payStackResponse)
            { 
               $md = $payStackResponse['metadata'];
-			  dd($md);
+			  #dd($md);
               $amount = $payStackResponse['amount'] / 100;
               $psref = $payStackResponse['reference'];
               $ref = $md['ref'];
@@ -1822,7 +1824,7 @@ $subject = $data['subject'];
               if($type == "checkout"){
                	$md['amount'] = $amount;
 				$md['ps_ref'] = $psref;
-				$md['status'] = "paid";
+				$md['status'] = "processing";
 				
 				if(is_null($user))
 				{
@@ -1835,16 +1837,20 @@ $subject = $data['subject'];
 				}
 				else
 				{
-					$md['fname'] = $md['sd_fname'];
-					$md['lname'] = $md['sd_lname'];
-					$md['company'] = $md['sd_company'];
-					$md['country'] = $md['sd_country'];
-					$md['address_1'] = $md['sd_address_1'];
-					$md['address_2'] = $md['sd_address_2'];
-					$md['city'] = $md['sd_city'];
-					$md['region'] = $md['sd_region'];
-					$md['zip'] = $md['sd_zip'];
-					$this->updateShippingDetails($user,$md);
+				    $ssd = $md['ssd'];
+					if($ssd == "none")
+					{
+						$md['fname'] = $md['sd_fname'];
+					    $md['lname'] = $md['sd_lname'];
+					    $md['company'] = $md['sd_company'];
+					    $md['country'] = $md['sd_country'];
+					    $md['address_1'] = $md['sd_address_1'];
+					    $md['address_2'] = $md['sd_address_2'];
+					    $md['city'] = $md['sd_city'];
+				    	$md['region'] = $md['sd_region'];
+					    $md['zip'] = $md['sd_zip'];
+					    $this->updateShippingDetails($user,$md);
+					}
 				}
               }
               
