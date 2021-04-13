@@ -2166,8 +2166,8 @@ $subject = $data['subject'];
                        }	
                     }
                   $s = $this->getShippingSingle($o->shipping_type);
-				   #dd([$o,$s]);
-				   $ret['delivery'] =  $s['value'];
+				   dd([$o,$s]);
+				   $ret['delivery'] = $s['value'];
                   
                }                                 
                                                       
