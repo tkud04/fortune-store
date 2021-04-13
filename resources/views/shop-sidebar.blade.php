@@ -2,7 +2,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-xs-12 short_by_area">
 							<div class="short_by_inner">
-								<label>short by:</label>
+								<label>sort by:</label>
 								<select class="sort-select">
 									<option>Name Descending</option>
 									<option>Date Descending</option>

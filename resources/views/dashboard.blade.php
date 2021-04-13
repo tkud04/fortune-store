@@ -320,7 +320,7 @@ $pcClass = "";
 										   ?>
 								        </td>
 								<td class="product-price">
-									<span class="amount">&#0163;{{number_format($o['amount'],2)}}</span>
+									<span class="amount">&#8358;{{number_format($o['amount'],2)}}</span>
 								</td>
 								<td class="product-stock-status">
 									<span class="badge badge-success">{{strtoupper($statuses[$o['status']])}}</span>

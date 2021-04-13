@@ -3,9 +3,9 @@ $title = "Shop";
 $ph = false;
 $pcClass = "";
 ?>
-@extends('layout')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 
 <script>
@@ -44,27 +44,27 @@ let page = 1, productsLength = 0, products = [], perPage = 12;
 			   $imggs = $n['imggs'];
 			    
 		  ?>
-		   ppd = "{{json_encode($pd,JSON_HEX_APOS|JSON_HEX_QUOT) }}";
+		   ppd = "<?php echo e(json_encode($pd,JSON_HEX_APOS|JSON_HEX_QUOT)); ?>";
 		  ppd = ppd.replace(/&quot;/g, '\"');
 		  
-		  imggs = "{{json_encode($imggs,JSON_HEX_APOS|JSON_HEX_QUOT) }}";
+		  imggs = "<?php echo e(json_encode($imggs,JSON_HEX_APOS|JSON_HEX_QUOT)); ?>";
 		  imggs = imggs.replace(/&quot;/g, '\"');
 		   temp = {
-			   id: "{{$id}}",
-			   name: "{{$name}}",
-			   sku: "{{$sku}}",
-			   model: "{{$model}}",
-			   upc: "{{$upc}}",
-			   ean: "{{$ean}}",
-			   jan: "{{$jan}}",
-			   isbn: "{{$isbn}}",
-			   mpn: "{{$mpn}}",
-			   uu: "{{$uu}}",
-			   cu: "{{$cu}}",
-			   wu: "{{$wu}}",
+			   id: "<?php echo e($id); ?>",
+			   name: "<?php echo e($name); ?>",
+			   sku: "<?php echo e($sku); ?>",
+			   model: "<?php echo e($model); ?>",
+			   upc: "<?php echo e($upc); ?>",
+			   ean: "<?php echo e($ean); ?>",
+			   jan: "<?php echo e($jan); ?>",
+			   isbn: "<?php echo e($isbn); ?>",
+			   mpn: "<?php echo e($mpn); ?>",
+			   uu: "<?php echo e($uu); ?>",
+			   cu: "<?php echo e($cu); ?>",
+			   wu: "<?php echo e($wu); ?>",
 			  // pd: ppd,
-			   amount: "{{$amount}}",
-			   category: "{{$category['name']}}",
+			   amount: "<?php echo e($amount); ?>",
+			   category: "<?php echo e($category['name']); ?>",
 			   imggs: imggs,
 		   };
 		   products.push(temp);
@@ -88,18 +88,18 @@ $(document).ready(() => {
 <!-- Shop Product Area -->
 		<div class="shop_page_area">
 			<div class="container">
-			    @include('shop-sidebar',['c' => $c])
+			    <?php echo $__env->make('shop-sidebar',['c' => $c], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 				<div class="shop_details text-center">
-						@if(count($products) > 0)	
+						<?php if(count($products) > 0): ?>	
                      <div class="row" id="products"></div>						
-							@else
+							<?php else: ?>
 							  <div class="row">
 								<h3>No products yet</h3>
 							</div>
-							@endif
+							<?php endif; ?>
 				 </div>
 						
-						@if($pc > 1)
+						<?php if($pc > 1): ?>
 						<!-- Blog Pagination -->
 				<div class="col-xs-12">
 					<div class="blog_pagination pgntn_mrgntp fix">
@@ -112,7 +112,9 @@ $(document).ready(() => {
 						</div>
 					</div>
 				</div>
-				@endif
+				<?php endif; ?>
 				</div>
 			 </div>
-@stop
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\bkupp\lokl\repo\fortune-store\resources\views/shop.blade.php ENDPATH**/ ?>

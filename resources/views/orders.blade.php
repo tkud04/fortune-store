@@ -8,14 +8,14 @@ $pcClass = "";
 @section('content')
 				<div class="container pt-1">
 					<div class="row">
-								<div class="col-lg-12 mb-4">
+								<div class="col-md-12 mb-4">
 								
 							   <?php
 							    if(count($orders) > 0)
 								{
 							   ?>
-							   
-								 <table class="shop-table wishlist-table mt-2 mb-5">
+							     <div class="table-responsive">
+								 <table class="shop-table etuk-table mt-2 mb-5" cellspacing="15">
 								    <thead>
 									  <tr>
 										<th>Details</th>
@@ -65,7 +65,7 @@ $pcClass = "";
 										   ?>
 								        </td>
 								<td class="product-price">
-									<span class="amount">&#0163;{{number_format($o['amount'],2)}}</span>
+									<span class="amount">&#8358;{{number_format($o['amount'],2)}}</span>
 								</td>
 								<td class="product-stock-status">
 									<span class="badge badge-success">{{strtoupper($statuses[$o['status']])}}</span>
@@ -80,7 +80,8 @@ $pcClass = "";
 									}
 								?>
 								  </table>
-								  
+								  </div>
+								  <a href="{{url('orders')}}" class="btn-product"><span>VIEW MORE</span></a>
 								<?php
 								}
 								else

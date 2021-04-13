@@ -232,17 +232,15 @@ class MainController extends Controller {
 		
 		$req = $request->all();
 
-		$signals = $this->helpers->signals;
-		
-		$c = $this->helpers->getCategories();
-		$m = $this->helpers->getManufacturers();
-		$bs = $this->helpers->getBestSellers();
-		$tp = $this->helpers->getTopProducts();
-		#dd($bs);
-		$cart = $this->helpers->getCart($user);
-		$pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
-		
-    	return view("shop",compact(['user','cart','c','m','tp','bs','pe','signals','plugins']));
+		  $signals = $this->helpers->signals;
+	   	  $c = $this->helpers->getCategories(['children' => true]);
+
+		     $products = $this->helpers->getProducts();
+		     #dd($products);
+		     $cart = $this->helpers->getCart($user);
+			 $pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
+		     return view("shop",compact(['user','cart','c','products','pe','signals','plugins']));
+		  
     }
 	
 	/**
@@ -1324,10 +1322,12 @@ class MainController extends Controller {
 			$c = $this->helpers->getCategories();
 			$orders = $this->helpers->getOrders($user);
 			#dd($orders);
-			 $signals = $this->helpers->signals;
+			$signals = $this->helpers->signals;
+	   	  $c = $this->helpers->getCategories(['children' => true]);
+
+			 $pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
 			   $statuses = $this->helpers->statuses;
-			   $plugins = $this->helpers->getPlugins();
-		        return view("orders",compact(['user','cart','c','orders','statuses','signals','plugins']));	
+		        return view("orders",compact(['user','cart','c','orders','pe','statuses','signals','plugins']));	
     }
 	
 	/**
