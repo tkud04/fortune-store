@@ -33,6 +33,8 @@ let pd = [], sd = [], ppd = null, pm = "none";
 
 $(document).ready(() => {
 
+$('.edh').prop("readonly", true );
+
 <?php if(count($sd) > 0): ?>
   <?php $__currentLoopData = $sd; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
    sd.push({
@@ -99,23 +101,23 @@ $(document).ready(() => {
 								
 								         <div class="form-group col-md-6">								
 									      <label>First Name *</label>
-										   <input type="text" class="form-control" id="sd-fname" name="sd-fname" required="">
+										   <input type="text" class="form-control edh" id="sd-fname" name="sd-fname" required="">
 								         </div>
 										 <div class="form-group col-md-6">								
 									      <label>Last Name *</label>
-										  <input type="text" class="form-control" id="sd-lname" name="sd-lname" required="">
+										  <input type="text" class="form-control edh" id="sd-lname" name="sd-lname" required="">
 								         </div>
 							           </div>
 							
                                        <div class="form-group">      
                                         <label>Company Name(Optional)</label>
-								        <input type="text" class="form-control" id="sd-company" name="sd-company" required="">                     
+								        <input type="text" class="form-control edh" id="sd-company" name="sd-company" required="">                     
                                        </div>
 								
                                        <div class="form-group">  
 								         <label for="country">Country:</label>
 								         <div class="custom-select-wrapper">
-									        <select id="sd-country" name="sd-country" class="custom-select">
+									        <select id="sd-country" name="sd-country" class="custom-select edh">
 										     <option value="none">Select country</option>
 									         <option value="nigeria">Nigeria</option>
 										     <?php
@@ -135,27 +137,27 @@ $(document).ready(() => {
 							
 							           <div class="form-group">
 								         <label for="address">Address:</label>    
-							             <input type="text" class="form-control mb-2" id="sd-address-1" name="sd-address-1" required="" placeholder="Address line 1*">
-								         <input type="text" class="form-control" id="sd-address-2" name="sd-address-2" required="" placeholder="Address line 2">
+							             <input type="text" class="form-control mb-2 edh" id="sd-address-1" name="sd-address-1" required="" placeholder="Address line 1*">
+								         <input type="text" class="form-control edh" id="sd-address-2" name="sd-address-2" required="" placeholder="Address line 2">
                                        </div>
 							
                                        <div class="form-row">
 								        <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Town / City*" class="form-control" id="sd-city" name="sd-city" required="">
+                                        <input type="text" placeholder="Town / City*" class="form-control edh" id="sd-city" name="sd-city" required="">
                                         </div>		
 										
 										<div class="form-group col-md-4">
-                                        <input type="text" class="form-control" placeholder="State / Region*" id="sd-region" name="sd-region" required="">
+                                        <input type="text" class="form-control edh" placeholder="State / Region*" id="sd-region" name="sd-region" required="">
                                         </div>
 													
 										<div class="form-group col-md-4">
-                                         <input name="code" placeholder="Post code / Zip*" class="form-control" id="sd-zip" type="text">
+                                         <input name="code" placeholder="Post code / Zip*" class="form-control edh" id="sd-zip" type="text">
                                         </div>			
                                        </div>
 
                                         <div class="form-group">
 								          <label for="address">Order notes:</label>    
-								          <textarea class="form-control" cols="30" rows="6" id="notes" name="notes" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>                       
+								          <textarea class="form-control edh" cols="30" rows="6" id="notes" name="notes" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>                       
                                         </div>
 										
 										<div class="form-row">

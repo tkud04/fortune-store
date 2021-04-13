@@ -10,7 +10,7 @@
     <meta name="description" content="Luxfabriqs Fashion - Online Store for Stylish and Elegant Laces and Georges">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/icons/favicon.png">
+    <link rel="icon" type="image/png" href="img/icon.png">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,600,700,800" rel="stylesheet"> 
 	<link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">	

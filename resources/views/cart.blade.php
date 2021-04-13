@@ -50,7 +50,7 @@ let cart = [];
 										<td></td>
 										<td>										
 											<div class="cp_quntty">																			
-												<input name="quantity" value="{{$qty}}" data-val="{{$qty}}" data-xf="{{$xf}}" size="2" type="number">													
+												<input name="quantity" value="{{$qty}}" class="product-qty" data-xf="{{$xf}}" type="number">													
 											</div>
 										</td>
 										<td><p class="cp_price">&#8358;{{number_format($itemAmount,2)}}</p></td>
@@ -74,7 +74,7 @@ let cart = [];
 							<div class="col-sm-7">
 								<div class="cart-action">
 									<a href="{{url('/')}}" class="btn border-btn">continue shopping</a>
-									<a href="javascript:void(0)" id="update-cart-btn" class="btn border-btn">update shopping bag</a>
+									<a href="javascript:void(0)" id="update-cart-btn" class="btn border-btn">update cart</a>
 								</div>
 							</div>
 							

@@ -195,11 +195,13 @@ $pcClass = "";
 							</div>
 							
 							<div class="tab-pane" id="wishlist">
-								<?php
+								<div class="row">
+				<div class="col-md-12 mb-4">
+					<?php
 							    if(count($wishlist) > 0)
 								{
 							   ?>
-							       <table class="shop-table wishlist-table mt-2 mb-5">
+							       <table class="table cart-table cart_prdct_table etuk-table text-center mt-2 mb-5">
 								    <thead>
 									  <tr>
 										<th>Details</th>
@@ -239,7 +241,7 @@ $pcClass = "";
                                        </td>
 									    <td>
 										<a href="{{$uu}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>VIEW</span></a>
-										<a href="{{$cu}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>ADD TO BAG</span></a>
+										<a href="{{$cu}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>ADD TO CART</span></a>
 										<a href="{{$du}}" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>REMOVE</span></a>
                                         </td>
                                       </tr>
@@ -249,6 +251,8 @@ $pcClass = "";
 								       ?>
 									</tbody>
 									</table>
+									
+									 <a href="{{url('wishlist')}}" class="btn border-btn"><span>VIEW MORE</span></a>
 							   <?php
 								}
 								else
@@ -260,17 +264,19 @@ $pcClass = "";
 								}
 						
 								?>
+				  </div>
+				  </div>
 							</div>
 							<div class="tab-pane" id="orders">
 							  <div class="row">
-								<div class="col-lg-12 mb-4">
+								<div class="col-md-12 mb-4">
 								
 							   <?php
 							    if(count($orders) > 0)
 								{
 							   ?>
-							   
-								 <table class="shop-table wishlist-table mt-2 mb-5">
+							     <div class="table-responsive">
+								 <table class="table cart-table cart_prdct_table etuk-table text-center mt-2 mb-5" cellspacing="15">
 								    <thead>
 									  <tr>
 										<th>Details</th>
@@ -326,7 +332,7 @@ $pcClass = "";
 									<span class="badge badge-success">{{strtoupper($statuses[$o['status']])}}</span>
 								</td>
 								<td class="product-add-to-cart">
-									<a href="{{$ou}}" class="btn-product"><span>VIEW</span></a>
+									<a href="{{$ou}}" class="btn border-btn"><span>VIEW</span></a>
 								</td>
 									  </tr>
 									</tbody>
@@ -335,7 +341,8 @@ $pcClass = "";
 									}
 								?>
 								  </table>
-								  <a href="{{url('orders')}}" class="btn-product"><span>VIEW MORE</span></a>
+								  </div>
+								  <a href="{{url('orders')}}" class="btn border-btn"><span>VIEW MORE</span></a>
 								<?php
 								}
 								else

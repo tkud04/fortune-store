@@ -50,7 +50,7 @@ let cart = [];
 										<td></td>
 										<td>										
 											<div class="cp_quntty">																			
-												<input name="quantity" value="<?php echo e($qty); ?>" data-val="<?php echo e($qty); ?>" data-xf="<?php echo e($xf); ?>" size="2" type="number">													
+												<input name="quantity" value="<?php echo e($qty); ?>" class="product-qty" data-xf="<?php echo e($xf); ?>" type="number">													
 											</div>
 										</td>
 										<td><p class="cp_price">&#8358;<?php echo e(number_format($itemAmount,2)); ?></p></td>
@@ -74,7 +74,7 @@ let cart = [];
 							<div class="col-sm-7">
 								<div class="cart-action">
 									<a href="<?php echo e(url('/')); ?>" class="btn border-btn">continue shopping</a>
-									<a href="javascript:void(0)" id="update-cart-btn" class="btn border-btn">update shopping bag</a>
+									<a href="javascript:void(0)" id="update-cart-btn" class="btn border-btn">update cart</a>
 								</div>
 							</div>
 							

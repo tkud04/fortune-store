@@ -15,7 +15,7 @@ $pcClass = "";
 								{
 							   ?>
 							     <div class="table-responsive">
-								 <table class="shop-table etuk-table mt-2 mb-5" cellspacing="15">
+								 <table class="table cart-table cart_prdct_table etuk-table text-center mt-2 mb-5" cellspacing="15">
 								    <thead>
 									  <tr>
 										<th>Details</th>
@@ -71,7 +71,7 @@ $pcClass = "";
 									<span class="badge badge-success">{{strtoupper($statuses[$o['status']])}}</span>
 								</td>
 								<td class="product-add-to-cart">
-									<a href="{{$ou}}" class="btn-product"><span>VIEW</span></a>
+									<a href="{{$ou}}" class="btn border-btn"><span>VIEW</span></a>
 								</td>
 									  </tr>
 									</tbody>

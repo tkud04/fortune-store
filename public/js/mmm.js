@@ -16,6 +16,7 @@ $(document).ready(function() {
 	}); 
 	/*END PRELOADER JS*/
 	
+	
 	/*Language JS*/
 	 $(".lan_area").on('click', function() {
 	   $(".lan_area .csub-menu").toggle();
@@ -347,8 +348,6 @@ new WOW().init();
 		  
 		  $(".product-qty").change(function(e){            
 		       e.preventDefault();
-			   
-			      console.log(`xf: ${xf}, qty: ${qty}`);
              
 		  });
 		  
@@ -409,11 +408,22 @@ new WOW().init();
               let ppd = $('#checkout-pd').val();
 			  showPD(ppd);
            });
+		   
 		   $("#checkout-sd").change(function(e) {
                e.preventDefault();
-              let ssd = $('#checkout-sd').val();
+              let ssd = $('#checkout-sd').val(), edh = null;
+			  
+			  if(ssd == "none"){
+				  edh = false;
+			  }
+			  else{
+				 edh = true;
+			  }
+			  
+              $('.edh').prop("readonly", edh );
 			  showSD(ssd);
            });
+		   
 		   
 		    $("#checkout-btn").click(function(e){            
 		       e.preventDefault();

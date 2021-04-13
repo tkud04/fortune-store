@@ -7,12 +7,13 @@ $pcClass = "";
 
 <?php $__env->startSection('content'); ?>
 				<div class="container">
-				<div class="col-md-12">
+				<div class="row">
+				<div class="col-md-12 mb-4">
 					<?php
 							    if(count($wishlist) > 0)
 								{
 							   ?>
-							       <table class="shop-table wishlist-table mt-2 mb-5">
+							       <table class="table cart-table cart_prdct_table etuk-table text-center mt-2 mb-5">
 								    <thead>
 									  <tr>
 										<th>Details</th>
@@ -52,7 +53,7 @@ $pcClass = "";
                                        </td>
 									    <td>
 										<a href="<?php echo e($uu); ?>" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>VIEW</span></a>
-										<a href="<?php echo e($cu); ?>" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>ADD TO BAG</span></a>
+										<a href="<?php echo e($cu); ?>" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>ADD TO CART</span></a>
 										<a href="<?php echo e($du); ?>" class="mb-3 mr-3 btn btn-primary btn-reveal-right"><span>REMOVE</span></a>
                                         </td>
                                       </tr>
@@ -73,6 +74,7 @@ $pcClass = "";
 								}
 						
 								?>
+				  </div>
 				  </div>
 				</div>
 <?php $__env->stopSection(); ?>

@@ -1812,7 +1812,7 @@ $subject = $data['subject'];
 		   function payWithPayStack($user, $payStackResponse)
            { 
               $md = $payStackResponse['metadata'];
-			  #dd($md);
+			  dd($md);
               $amount = $payStackResponse['amount'] / 100;
               $psref = $payStackResponse['reference'];
               $ref = $md['ref'];
@@ -2313,7 +2313,7 @@ $subject = $data['subject'];
 		   {
 			   $ret = [];
 			   $w = Wishlists::where('user_id',$dt['user_id'])
-			                        ->where('product_id',$dt['product_id'])->first();
+			                        ->where('product_id',$dt['xf'])->first();
 			   
 			   if(!is_null($w))
 			   {
