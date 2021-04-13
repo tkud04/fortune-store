@@ -1367,11 +1367,12 @@ class MainController extends Controller {
 			$o = $this->helpers->getOrder($req['xf']);
 			$products = $this->helpers->getProducts();
 			$countries = $this->helpers->countries;
+			$shipping = $this->helpers->getShippingSingle($o['shipping_type']);
 			#dd($o);
 			 $signals = $this->helpers->signals;
 			   $statuses = $this->helpers->statuses;
-			   $plugins = $this->helpers->getPlugins();
-		        return view("order",compact(['user','cart','c','o','products','countries','statuses','signals','plugins']));	
+			   $pe = $this->helpers->getPhoneAndEmail();$plugins = $this->helpers->getPlugins();
+		        return view("order",compact(['user','cart','c','o','shipping','pe','products','countries','statuses','signals','plugins']));	
 		
          }        
     }

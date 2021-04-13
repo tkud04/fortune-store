@@ -12,7 +12,12 @@ $pcClass = "";
 @section('content')
 <script>
 let xf = "", products = [], pCover = "none", tkOrderHistory = "{{csrf_token()}}",
-    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new";
+    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new",
+	shipping = {
+		id: "{{$shipping['id']}}",
+		name: "{{$shipping['name']}}",
+		value: "{{$shipping['value']}}",
+	};
 
   
 
@@ -23,7 +28,7 @@ $(document).ready(() => {
 	  products.push({
 		  id: "{{$p['id']}}", 
 		  name: "{{$p['name']}}", 
-		  model: "{{$p['model']}}", 
+		  sku: "{{$p['sku']}}", 
 		  qty: "{{$p['qty']}}", 
 		  amount: "{{$p['data']['amount']}}"
 		  });
@@ -46,7 +51,7 @@ $customer = $o['user'];
 $cname = $customer['fname']." ".$customer['lname'];
 
 $payment_method = "Credit Card/Debit Card";
-$shipping_method = "Free Shipping";
+$shipping_method = $shipping['name']." - &#8358;".number_format($shipping['value'],2);
 
 $pu = url('invoice')."?xf=".$o['reference'];
 $su = url('shipping-list')."?xf=".$o['reference'];
@@ -79,7 +84,7 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 				</li>
 				<li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Shipping method"><i class="fas fa-truck"></i> </span>
-				  {{$shipping_method}}
+				  {!! $shipping_method !!}
 				</li>
            </ul>
         </div>
@@ -114,7 +119,6 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 				  <table class="table table-striped table-bordered first etuk-table">
                                               <thead>
                                                 <tr>
-                                                  <th>Payment Address</th>
                                                   <th>Shipping Address</th>
                                                 </tr>
                                               </thead>
@@ -123,18 +127,10 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 											  
 											  ?>
 											   <tr>
-											     <td>
-											      {{strtoupper($cname)}}<br>
-											      {{strtoupper($pd['address_1'])}}<br>
-											      @if($pd['address_2'] != ""){{strtoupper($pd['address_2'])}}<br>@endif
-											      {{strtoupper($pd['city'])." ".$pd['zip']}}<br>
-											      {{strtoupper($pd['region'])}}<br>
-											      {{ucwords($countries[$pd['country']])}}<br>
-											      </td>
 												  <td>
 											      {{strtoupper($cname)}}<br>
 											      {{strtoupper($sd['address_1'])}}<br>
-											      @if($pd['address_2'] != ""){{strtoupper($sd['address_2'])}}<br>@endif
+											      @if($sd['address_2'] != ""){{strtoupper($sd['address_2'])}}<br>@endif
 											      {{strtoupper($sd['city'])." ".$sd['zip']}}<br>
 											      {{strtoupper($sd['region'])}}<br>
 											      {{ucwords($countries[$sd['country']])}}<br>

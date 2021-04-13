@@ -46,7 +46,7 @@ $pcClass = "";
 												
 												if(count($op) > 0)
 												{
-													$pname = $op["name"]; $pmodel = $op["model"];
+													$pname = $op["name"]; $pmodel = $op["sku"];
 												    $imggs = $op['imggs']; $uu = url('product')."?xf=".$pmodel;
 												}
 												

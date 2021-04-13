@@ -12,7 +12,12 @@ $pcClass = "";
 <?php $__env->startSection('content'); ?>
 <script>
 let xf = "", products = [], pCover = "none", tkOrderHistory = "<?php echo e(csrf_token()); ?>",
-    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new";
+    orderProducts = [], eoPaymentXF = "new", eoShippingXF = "new",
+	shipping = {
+		id: "<?php echo e($shipping['id']); ?>",
+		name: "<?php echo e($shipping['name']); ?>",
+		value: "<?php echo e($shipping['value']); ?>",
+	};
 
   
 
@@ -23,7 +28,7 @@ $(document).ready(() => {
 	  products.push({
 		  id: "<?php echo e($p['id']); ?>", 
 		  name: "<?php echo e($p['name']); ?>", 
-		  model: "<?php echo e($p['model']); ?>", 
+		  sku: "<?php echo e($p['sku']); ?>", 
 		  qty: "<?php echo e($p['qty']); ?>", 
 		  amount: "<?php echo e($p['data']['amount']); ?>"
 		  });
@@ -46,7 +51,7 @@ $customer = $o['user'];
 $cname = $customer['fname']." ".$customer['lname'];
 
 $payment_method = "Credit Card/Debit Card";
-$shipping_method = "Free Shipping";
+$shipping_method = $shipping['name']." - &#8358;".number_format($shipping['value'],2);
 
 $pu = url('invoice')."?xf=".$o['reference'];
 $su = url('shipping-list')."?xf=".$o['reference'];
@@ -81,7 +86,7 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 				</li>
 				<li class="list-group-item">
 				  <span class="badge badge-primary p-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Shipping method"><i class="fas fa-truck"></i> </span>
-				  <?php echo e($shipping_method); ?>
+				  <?php echo $shipping_method; ?>
 
 				</li>
            </ul>
@@ -120,7 +125,6 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 				  <table class="table table-striped table-bordered first etuk-table">
                                               <thead>
                                                 <tr>
-                                                  <th>Payment Address</th>
                                                   <th>Shipping Address</th>
                                                 </tr>
                                               </thead>
@@ -129,18 +133,10 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
 											  
 											  ?>
 											   <tr>
-											     <td>
-											      <?php echo e(strtoupper($cname)); ?><br>
-											      <?php echo e(strtoupper($pd['address_1'])); ?><br>
-											      <?php if($pd['address_2'] != ""): ?><?php echo e(strtoupper($pd['address_2'])); ?><br><?php endif; ?>
-											      <?php echo e(strtoupper($pd['city'])." ".$pd['zip']); ?><br>
-											      <?php echo e(strtoupper($pd['region'])); ?><br>
-											      <?php echo e(ucwords($countries[$pd['country']])); ?><br>
-											      </td>
 												  <td>
 											      <?php echo e(strtoupper($cname)); ?><br>
 											      <?php echo e(strtoupper($sd['address_1'])); ?><br>
-											      <?php if($pd['address_2'] != ""): ?><?php echo e(strtoupper($sd['address_2'])); ?><br><?php endif; ?>
+											      <?php if($sd['address_2'] != ""): ?><?php echo e(strtoupper($sd['address_2'])); ?><br><?php endif; ?>
 											      <?php echo e(strtoupper($sd['city'])." ".$sd['zip']); ?><br>
 											      <?php echo e(strtoupper($sd['region'])); ?><br>
 											      <?php echo e(ucwords($countries[$sd['country']])); ?><br>

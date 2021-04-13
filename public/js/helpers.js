@@ -365,7 +365,7 @@ const refreshProducts = dt => {
 			p = {
 				id: 0,
 				name: "Removed product",
-				model: "DEL36455",
+				sku: "DEL36455",
 				qty: 0,
 				amount: 0,
 			}
@@ -377,20 +377,20 @@ const refreshProducts = dt => {
         if(dt.type == "normal"){
 			hh = `<tr>
 		          <td>${p.name}</td>
-		          <td>${p.model}</td>
+		          <td>${p.sku}</td>
 		          <td>${op.q}</td>
-		          <td>&#0163;${p.amount}</td>
-		          <td>&#0163;${ss}</td>
+		          <td>&#8358;${p.amount}</td>
+		          <td>&#8358;${ss}</td>
 		          <td><a href="javascript:void(0)" onclick="removeProduct({p: ${op.p},q: ${op.q},t: '${dt.t}'})" class="btn btn-danger"><i class="fas fa-minus"></i></a></td>
 				 </tr>`;
 		}
 		else if(dt.type == "review"){
 			hh = `<tr>
 		          <td>${p.name}</td>
-		          <td>${p.model}</td>
+		          <td>${p.sku}</td>
 		          <td>${op.q}</td>
-		          <td>&#0163;${p.amount}</td>
-		          <td>&#0163;${ss}</td>
+		          <td>&#8358;${p.amount}</td>
+		          <td>&#8358;${ss}</td>
 		          </tr>`;
 		}
 		 html += hh;
@@ -399,11 +399,15 @@ const refreshProducts = dt => {
 	if(dt.type == "review"){
 		hh = `<tr>
 		          <td colspan="4" class="text-right">Subtotal</td>
-		          <td><span class="ml-5">&#0163;${s}</span></td>
+		          <td><span class="ml-5">&#8358;${s}</span></td>
+		          </tr>
+				  <tr>
+		          <td colspan="4" class="text-right">Shipping</td>
+		          <td><span class="ml-5">&#8358;${shipping.value}</span></td>
 		          </tr>
 				  <tr>
 		          <td colspan="4" class="text-right">Total</td>
-		          <td><span class="ml-5">&#0163;<span id="${dt.t}-total">${t}</span></span></td>
+		          <td><span class="ml-5">&#8358;<span id="${dt.t}-total">${parseInt(t) + parseInt(shipping.value)}</span></span></td>
 		          </tr>`;
 		html += hh;
 	}
