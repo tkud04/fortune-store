@@ -1412,13 +1412,14 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 			$c = $this->helpers->getCategories();
 			$o = $this->helpers->getOrder($req['xf']);
+			$shipping = $this->helpers->getShippingSingle($o['shipping_type']);
 			$products = $this->helpers->getProducts();
 			$countries = $this->helpers->countries;
 			#dd($o);
-			 $signals = $this->helpers->signals;
+			  $pe = $this->helpers->getPhoneAndEmail();$signals = $this->helpers->signals;
 			   $statuses = $this->helpers->statuses;
 			   $plugins = $this->helpers->getPlugins();
-		        return view("invoice",compact(['user','cart','c','o','products','countries','statuses','signals','plugins']));	
+		        return view("invoice",compact(['user','cart','c','o','shipping','pe','products','countries','statuses','signals','plugins']));	
 		
          }        
     }
@@ -1463,8 +1464,8 @@ class MainController extends Controller {
 			$products = $this->helpers->getProducts();
 			 $signals = $this->helpers->signals;
 			   $statuses = $this->helpers->statuses;
-			   $plugins = $this->helpers->getPlugins();
-		        return view("shipping-list",compact(['user','cart','c','o','products','countries','statuses','signals','plugins']));	
+			  $pe = $this->helpers->getPhoneAndEmail(); $plugins = $this->helpers->getPlugins();
+		        return view("shipping-list",compact(['user','cart','c','o','pe','products','countries','statuses','signals','plugins']));	
 		
          }        
     }

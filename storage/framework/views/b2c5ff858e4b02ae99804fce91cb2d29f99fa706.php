@@ -33,7 +33,7 @@ let pd = [], sd = [], ppd = null, pm = "none";
 
 $(document).ready(() => {
 
-$('.edh').prop("readonly", true );
+//$('.edh').prop("readonly", true );
 
 <?php if(count($sd) > 0): ?>
   <?php $__currentLoopData = $sd; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -62,7 +62,7 @@ $eu = url('order')."?xf=".$o['id']."&type=edit";
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
 	    <div class="text-right" id="ap-submit">
 	      <a href="{{$pu}}" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Print Invoice"><i class="fa fa-print"></i></a>
-	      <a href="{{$su}}" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Print Shipping List"><i class="fa fa-truck"></i></a>
+	     <!-- <a href="{{$su}}" target="_blank" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Print Shipping List"><i class="fa fa-truck"></i></a> -->
 	     <a href="{{url('orders')}}" class="btn btn-primary"><i class="fa fa-reply"></i></a>
 	    </div>
 	  </div>
