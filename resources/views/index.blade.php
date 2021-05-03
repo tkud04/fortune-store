@@ -185,6 +185,61 @@ $title = "Welcome";
 
 			</div>
 		</div> <!-- End Special Offer Area -->
+		
+		
+		
+		<!-- Start gallery Area -->
+		<section id="gallery_area" class="section_padding">
+			<div class="container">		
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="section_title">						
+							<h2>Our <span>Gallery</span></h2>
+							<div class="divider"></div>							
+						</div>
+					</div>
+				</div>
+			
+				<div class="text-center">
+					
+					
+					<div class="product_item">
+						<div class="row">
+							<?php
+                             foreach($gallery as $g)
+									  {
+										
+										  $img = $g['img'];
+									
+						?>						
+							<div class="col-lg-3 col-md-4 col-sm-6 mix">
+								<div class="single_product">
+									<div class="product_image">
+										<img src="{{$img}}" alt=""/>
+																	
+									</div>
+
+									<div class="product_btm_text">
+										
+			
+									</div>
+								</div>
+								
+							</div> <!-- End Col -->	
+                            <?php
+									  }
+							?>
+									
+		
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End gallery Area -->
+		
+		
+		
 
 		<!-- Start Featured product Area -->
 		<section id="featured_product" class="featured_product_area section_padding">
