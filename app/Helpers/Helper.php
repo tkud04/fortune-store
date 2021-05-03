@@ -2962,6 +2962,31 @@ $subject = $data['subject'];
 
                return $ret;			   
 		   }
+	
+	
+	function getGallery()
+		   {
+			   $ret = [];
+			   $gi = Gallery::where('deleted',"no")->get();
+			   #dd($gi);
+			   if(!is_null($gi))
+			   {
+				foreach($gi as $b)
+				   {
+					   $temp = [];
+					   $temp['id'] = $b->id;
+					   $img = $b->img;
+					   $temp['img'] = $this->getCloudinaryImage($img);
+					   $temp['deleted'] = $b->deleted;				   
+					   $temp['delete_token'] = $b->delete_token;
+					   $temp['status'] = $b->status;
+					   $temp['date'] = $b->created_at->format("jS F, Y h:i A");
+					   array_push($ret,$temp);
+				   }
+			   }
+			   
+			   return $ret;
+		   }	 
 		   
 }
 
