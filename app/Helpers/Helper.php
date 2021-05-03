@@ -33,6 +33,7 @@ use App\Plugins;
 use App\Shipping;
 use App\Couriers;
 use App\Comparisons;
+use App\Gallery;
 use App\Debugs;
 use \Swift_Mailer;
 use \Swift_SmtpTransport;
