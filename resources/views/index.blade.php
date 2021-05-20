@@ -8,6 +8,7 @@ $title = "Welcome";
  @include('banner')
 	
  <?php
+      shuffle($c);
 	$cCount = count($c) < 4 ? count($c) : 4;
 ?>
 		<!--  Categories STRAT  -->
@@ -24,7 +25,6 @@ $title = "Welcome";
 						  $img = $cc['image'][0];
                    ?>
 				   
-				   @if($i == 0)
 					<div class="col-lg-4 col-md-6 col-sm-12">	
 						<a href="{{$cu}}">
 							<div class="single_promo">
@@ -36,47 +36,7 @@ $title = "Welcome";
 							</div>
 						</a>						
 					</div><!--  End Col -->						
-					 @elseif($i == 1)
-					<div class="col-lg-4 col-md-6 col-sm-12">	
-						<a href="{{$cu}}">
-							<div class="single_promo">
-								<img src="{{$img}}" alt="">
-								<div class="box-content">
-									<h3 class="title">{{$cc['name']}}</h3>
-									<span class="post">2021 Collection</span>
-								</div>
-							</div>
-						</a>	
-                      @if($cCount == 2)
-					   </div><!--  End Col -->	
-					  @endif
-					  
-					  @elseif($i == 2)
-						<a href="{{$cu}}">
-							<div class="single_promo">
-								<img src="{{$img}}" alt="">
-								<div class="box-content">
-									<h3 class="title">{{$cc['name']}}</h3>
-									<span class="post">2021 Collection</span>
-								</div>
-							</div>
-						</a>	
-						
-					</div><!--  End Col -->					
-                   @elseif($i == 3)
-					
-					<div class="col-lg-4 col-md-6 col-sm-12">
-						<a href="{{$cu}}">
-							<div class="single_promo">
-								<img src="{{$img}}" alt="">
-								<div class="box-content">
-									<h3 class="title">{{$cc['name']}}</h3>
-									<span class="post">2021 Collection</span>
-								</div>
-							</div>
-						</a>		
-					</div><!--  End Col -->	
-					@endif				
+												
 				    <?php
 	                  }
 	                }
