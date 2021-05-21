@@ -8,7 +8,8 @@ $title = "Welcome";
  @include('banner')
 	
  <?php
-	$cCount = count($c) < 4 ? count($c) : 4;
+	//$cCount = count($c) < 4 ? count($c) : 4;
+	$cCount = count($c);
 ?>
 		<!--  Categories STRAT  -->
 		<section id="promo_area" class="section_padding">
