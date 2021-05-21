@@ -18,7 +18,8 @@ $pcClass = "";
 										$cu = url('category')."?xf=".$cc['id'];
 											#$children = $cc['children'];
 												
-												
+											$pc = $cc['product_count'];
+	                                        $pcText = $pc == 1 ? "Product" : "Products";	
 													
 										   ?>
                             <div class="col-md-3 col-6 mb-4">
@@ -31,6 +32,7 @@ $pcClass = "";
                                     </a>
                                     <div class="category-content">
                                         <h4 class="category-name"><a href="{{$cu}}">{!! $cc['name'] !!}</a></h4>
+                                        <h4 class="category-name"><b>{{$pc." ".$pcText}}</b></h4>
                                     </div>
                                 </div>
                             </div>
