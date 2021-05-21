@@ -30,7 +30,7 @@ $title = "Welcome";
 					<div class="col-lg-4 col-md-6 col-sm-12">	
 						<a href="{{$cu}}">
 							<div class="single_promo">
-								<img src="{{$img}}" alt="">
+								<img src="{{$img}}" alt="" style="width: 350px !important; height: 350px !important;">
 								<div class="box-content">
 									<h3 class="title">{{$cc['name']}}</h3>
 									<span class="post">2021 Collection</span>
