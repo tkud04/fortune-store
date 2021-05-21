@@ -6,46 +6,40 @@ $pcClass = "";
 @extends('layout')
 
 @section('content')
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <?php
-	 if(count($c) > 0)
-	 {
-  ?>
-  <div class="carousel-inner">
-  <?php
-	 for($i = 0; $i < count($c); $i++)
-     {
-      $cc = $c[$i];
-      $ss = $i == 0 ? " active" : "";
-	  $cu = url('category')."?xf=".$cc['category']; 
-	  $imgs = $cc['image'];
-	  $parent = $cc['parent'];
-	  $pc = $cc['product_count'];
-	  $pcText = $pc == 1 ? "Product" : "Products";
-   ?>
-    <div class="carousel-item {{$ss}}">
-      <div class="text-center text-white d-block w-100" style="background: url('img/blank.png'); padding: 50px; ">
-        <h4 class="category-name"><a href="{{$cu}}">{{ucwords($cc['name'])}}</a></h4>
-         <span class="category-count">
-            <span>{{$pc}}</span> {{$pcText}}
-         </span>
-      </div>
-    </div>
-   <?php
-    }
-   ?>
-    
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-  <?php
-  }
-  ?>
-</div>
+<section class="mt-md-10 pt-md-3 mt-9">
+                        <h2 class="title">Available Categories</h2>
+						<div class="row">
+ <?php
+										  $cccc = [];
+										  
+										    foreach($c as $cc)
+											{
+												
+										$cu = url('category')."?xf=".$cc['id'];
+											#$children = $cc['children'];
+												
+												
+													
+										   ?>
+                            <div class="col-md-3 col-6 mb-4">
+                                <div
+                                    class="category category-default category-default-1 category-absolute overlay-zoom">
+                                    <a href="{{$cu}}">
+                                        <figure class="category-media">
+                                            <img src="{{$cc['image'][0]}}" alt="category" class="rc" />
+                                        </figure>
+                                    </a>
+                                    <div class="category-content">
+                                        <h4 class="category-name"><a href="{{$cu}}">{!! $cc['name'] !!}</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+							 <?php
+												
+											  
+											  array_push($cccc,$cc['id']);
+											}
+										   ?>
+                          </div>
+                    </section>
 @stop
