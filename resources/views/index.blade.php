@@ -92,7 +92,7 @@ $title = "Welcome";
 							<div class="col-lg-3 col-md-4 col-sm-6 mix {{$ss}}">
 								<div class="single_product">
 									<div class="product_image">
-										<img src="{{$imgs[0]}}" alt=""/>
+										<img src="{{$imgs[0]}}" alt="" width="253" height="337"/>
 										<div class="new_badge">New</div>
 										<div class="box-content">
 											<a href="javascript:void(0)" onclick="addToWishlist({xf: '{{$xf}}'})" title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
