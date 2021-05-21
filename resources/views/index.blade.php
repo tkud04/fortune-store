@@ -12,7 +12,6 @@ $title = "Welcome";
 	$cCount = count($c);
 
       shuffle($c);
-	$cCount = count($c) < 4 ? count($c) : 4;
 ?>
 		<!--  Categories STRAT  -->
 		<section id="promo_area" class="section_padding">
