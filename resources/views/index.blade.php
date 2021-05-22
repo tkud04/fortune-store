@@ -99,7 +99,7 @@ $title = "Welcome";
 										  // else if($tag == "bestseller") $ss = "bslr";
 										  // else if($tag == "featured") $ss = "ftrd";
 						?>						
-							<div class="col-lg-3 col-md-4 col-sm-6 mix {{$ss}}">
+							<div class="col-lg-3 col-md-4 col-sm-6 mix cat-{{$pc}}">
 								<div class="single_product">
 									<div class="product_image">
 										<img src="{{$imgs[0]}}" alt="" style="width: 253px !important; height: 337px !important;" />
