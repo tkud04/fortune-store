@@ -44,13 +44,19 @@ $pcClass = "";
 						</div>
 						<div class="single_info">
 							<div class="con_icon"><i class="fa fa-phone"></i></div>
-							<p>Phone : {{$pe['phone']}}</p>
+							<p>Call : 07045777852</p>
+							<p>Whatsapp : 08023423578</p>
 							
+						</div>
+						<div class="single_info">
+							<div class="con_icon"><i class="fa fa-instagram"></i></div>
+							<p><a href="https://www.instagram.com/hne_care">Instagram: <span class="__cf_email__">hne_care</span> </a></p>
 						</div>
 						<div class="single_info">
 							<div class="con_icon"><i class="fa fa-envelope"></i></div>
 							<a href="javascript:void(0)"><span class="__cf_email__">{{$pe['email']}}</span> </a>
 						</div>
+						
 						
 					</div>
 				</div>

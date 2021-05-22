@@ -98,7 +98,7 @@
 						<div class="col-xs-12 col-sm-6">
 							<div class="hdr_tp_left">
 								<div class="call_area">
-									<span class="single_con_add"><i class="fa fa-phone"></i> {{$pe['phone']}}</span>
+									<span class="single_con_add"><i class="fa fa-phone"></i> <a href="tel:07045777852">07045777852</span>
 									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="javascript:void(0)" class="__cf_email__">{{$pe['email']}}</a></span>
 								</div>
 							</div>

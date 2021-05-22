@@ -8,7 +8,10 @@ $title = "Welcome";
  <?php echo $__env->make('banner', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 	
  <?php
-	$cCount = count($c) < 4 ? count($c) : 4;
+	//$cCount = count($c) < 4 ? count($c) : 4;
+	$cCount = count($c);
+
+      shuffle($c);
 ?>
 		<!--  Categories STRAT  -->
 		<section id="promo_area" class="section_padding">
@@ -24,11 +27,10 @@ $title = "Welcome";
 						  $img = $cc['image'][0];
                    ?>
 				   
-				   <?php if($i == 0): ?>
 					<div class="col-lg-4 col-md-6 col-sm-12">	
 						<a href="<?php echo e($cu); ?>">
 							<div class="single_promo">
-								<img src="<?php echo e($img); ?>" alt="">
+								<img src="<?php echo e($img); ?>" alt="" style="width: 350px !important; height: 350px !important;">
 								<div class="box-content">
 									<h3 class="title"><?php echo e($cc['name']); ?></h3>
 									<span class="post">2021 Collection</span>
@@ -36,47 +38,7 @@ $title = "Welcome";
 							</div>
 						</a>						
 					</div><!--  End Col -->						
-					 <?php elseif($i == 1): ?>
-					<div class="col-lg-4 col-md-6 col-sm-12">	
-						<a href="<?php echo e($cu); ?>">
-							<div class="single_promo">
-								<img src="<?php echo e($img); ?>" alt="">
-								<div class="box-content">
-									<h3 class="title"><?php echo e($cc['name']); ?></h3>
-									<span class="post">2021 Collection</span>
-								</div>
-							</div>
-						</a>	
-                      <?php if($cCount == 2): ?>
-					   </div><!--  End Col -->	
-					  <?php endif; ?>
-					  
-					  <?php elseif($i == 2): ?>
-						<a href="<?php echo e($cu); ?>">
-							<div class="single_promo">
-								<img src="<?php echo e($img); ?>" alt="">
-								<div class="box-content">
-									<h3 class="title"><?php echo e($cc['name']); ?></h3>
-									<span class="post">2021 Collection</span>
-								</div>
-							</div>
-						</a>	
-						
-					</div><!--  End Col -->					
-                   <?php elseif($i == 3): ?>
-					
-					<div class="col-lg-4 col-md-6 col-sm-12">
-						<a href="<?php echo e($cu); ?>">
-							<div class="single_promo">
-								<img src="<?php echo e($img); ?>" alt="">
-								<div class="box-content">
-									<h3 class="title"><?php echo e($cc['name']); ?></h3>
-									<span class="post">2021 Collection</span>
-								</div>
-							</div>
-						</a>		
-					</div><!--  End Col -->	
-					<?php endif; ?>				
+												
 				    <?php
 	                  }
 	                }
@@ -130,7 +92,7 @@ $title = "Welcome";
 							<div class="col-lg-3 col-md-4 col-sm-6 mix <?php echo e($ss); ?>">
 								<div class="single_product">
 									<div class="product_image">
-										<img src="<?php echo e($imgs[0]); ?>" alt=""/>
+										<img src="<?php echo e($imgs[0]); ?>" alt="" style="width: 253px !important; height: 337px !important;" />
 										<div class="new_badge">New</div>
 										<div class="box-content">
 											<a href="javascript:void(0)" onclick="addToWishlist({xf: '<?php echo e($xf); ?>'})" title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
