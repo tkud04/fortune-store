@@ -64,10 +64,20 @@ $title = "Welcome";
 				<div class="text-center">
 					<div class="product_filter">
 						<ul>
-							<li class=" active filter" data-filter="all">ALL</li>
-							<li class="filter" data-filter=".sale">Sale</li>
-							<li class="filter" data-filter=".bslr">Bestseller</li>
-							<li class="filter" data-filter=".ftrd">Featured</li>
+						<li class=" active filter" data-filter="all">ALL</li>
+						   <?php
+	                        if($cCount > 0)
+	                         {
+					            for($i = 0; $i < $cCount; $i++)
+	                             {
+						            $cc = $c[$i];
+                           ?>
+							
+								 <li class="filter" data-filter=".cat-{{$cc['id']}}">{{$cc['category']}}</li>
+							 <?php
+	                             }
+	                         }
+                            ?>
 						</ul>
 					</div>
 					
@@ -84,10 +94,10 @@ $title = "Welcome";
 										  $amt = $data['amount'];
 										  $xf = $p['id'];
 										  $uu = url('product')."?xf=".$p['sku'];
-										  $ss = "";
-										  if($tag == "sale") $ss = "sale";
-										  else if($tag == "bestseller") $ss = "bslr";
-										  else if($tag == "featured") $ss = "ftrd";
+										  $ss = "cat-".$cc['id'];
+										  // if($tag == "sale") $ss = "sale";
+										  // else if($tag == "bestseller") $ss = "bslr";
+										  // else if($tag == "featured") $ss = "ftrd";
 						?>						
 							<div class="col-lg-3 col-md-4 col-sm-6 mix {{$ss}}">
 								<div class="single_product">
