@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>{{$title}} | Luxfabriqs Fashion - Online Store for Stylish and Elegant Laces and Georges </title>
 
@@ -39,7 +39,9 @@
     <!-- Custom CSS File -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css').'?ver='.rand(32,99999)}}">
 	
-			
+     <style type="text/css">
+      
+     </style>			
         <script src="js/jquery.meanmenu.min.js"></script>
 		<script src="js/jquery.mixitup.js"></script>
 		<script src="js/jquery.counterup.min.js"></script>
@@ -98,7 +100,7 @@
 						<div class="col-xs-12 col-sm-6">
 							<div class="hdr_tp_left">
 								<div class="call_area">
-									<span class="single_con_add"><i class="fa fa-phone"></i> <a href="tel:07045777852">07045777852</span>
+									<span class="single_con_add"><i class="fa fa-phone"></i> <a href="tel:07045777852"></span>
 									<span class="single_con_add"><i class="fa fa-envelope"></i> <a href="javascript:void(0)" class="__cf_email__">{{$pe['email']}}</a></span>
 								</div>
 							</div>
