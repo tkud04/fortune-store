@@ -39,7 +39,9 @@
     <!-- Custom CSS File -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css').'?ver='.rand(32,99999)}}">
 	
-			
+     <style type="text/css">
+      * { border: 1px solid red; }     
+     </style>			
         <script src="js/jquery.meanmenu.min.js"></script>
 		<script src="js/jquery.mixitup.js"></script>
 		<script src="js/jquery.counterup.min.js"></script>
