@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=0.4">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
 
     <title>{{$title}} | Luxfabriqs Fashion - Online Store for Stylish and Elegant Laces and Georges </title>
 
